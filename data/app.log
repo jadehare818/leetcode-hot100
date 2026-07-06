@@ -7,11 +7,19 @@
  * Restarting with stat
  * Tip: There are .env files present. Install python-dotenv to use them.
  * Debugger is active!
- * Debugger PIN: 643-138-204
-127.0.0.1 - - [07/Jul/2026 00:30:30] "GET / HTTP/1.1" 200 -
-127.0.0.1 - - [07/Jul/2026 00:30:30] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
-127.0.0.1 - - [07/Jul/2026 00:30:30] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
-127.0.0.1 - - [07/Jul/2026 00:30:30] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
-127.0.0.1 - - [07/Jul/2026 00:30:30] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
-/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/resource_tracker.py:216: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
+ * Debugger PIN: 955-848-850
+127.0.0.1 - - [07/Jul/2026 00:32:47] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:32:47] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:32:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:32:47] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:32:47] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:34:30] "GET /problems HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:34:30] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:34:30] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:34:30] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:34:30] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:34:31] "GET /cheatsheet HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:34:31] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:34:31] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:34:31] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:34:31] "[36mGET /static/app.js HTTP/1.1[0m" 304 -

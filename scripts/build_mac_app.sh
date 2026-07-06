@@ -31,6 +31,19 @@ rm "$STOP_AS"
 cp -R "$DIST/Hot100.app" /Applications/
 cp -R "$DIST/Hot100 Stop.app" /Applications/
 
+# ---- Apply LeetCode icon (if the icns is bundled in scripts/assets) ----
+ICON="$REPO/scripts/assets/leetcode.icns"
+if [[ -f "$ICON" ]]; then
+  for APP in "/Applications/Hot100.app" "/Applications/Hot100 Stop.app"; do
+    cp "$ICON" "$APP/Contents/Resources/applet.icns"
+    /usr/libexec/PlistBuddy -c "Set :CFBundleIconFile applet.icns" "$APP/Contents/Info.plist" 2>/dev/null || \
+    /usr/libexec/PlistBuddy -c "Add :CFBundleIconFile string applet.icns" "$APP/Contents/Info.plist"
+    touch "$APP"
+  done
+  # 强制 Finder / Dock 重读图标缓存
+  killall Finder Dock 2>/dev/null || true
+fi
+
 echo "✅ Built + installed:"
 echo "  /Applications/Hot100.app"
 echo "  /Applications/Hot100 Stop.app"
