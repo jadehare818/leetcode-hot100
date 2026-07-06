@@ -36,6 +36,8 @@ ICON="$REPO/scripts/assets/leetcode.icns"
 if [[ -f "$ICON" ]]; then
   for APP in "/Applications/Hot100.app" "/Applications/Hot100 Stop.app"; do
     cp "$ICON" "$APP/Contents/Resources/applet.icns"
+    # osacompile 会顺手塞一个 Assets.car 覆盖 applet.icns，删之
+    rm -f "$APP/Contents/Resources/Assets.car" "$APP/Contents/Resources/applet.rsrc"
     /usr/libexec/PlistBuddy -c "Set :CFBundleIconFile applet.icns" "$APP/Contents/Info.plist" 2>/dev/null || \
     /usr/libexec/PlistBuddy -c "Add :CFBundleIconFile string applet.icns" "$APP/Contents/Info.plist"
     touch "$APP"
