@@ -301,7 +301,7 @@ h3 {
   font-size: 13px;
   font-variant-numeric: tabular-nums;
 }
-.progress-legend .lbl { text-transform: uppercase; letter-spacing: 0.06em; font-size: 11px;}
+.progress-legend .lbl { text-transform: none; letter-spacing: 0.02em; font-size: 12px; font-family: var(--font-body);}
 .dot.solid { background: var(--sage); }
 .dot.shaky { background: var(--amber); }
 .dot.forgot { background: var(--tomato); }
