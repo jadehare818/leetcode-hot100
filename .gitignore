@@ -3,6 +3,9 @@ __pycache__/
 *.pyc
 .DS_Store
 
+# 构建产物（.app 是本机生成，不进 git）
+dist/
+
 # 敏感凭证
 .env
 
