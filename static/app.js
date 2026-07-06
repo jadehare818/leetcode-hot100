@@ -46,6 +46,7 @@ document.querySelectorAll('[data-solve]').forEach(btn => {
 });
 
 // 全表下拉
+const STATUS_ZH = {todo: '未刷', forgot: '卡住', shaky: '磕绊', solid: '稳', archived: '归档'};
 document.querySelectorAll('[data-status-select]').forEach(sel => {
   sel.addEventListener('change', async () => {
     const pid = sel.dataset.pid;
@@ -54,7 +55,7 @@ document.querySelectorAll('[data-status-select]').forEach(sel => {
     // 更新行 status，不 reload 避免滚回顶部
     const row = sel.closest('tr');
     row.dataset.status = status;
-    row.querySelector('.st').textContent = status;
+    row.querySelector('.st').textContent = STATUS_ZH[status] || status;
     row.querySelector('.st').className = `st st-${status}`;
     applyFilters();
   });

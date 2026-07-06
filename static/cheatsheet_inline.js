@@ -26,7 +26,7 @@ function _renderPanel(panel, md) {
   const btn = panel.querySelector('.cs-mode-btn');
   const hint = panel.querySelector('.cs-hint');
   edit.value = escapedInitial;
-  view.innerHTML = escapedInitial ? marked.parse(escapedInitial) : '<p class="empty">还没写笔记，点右上"编辑"开始。</p>';
+  view.innerHTML = escapedInitial ? marked.parse(escapedInitial) : '<p class="empty">记录重要语法。</p>';
 
   btn.addEventListener('click', async () => {
     if (edit.style.display === 'none') {
@@ -54,7 +54,7 @@ function _renderPanel(panel, md) {
         // 同步 dashboard 卡片的一句话预览（如果那题正好在看板里）
         // note 和 cheatsheet 是不同字段，这里不动 note-preview
       }
-      view.innerHTML = edit.value ? marked.parse(edit.value) : '<p class="empty">还没写笔记。</p>';
+      view.innerHTML = edit.value ? marked.parse(edit.value) : '<p class="empty">记录重要语法。</p>';
       edit.style.display = 'none';
       view.style.display = 'block';
       btn.textContent = '✏️ 编辑';

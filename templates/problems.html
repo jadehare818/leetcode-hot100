@@ -8,12 +8,14 @@
   <p class="lede">按官方分类排布。左侧筛选按状态过滤；点击 💡 / 📝 就地展开思路和 cheatsheet。</p>
 </section>
 
+{% set status_zh = {'todo':'未刷','forgot':'卡住','shaky':'磕绊','solid':'稳','archived':'归档'} %}
+
 <div class="filters">
-  <label><input type="checkbox" data-filter="todo" checked> Todo</label>
-  <label><input type="checkbox" data-filter="forgot" checked> Forgot</label>
-  <label><input type="checkbox" data-filter="shaky" checked> Shaky</label>
-  <label><input type="checkbox" data-filter="solid" checked> Solid</label>
-  <label><input type="checkbox" data-filter="archived"> Archived</label>
+  <label><input type="checkbox" data-filter="todo" checked> 未刷</label>
+  <label><input type="checkbox" data-filter="forgot" checked> 卡住</label>
+  <label><input type="checkbox" data-filter="shaky" checked> 磕绊</label>
+  <label><input type="checkbox" data-filter="solid" checked> 稳</label>
+  <label><input type="checkbox" data-filter="archived"> 归档</label>
 </div>
 
 {% for cat in categories %}
@@ -35,15 +37,15 @@
           <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener" class="lc-link" title="在力扣打开">↗</a>
         </td>
         <td><span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span></td>
-        <td><span class="st st-{{ p.status }}">{{ p.status }}</span></td>
+        <td><span class="st st-{{ p.status }}">{{ status_zh[p.status] }}</span></td>
         <td>{{ p.next_review or '—' }}</td>
         <td>
           <select data-status-select data-pid="{{ p.id }}">
-            <option value="todo" {% if p.status=='todo' %}selected{% endif %}>Todo</option>
-            <option value="forgot" {% if p.status=='forgot' %}selected{% endif %}>Forgot</option>
-            <option value="shaky" {% if p.status=='shaky' %}selected{% endif %}>Shaky</option>
-            <option value="solid" {% if p.status=='solid' %}selected{% endif %}>Solid</option>
-            <option value="archived" {% if p.status=='archived' %}selected{% endif %}>Archived</option>
+            <option value="todo" {% if p.status=='todo' %}selected{% endif %}>未刷</option>
+            <option value="forgot" {% if p.status=='forgot' %}selected{% endif %}>卡住</option>
+            <option value="shaky" {% if p.status=='shaky' %}selected{% endif %}>磕绊</option>
+            <option value="solid" {% if p.status=='solid' %}selected{% endif %}>稳</option>
+            <option value="archived" {% if p.status=='archived' %}selected{% endif %}>归档</option>
           </select>
           <button class="btn ghost note-toggle" data-pid="{{ p.id }}" title="思路">💡</button>
           <button class="btn ghost cs-toggle" data-pid="{{ p.id }}" title="Cheatsheet">📝</button>

@@ -129,9 +129,9 @@
     {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
     <div class="actions">
       <button class="btn open-code" data-pid="{{ p.id }}">📝 打开代码</button>
-      <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">🟢 稳</button>
-      <button class="btn ok" data-solve="shaky" data-pid="{{ p.id }}">🟡 磕绊</button>
-      <button class="btn hard" data-solve="forgot" data-pid="{{ p.id }}">🔴 卡住</button>
+      <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">稳</button>
+      <button class="btn ok" data-solve="shaky" data-pid="{{ p.id }}">磕绊</button>
+      <button class="btn hard" data-solve="forgot" data-pid="{{ p.id }}">卡住</button>
       <button class="btn ghost note-toggle" data-pid="{{ p.id }}">思路</button>
       <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">Cheatsheet</button>
     </div>
@@ -166,9 +166,9 @@
     {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
     <div class="actions">
       <button class="btn open-code" data-pid="{{ p.id }}">📝 打开代码</button>
-      <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">🟢 稳</button>
-      <button class="btn ok" data-solve="shaky" data-pid="{{ p.id }}">🟡 磕绊</button>
-      <button class="btn hard" data-solve="forgot" data-pid="{{ p.id }}">🔴 卡住</button>
+      <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">稳</button>
+      <button class="btn ok" data-solve="shaky" data-pid="{{ p.id }}">磕绊</button>
+      <button class="btn hard" data-solve="forgot" data-pid="{{ p.id }}">卡住</button>
       <button class="btn ghost note-toggle" data-pid="{{ p.id }}">思路</button>
       <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">Cheatsheet</button>
     </div>
