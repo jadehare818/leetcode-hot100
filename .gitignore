@@ -9,6 +9,7 @@ __pycache__/
 # 私人数据 —— 不上传公开仓库
 config.local.json
 data/progress.local.json
+data/study-notes.md
 data/autocommit.log
 data/autocommit.err.log
 data/feishu.log

@@ -45,6 +45,14 @@ git worktree add -f "$WORKTREE" "$BRANCH" 2>/dev/null || {
 mkdir -p "$WORKTREE/data" "$WORKTREE/solutions"
 [[ -f "$REPO/data/progress.local.json" ]] && cp "$REPO/data/progress.local.json" "$WORKTREE/data/"
 
+# 生成人类可读的 markdown 笔记（供手机阅读用）
+if [[ -x "$REPO/.venv/bin/python" ]]; then
+  "$REPO/.venv/bin/python" "$REPO/scripts/export_notes.py" > /dev/null || true
+elif command -v python3 > /dev/null; then
+  python3 "$REPO/scripts/export_notes.py" > /dev/null || true
+fi
+[[ -f "$REPO/data/study-notes.md" ]] && cp "$REPO/data/study-notes.md" "$WORKTREE/data/"
+
 # 用 rsync 复制 solutions（保留目录结构，只带代码文件）
 rsync -a --include="*/" \
     --include="[0-9]*.py" --include="[0-9]*.go" \
