@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}#{{ p.id }} {{ p.title }}{% endblock %}
 {% block content %}
+{% set status_zh = {'todo':'未刷','forgot':'卡住','shaky':'磕绊','solid':'稳','archived':'归档'} %}
 
 <a href="{{ url_for('problems_page') }}" class="back">← 返回题库</a>
 
@@ -8,7 +9,7 @@
   <div class="pid-line">#{{ p.id }} · {{ p.category }} · <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span></div>
   <h1>{{ p.title }}</h1>
   <div class="meta-row">
-    <span class="kv"><span class="k">Status</span> <span class="v"><span class="st st-{{ entry.status }}">{{ entry.status }}</span></span></span>
+    <span class="kv"><span class="k">Status</span> <span class="v"><span class="st st-{{ entry.status }}">{{ status_zh[entry.status] }}</span></span></span>
     <span class="kv"><span class="k">Next</span> <span class="v">{{ entry.next_review or '—' }}</span></span>
     <span class="kv"><span class="k">Stage</span> <span class="v">{{ entry.review_stage if entry.review_stage >= 0 else '—' }}</span></span>
   </div>
