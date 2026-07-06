@@ -13,6 +13,7 @@ import re
 import subprocess
 from datetime import date, datetime, timedelta
 from pathlib import Path
+from pathlib import Path
 
 from flask import (
     Flask,
@@ -66,15 +67,39 @@ def save_json(path: Path, data) -> None:
     tmp.replace(path)
 
 
+def _load_dotenv() -> None:
+    """极简 .env 解析器：只支持 KEY=VALUE，不支持 quoting/interp。"""
+    env_path = ROOT / ".env"
+    if not env_path.exists():
+        return
+    for line in env_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, _, v = line.partition("=")
+        k, v = k.strip(), v.strip()
+        # 剥掉可选的引号
+        if len(v) >= 2 and v[0] == v[-1] and v[0] in ("'", '"'):
+            v = v[1:-1]
+        os.environ.setdefault(k, v)
+
+
+_load_dotenv()
+
+
 def load_config() -> dict:
     """读 config.json，config.local.json 里同名字段覆盖之。
 
-    敏感字段（feishu_webhook / feishu_secret 等）应放在 local 文件，
-    local 文件本身在 .gitignore 里，不进版本控制。
+    敏感字段（feishu webhook / secret 等）从 .env 环境变量读，不走 config 文件。
     """
     base = load_json(CONFIG_PATH, {})
     local = load_json(CONFIG_LOCAL_PATH, {})
     base.update(local)
+    # 敏感字段从环境变量注入
+    if os.environ.get("FEISHU_WEBHOOK"):
+        base["feishu_webhook"] = os.environ["FEISHU_WEBHOOK"]
+    if os.environ.get("FEISHU_SECRET"):
+        base["feishu_secret"] = os.environ["FEISHU_SECRET"]
     return base
 
 

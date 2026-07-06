@@ -181,13 +181,14 @@ python3 -m venv .venv
 | [config.json](config.json) | ✅ | 公开配置：配额、间隔、语言 |
 | **[data/progress.json](data/progress.json)** | ✅（空 seed）| 上传时是 `{}`，作克隆种子 |
 | **`data/progress.local.json`** | ❌ | 你的真实进度、思路、per-problem cheatsheet |
-| **`config.local.json`** | ❌ | 敏感字段（飞书 webhook / secret）|
+| **`.env`** | ❌ | 敏感凭证（飞书 webhook / secret）|
+| **`config.local.json`** | ❌ | 覆盖 `config.json` 的非敏感字段（可选，多数人不需要）|
 | **`solutions/*/[0-9]*.{py,go,cpp,java}`** | ❌ | 你的题解代码（`.gitkeep` 保留目录）|
 
-`app.py` 的 `load_config()` / `load_progress()` 会**优先读 local 版本**，不存在时回退到公开版本。你 fork 后：
+`app.py` 的 `load_config()` 会**优先读 `.env`（敏感字段）+ `config.local.json`（非敏感覆盖）+ `config.json`（默认）**。你 fork 后：
 
 1. 直接用即可 —— local 文件在你首次改状态时自动创建
-2. 想要飞书推送就 `cp config.local.json.example config.local.json` 填入 webhook
+2. 想要飞书推送就 `cp .env.example .env` 填入 webhook
 
 **Fork 建议**：如果你也想把自己的 fork 公开分享，请沿用这套架构，别把 `progress.local.json` 或 `config.local.json` 提交上去。
 
@@ -204,8 +205,8 @@ python3 -m venv .venv
 3. 复制模板文件并填入：
 
    ```bash
-   cp config.local.json.example config.local.json
-   # 编辑 config.local.json，填入 feishu_webhook 和 feishu_secret
+   cp .env.example .env
+   # 编辑 .env，填入 FEISHU_WEBHOOK 和 FEISHU_SECRET
    ```
 
 4. 手动测一发：

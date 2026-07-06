@@ -3,6 +3,9 @@ __pycache__/
 *.pyc
 .DS_Store
 
+# 敏感凭证
+.env
+
 # 私人数据 —— 不上传公开仓库
 config.local.json
 data/progress.local.json
