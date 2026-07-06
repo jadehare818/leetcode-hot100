@@ -8,7 +8,7 @@
   <p class="lede">按官方分类排布。左侧筛选按状态过滤；点击 💡 / 📝 就地展开思路和 cheatsheet。</p>
 </section>
 
-{% set status_zh = {'todo':'未刷','forgot':'卡住','shaky':'磕绊','solid':'稳','archived':'归档'} %}
+{% set status_zh = {'todo':'未刷','forgot':'卡住','shaky':'磕绊','solid':'很稳','archived':'归档'} %}
 
 <div class="filters">
   <label><input type="checkbox" data-filter="todo" checked> 未刷</label>
@@ -44,7 +44,7 @@
             <option value="todo" {% if p.status=='todo' %}selected{% endif %}>未刷</option>
             <option value="forgot" {% if p.status=='forgot' %}selected{% endif %}>卡住</option>
             <option value="shaky" {% if p.status=='shaky' %}selected{% endif %}>磕绊</option>
-            <option value="solid" {% if p.status=='solid' %}selected{% endif %}>稳</option>
+            <option value="solid" {% if p.status=='solid' %}selected{% endif %}>很稳</option>
             <option value="archived" {% if p.status=='archived' %}selected{% endif %}>归档</option>
           </select>
           <button class="btn ghost note-toggle" data-pid="{{ p.id }}" title="思路">💡</button>

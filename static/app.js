@@ -46,7 +46,7 @@ document.querySelectorAll('[data-solve]').forEach(btn => {
 });
 
 // 全表下拉
-const STATUS_ZH = {todo: '未刷', forgot: '卡住', shaky: '磕绊', solid: '稳', archived: '归档'};
+const STATUS_ZH = {todo: '未刷', forgot: '卡住', shaky: '磕绊', solid: '很稳', archived: '归档'};
 document.querySelectorAll('[data-status-select]').forEach(sel => {
   sel.addEventListener('change', async () => {
     const pid = sel.dataset.pid;

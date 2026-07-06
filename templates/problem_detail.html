@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}#{{ p.id }} {{ p.title }}{% endblock %}
 {% block content %}
-{% set status_zh = {'todo':'未刷','forgot':'卡住','shaky':'磕绊','solid':'稳','archived':'归档'} %}
+{% set status_zh = {'todo':'未刷','forgot':'卡住','shaky':'磕绊','solid':'很稳','archived':'归档'} %}
 
 <a href="{{ url_for('problems_page') }}" class="back">← 返回题库</a>
 
@@ -42,7 +42,7 @@
 <div class="actions big">
   {% if entry.status == 'todo' %}
     <span>刚刷完这道</span>
-    <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">稳</button>
+    <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">很稳</button>
     <button class="btn ok" data-solve="shaky" data-pid="{{ p.id }}">磕绊</button>
     <button class="btn hard" data-solve="forgot" data-pid="{{ p.id }}">卡住</button>
   {% else %}
