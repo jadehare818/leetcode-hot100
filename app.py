@@ -235,11 +235,17 @@ def _daily_quota() -> int:
 
 
 def _done_today(prog: dict) -> set[int]:
+    """今天真正做完题的 pid 集合。
+
+    只算 action == 'solve' | 'review'。推迟（postpone / postpone-batch）
+    和归档（archive）不算完成 —— 它们是维护动作，不是刷题。
+    """
     today = date.today().isoformat()
+    counted_actions = {"solve", "review"}
     done = set()
     for pid, entry in prog.items():
         for h in entry.get("history", []):
-            if h.get("date") == today:
+            if h.get("date") == today and h.get("action") in counted_actions:
                 done.add(int(pid))
                 break
     return done
