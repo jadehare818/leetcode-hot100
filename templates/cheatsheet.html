@@ -1,17 +1,24 @@
 {% extends "base.html" %}
 {% block title %}Cheatsheet · Hot 100{% endblock %}
 {% block content %}
+
+<section class="journal-hero">
+  <div class="kicker">Notebook · Syntax &amp; Patterns</div>
+  <h1>Cheatsheet</h1>
+  <p class="lede">写给自己的语法速查。凡是"手一停就想不起来"的东西都往里塞。</p>
+</section>
+
 <div class="cheat-toolbar">
-  <button id="toggle-mode" class="btn">✏️ 编辑</button>
+  <button id="toggle-mode" class="btn primary">✏️ 编辑</button>
   <span id="cheat-hint" class="hint"></span>
 </div>
+
 <div id="cheat-view" class="markdown-body"></div>
 <textarea id="cheat-edit" style="display:none">{{ markdown }}</textarea>
 
 <script>
-window.__cheat_md = {{ markdown|tojson }};
+  window.__cheat_md = {{ markdown|tojson }};
 </script>
-<!-- marked for MD rendering (unpkg CDN) -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="{{ url_for('static', filename='cheat.js') }}"></script>
 {% endblock %}

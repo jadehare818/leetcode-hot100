@@ -1,113 +1,157 @@
 {% extends "base.html" %}
-{% block title %}今日看板 · Hot 100{% endblock %}
+{% block title %}Today · Hot 100{% endblock %}
 {% block content %}
-<section class="stats">
-  <div class="stat"><div class="num">{{ d.counts.solid }}</div><div class="lbl">🟢 稳</div></div>
-  <div class="stat"><div class="num">{{ d.counts.shaky }}</div><div class="lbl">🟡 磕绊</div></div>
-  <div class="stat"><div class="num">{{ d.counts.forgot }}</div><div class="lbl">🔴 忘</div></div>
-  <div class="stat"><div class="num">{{ d.counts.todo }}</div><div class="lbl">⚪ 未刷</div></div>
-  <div class="stat"><div class="num">{{ d.counts.archived }}</div><div class="lbl">📦 归档</div></div>
-  <div class="stat total"><div class="num">{{ d.total - d.counts.todo - d.counts.archived }} / {{ d.total }}</div><div class="lbl">进行中/总数</div></div>
+
+{# ─── HERO: today's date, progress ribbon, brief ─── #}
+<section class="journal-hero">
+  <div class="kicker">{{ d.date }} · {% if d.is_weekend %}周末 · Weekend Session{% else %}工作日 · Weekday Session{% endif %}</div>
+  <h1>今天，<em>{{ d.quota }}</em> 道</h1>
+  <p class="lede">复习到期的题优先，剩下配额从未刷池按难度均衡挑。<br>没做完的会顺延到明天，不会打乱间隔曲线。</p>
+
+  {# progress ribbon: solid + shaky + forgot + archived + todo (todo = empty gap at end) #}
+  {% set done = d.total - d.counts.todo %}
+  <div class="progress-ribbon" title="已完成 {{ done }} / {{ d.total }}">
+    {% if d.counts.solid    %}<div class="seg solid"    style="flex-grow: {{ d.counts.solid }};"></div>{% endif %}
+    {% if d.counts.shaky    %}<div class="seg shaky"    style="flex-grow: {{ d.counts.shaky }};"></div>{% endif %}
+    {% if d.counts.forgot   %}<div class="seg forgot"   style="flex-grow: {{ d.counts.forgot }};"></div>{% endif %}
+    {% if d.counts.archived %}<div class="seg archived" style="flex-grow: {{ d.counts.archived }};"></div>{% endif %}
+    {% if d.counts.todo     %}<div class="seg todo"     style="flex-grow: {{ d.counts.todo }};"></div>{% endif %}
+  </div>
+  <div class="progress-legend">
+    <span class="item"><span class="dot solid"></span><span class="num">{{ d.counts.solid }}</span><span class="lbl">Solid</span></span>
+    <span class="item"><span class="dot shaky"></span><span class="num">{{ d.counts.shaky }}</span><span class="lbl">Shaky</span></span>
+    <span class="item"><span class="dot forgot"></span><span class="num">{{ d.counts.forgot }}</span><span class="lbl">Forgot</span></span>
+    <span class="item"><span class="dot archived"></span><span class="num">{{ d.counts.archived }}</span><span class="lbl">Archived</span></span>
+    <span class="item"><span class="dot todo"></span><span class="num">{{ d.counts.todo }}</span><span class="lbl">Todo</span></span>
+  </div>
+
+  <div class="today-brief">
+    <div class="field">
+      <div class="k">Done today</div>
+      <div class="v">{{ d.done_today|length }}<span class="unit">/ {{ d.quota }}</span></div>
+    </div>
+    <div class="field">
+      <div class="k">Reviews due</div>
+      <div class="v">{{ d.due_review|length }}</div>
+    </div>
+    <div class="field">
+      <div class="k">Todo pool</div>
+      <div class="v">{{ d.todo_left }}</div>
+    </div>
+    <div class="field">
+      <div class="k">Progress</div>
+      <div class="v">{{ (done * 100 / d.total)|round(0, 'floor')|int }}<span class="unit">%</span></div>
+    </div>
+  </div>
 </section>
 
-<section class="quota-bar">
-  <div>今日目标 <b>{{ d.quota }}</b> 题（{{ '周末' if d.is_weekend else '工作日' }}） · 已完成 <b>{{ d.done_today|length }}</b> · 未刷池剩 <b>{{ d.todo_left }}</b></div>
-</section>
-
-<h2>🔁 今日复习（{{ d.due_review|length }}）
-{% if d.due_review %}
-  <button class="btn ghost small" data-postpone-all title="把所有到期未做的题一键推到明天，不影响间隔档位">推迟全部</button>
-  {% set overdue_count = d.due_review|selectattr('is_overdue')|list|length %}
-  {% if overdue_count %}
-  <button class="btn ghost small" data-postpone-overdue title="只推迟逾期超过 3 天的">仅推迟逾期 ({{ overdue_count }})</button>
+{# ─── I. Reviews due ─── #}
+<h2 data-chapter="I">
+  Reviews due
+  <span class="cat-count">{{ d.due_review|length }}</span>
+  {% if d.due_review %}
+    <button class="btn ghost small" data-postpone-all title="把所有到期未做的题一键推到明天，不影响间隔档位">推迟全部</button>
+    {% set overdue_count = d.due_review|selectattr('is_overdue')|list|length %}
+    {% if overdue_count %}
+    <button class="btn ghost small" data-postpone-overdue title="只推迟逾期超过 3 天的">仅推迟逾期 · {{ overdue_count }}</button>
+    {% endif %}
   {% endif %}
-{% endif %}
 </h2>
 {% if d.due_review %}
 <div class="cards">
   {% for p in d.due_review %}
-  <div class="card {{ 'overdue' if p.is_overdue else '' }}" data-pid="{{ p.id }}">
+  <article class="card due-review {{ 'overdue' if p.is_overdue else '' }}" data-pid="{{ p.id }}">
     <div class="card-head">
       <span class="pid">#{{ p.id }}</span>
       <span class="cat">{{ p.category }}</span>
       <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
-      {% if p.is_overdue %}<span class="overdue-badge">逾期</span>{% endif %}
+      {% if p.is_overdue %}<span class="overdue-badge">Overdue</span>{% endif %}
     </div>
     <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
-    <div class="meta">下次复习 {{ p.next_review }} · 档 {{ p.review_stage }} · <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">🔗 力扣</a></div>
-    {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">💡 {{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
+    <div class="meta">Stage {{ p.review_stage }} · Due {{ p.next_review }} · <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
+    {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
     <div class="actions">
       <button class="btn easy" data-review="easy" data-pid="{{ p.id }}">😄 秒A</button>
       <button class="btn ok" data-review="ok" data-pid="{{ p.id }}">🙂 磕绊</button>
       <button class="btn hard" data-review="hard" data-pid="{{ p.id }}">😩 卡住</button>
       <button class="btn ghost" data-postpone data-pid="{{ p.id }}">推迟</button>
-      <button class="btn ghost note-toggle" data-pid="{{ p.id }}">💡 思路</button>
-      <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">📝 Cheatsheet</button>
+      <button class="btn ghost note-toggle" data-pid="{{ p.id }}">思路</button>
+      <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">Cheatsheet</button>
     </div>
     <div class="note-panel" data-pid="{{ p.id }}"></div>
     <div class="cs-panel" data-pid="{{ p.id }}"></div>
-  </div>
+  </article>
   {% endfor %}
 </div>
 {% else %}
 <p class="empty">今天没有到期复习。</p>
 {% endif %}
 
-<h2>🆕 今日新题（{{ d.today_new|length }}）</h2>
+{# ─── II. Today's new ─── #}
+<h2 data-chapter="II">
+  New today
+  <span class="cat-count">{{ d.today_new|length }}</span>
+</h2>
 {% if d.today_new %}
 <div class="cards">
   {% for p in d.today_new %}
-  <div class="card new" data-pid="{{ p.id }}">
+  <article class="card new" data-pid="{{ p.id }}">
     <div class="card-head">
       <span class="pid">#{{ p.id }}</span>
       <span class="cat">{{ p.category }}</span>
       <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
     </div>
     <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
-    <div class="meta"><a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">🔗 力扣</a></div>
-    {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">💡 {{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
+    <div class="meta"><a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
+    {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
     <div class="actions">
       <button class="btn open-code" data-pid="{{ p.id }}">📝 打开代码</button>
       <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">🟢 稳</button>
       <button class="btn ok" data-solve="shaky" data-pid="{{ p.id }}">🟡 磕绊</button>
       <button class="btn hard" data-solve="forgot" data-pid="{{ p.id }}">🔴 忘</button>
-      <button class="btn ghost note-toggle" data-pid="{{ p.id }}">💡 思路</button>
-      <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">📝 Cheatsheet</button>
+      <button class="btn ghost note-toggle" data-pid="{{ p.id }}">思路</button>
+      <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">Cheatsheet</button>
     </div>
     <div class="note-panel" data-pid="{{ p.id }}"></div>
     <div class="cs-panel" data-pid="{{ p.id }}"></div>
-  </div>
+  </article>
   {% endfor %}
 </div>
 {% else %}
-<p class="empty">今天新题配额已满。多刷是自愿加餐 —— 看下面 💪。</p>
+<p class="empty">今日新题配额已被复习占满，看下面的加练池。</p>
 {% endif %}
 
+{# ─── III. Extras / bonus round ─── #}
 {% if d.extras_pool %}
-<h2>💪 想再来几道？（{{ d.extras_pool|length }}）</h2>
-<p class="hint">今日目标之外的加练池，按分类顺序，未刷池里紧跟着今日新题的下 {{ d.extras_pool|length }} 道。有空就顺手多刷一两道。</p>
+<h2 data-chapter="III">
+  Bonus round
+  <span class="cat-count">{{ d.extras_pool|length }}</span>
+</h2>
+<p class="lede" style="margin-top:-8px;">
+  今日目标之外的加练池 —— 未刷池里紧跟着今日新题的 {{ d.extras_pool|length }} 道，按分类顺序。有空顺手多刷两道。
+</p>
 <div class="cards">
   {% for p in d.extras_pool %}
-  <div class="card extra" data-pid="{{ p.id }}">
+  <article class="card extra" data-pid="{{ p.id }}">
     <div class="card-head">
       <span class="pid">#{{ p.id }}</span>
       <span class="cat">{{ p.category }}</span>
       <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
     </div>
     <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
-    <div class="meta"><a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">🔗 力扣</a></div>
-    {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">💡 {{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
+    <div class="meta"><a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
+    {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
     <div class="actions">
       <button class="btn open-code" data-pid="{{ p.id }}">📝 打开代码</button>
       <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">🟢 稳</button>
       <button class="btn ok" data-solve="shaky" data-pid="{{ p.id }}">🟡 磕绊</button>
       <button class="btn hard" data-solve="forgot" data-pid="{{ p.id }}">🔴 忘</button>
-      <button class="btn ghost note-toggle" data-pid="{{ p.id }}">💡 思路</button>
-      <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">📝 Cheatsheet</button>
+      <button class="btn ghost note-toggle" data-pid="{{ p.id }}">思路</button>
+      <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">Cheatsheet</button>
     </div>
     <div class="note-panel" data-pid="{{ p.id }}"></div>
     <div class="cs-panel" data-pid="{{ p.id }}"></div>
-  </div>
+  </article>
   {% endfor %}
 </div>
 {% endif %}

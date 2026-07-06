@@ -3,18 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{% block title %}LeetCode Hot 100{% endblock %}</title>
+<title>{% block title %}Hot 100 · Personal Journal{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <nav class="topnav">
-  <div class="brand">🔥 Hot 100</div>
-  <a href="{{ url_for('dashboard') }}">今日看板</a>
-  <a href="{{ url_for('problems_page') }}">全部题目</a>
-  <a href="{{ url_for('cheatsheet_page') }}">Cheatsheet</a>
+  <div class="brand">Hot 100 · <em>Journal</em></div>
+  <a href="{{ url_for('dashboard') }}" class="{% if request.endpoint == 'dashboard' %}active{% endif %}">今日</a>
+  <a href="{{ url_for('problems_page') }}" class="{% if request.endpoint == 'problems_page' %}active{% endif %}">题库</a>
+  <a href="{{ url_for('cheatsheet_page') }}" class="{% if request.endpoint == 'cheatsheet_page' %}active{% endif %}">Cheatsheet</a>
   <span class="spacer"></span>
   <label class="lang-picker" title="切换编程语言（不删除已有文件）">
-    语言
+    Lang
     <select id="lang-select">
       <option value="python">Python</option>
       <option value="go">Go</option>
@@ -34,4 +36,3 @@
 {% block extra_scripts %}{% endblock %}
 </body>
 </html>
-
