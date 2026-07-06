@@ -13,6 +13,8 @@ data/autocommit.log
 data/autocommit.err.log
 data/feishu.log
 data/feishu.err.log
+data/sync-personal.log
+data/sync-personal.err.log
 
 # 你写的题解代码不上传，只保留目录结构和模板
 solutions/*/[0-9]*.py

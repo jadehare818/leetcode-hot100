@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+每天 22:05 跑一次：把 data/progress.local.json + solutions/**/[0-9]*.{py,go,cpp,java}
+同步到 remote data-<user> 分支。
+
+比 daily_autocommit（22:00）晚 5 分钟触发，避免同一时刻两个 push 抢 SSH agent。
+
+安装：
+  cp scripts/sync_personal_data.launchd.plist \
+     ~/Library/LaunchAgents/com.wyt.leetcode-hot100.sync-personal.plist
+  launchctl load ~/Library/LaunchAgents/com.wyt.leetcode-hot100.sync-personal.plist
+
+卸载：
+  launchctl unload ~/Library/LaunchAgents/com.wyt.leetcode-hot100.sync-personal.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.wyt.leetcode-hot100.sync-personal</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/bytedance/leetcode-hot100/scripts/sync_personal_data.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/bytedance/leetcode-hot100</string>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>22</integer>
+    <key>Minute</key>
+    <integer>5</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/bytedance/leetcode-hot100/data/sync-personal.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/bytedance/leetcode-hot100/data/sync-personal.err.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+</dict>
+</plist>
