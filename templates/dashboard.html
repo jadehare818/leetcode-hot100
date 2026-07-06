@@ -5,7 +5,15 @@
 {# ─── HERO: today's date, progress ribbon, brief ─── #}
 <section class="journal-hero">
   <div class="kicker">{{ d.date }} · {% if d.is_weekend %}周末 · Weekend Session{% else %}工作日 · Weekday Session{% endif %}</div>
+  {% set done_count = d.done_today|length %}
+  {% set remain = d.quota - done_count %}
+  {% if done_count == 0 %}
   <h1>今天，<em>{{ d.quota }}</em> 道</h1>
+  {% elif remain > 0 %}
+  <h1>今天，还剩 <em>{{ remain }}</em> 道</h1>
+  {% else %}
+  <h1>今天，<em>已达标</em> 🎉</h1>
+  {% endif %}
   <p class="lede">复习到期的题优先，剩下配额从未刷池按难度均衡挑。<br>没做完的会顺延到明天，不会打乱间隔曲线。</p>
 
   {# progress ribbon: solid + shaky + forgot + archived + todo (todo = empty gap at end) #}
