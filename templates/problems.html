@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}全部题目 · Hot 100{% endblock %}
+{% block content %}
+<div class="filters">
+  <label><input type="checkbox" data-filter="todo" checked> ⚪ 未刷</label>
+  <label><input type="checkbox" data-filter="forgot" checked> 🔴 忘</label>
+  <label><input type="checkbox" data-filter="shaky" checked> 🟡 磕绊</label>
+  <label><input type="checkbox" data-filter="solid" checked> 🟢 稳</label>
+  <label><input type="checkbox" data-filter="archived"> 📦 归档</label>
+</div>
+
+{% for cat in categories %}
+<section class="cat-block">
+  <h2>{{ cat.name }} <span class="cat-count">{{ cat.problems|length }}</span></h2>
+  <table class="ptable">
+    <thead>
+      <tr><th>#</th><th>题名</th><th>难度</th><th>状态</th><th>下次复习</th><th>操作</th></tr>
+    </thead>
+    <tbody>
+    {% for p in cat.problems %}
+      <tr data-status="{{ p.status }}">
+        <td>{{ p.id }}</td>
+        <td>
+          <a href="{{ url_for('problem_detail', pid=p.id) }}">{{ p.title }}</a>
+          <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener" class="lc-link" title="在力扣打开">🔗</a>
+        </td>
+        <td class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</td>
+        <td class="st st-{{ p.status }}">{{ p.status }}</td>
+        <td>{{ p.next_review or '—' }}</td>
+        <td>
+          <select data-status-select data-pid="{{ p.id }}">
+            <option value="todo" {% if p.status=='todo' %}selected{% endif %}>⚪ 未刷</option>
+            <option value="forgot" {% if p.status=='forgot' %}selected{% endif %}>🔴 忘</option>
+            <option value="shaky" {% if p.status=='shaky' %}selected{% endif %}>🟡 磕绊</option>
+            <option value="solid" {% if p.status=='solid' %}selected{% endif %}>🟢 稳</option>
+            <option value="archived" {% if p.status=='archived' %}selected{% endif %}>📦 归档</option>
+          </select>
+          <button class="btn ghost note-toggle" data-pid="{{ p.id }}" title="思路">💡</button>
+          <button class="btn ghost cs-toggle" data-pid="{{ p.id }}" title="Cheatsheet">📝</button>
+        </td>
+      </tr>
+      <tr class="cs-row" data-status="{{ p.status }}">
+        <td colspan="6" style="padding: 0;">
+          <div class="note-panel" data-pid="{{ p.id }}"></div>
+          <div class="cs-panel" data-pid="{{ p.id }}"></div>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}今日看板 · Hot 100{% endblock %}
+{% block content %}
+<section class="stats">
+  <div class="stat"><div class="num">{{ d.counts.solid }}</div><div class="lbl">🟢 稳</div></div>
+  <div class="stat"><div class="num">{{ d.counts.shaky }}</div><div class="lbl">🟡 磕绊</div></div>
+  <div class="stat"><div class="num">{{ d.counts.forgot }}</div><div class="lbl">🔴 忘</div></div>
+  <div class="stat"><div class="num">{{ d.counts.todo }}</div><div class="lbl">⚪ 未刷</div></div>
+  <div class="stat"><div class="num">{{ d.counts.archived }}</div><div class="lbl">📦 归档</div></div>
+  <div class="stat total"><div class="num">{{ d.total - d.counts.todo - d.counts.archived }} / {{ d.total }}</div><div class="lbl">进行中/总数</div></div>
+</section>
+
+<section class="quota-bar">
+  <div>今日目标 <b>{{ d.quota }}</b> 题（{{ '周末' if d.is_weekend else '工作日' }}） · 已完成 <b>{{ d.done_today|length }}</b> · 未刷池剩 <b>{{ d.todo_left }}</b></div>
+</section>
+
+<h2>🔁 今日复习（{{ d.due_review|length }}）
+{% if d.due_review %}
+  <button class="btn ghost small" data-postpone-all title="把所有到期未做的题一键推到明天，不影响间隔档位">推迟全部</button>
+  {% set overdue_count = d.due_review|selectattr('is_overdue')|list|length %}
+  {% if overdue_count %}
+  <button class="btn ghost small" data-postpone-overdue title="只推迟逾期超过 3 天的">仅推迟逾期 ({{ overdue_count }})</button>
+  {% endif %}
+{% endif %}
+</h2>
+{% if d.due_review %}
+<div class="cards">
+  {% for p in d.due_review %}
+  <div class="card {{ 'overdue' if p.is_overdue else '' }}" data-pid="{{ p.id }}">
+    <div class="card-head">
+      <span class="pid">#{{ p.id }}</span>
+      <span class="cat">{{ p.category }}</span>
+      <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
+      {% if p.is_overdue %}<span class="overdue-badge">逾期</span>{% endif %}
+    </div>
+    <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
+    <div class="meta">下次复习 {{ p.next_review }} · 档 {{ p.review_stage }} · <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">🔗 力扣</a></div>
+    {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">💡 {{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
+    <div class="actions">
+      <button class="btn easy" data-review="easy" data-pid="{{ p.id }}">😄 秒A</button>
+      <button class="btn ok" data-review="ok" data-pid="{{ p.id }}">🙂 磕绊</button>
+      <button class="btn hard" data-review="hard" data-pid="{{ p.id }}">😩 卡住</button>
+      <button class="btn ghost" data-postpone data-pid="{{ p.id }}">推迟</button>
+      <button class="btn ghost note-toggle" data-pid="{{ p.id }}">💡 思路</button>
+      <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">📝 Cheatsheet</button>
+    </div>
+    <div class="note-panel" data-pid="{{ p.id }}"></div>
+    <div class="cs-panel" data-pid="{{ p.id }}"></div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="empty">今天没有到期复习。</p>
+{% endif %}
+
+<h2>🆕 今日新题（{{ d.today_new|length }}）</h2>
+{% if d.today_new %}
+<div class="cards">
+  {% for p in d.today_new %}
+  <div class="card new" data-pid="{{ p.id }}">
+    <div class="card-head">
+      <span class="pid">#{{ p.id }}</span>
+      <span class="cat">{{ p.category }}</span>
+      <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
+    </div>
+    <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
+    <div class="meta"><a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">🔗 力扣</a></div>
+    {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">💡 {{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
+    <div class="actions">
+      <button class="btn open-code" data-pid="{{ p.id }}">📝 打开代码</button>
+      <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">🟢 稳</button>
+      <button class="btn ok" data-solve="shaky" data-pid="{{ p.id }}">🟡 磕绊</button>
+      <button class="btn hard" data-solve="forgot" data-pid="{{ p.id }}">🔴 忘</button>
+      <button class="btn ghost note-toggle" data-pid="{{ p.id }}">💡 思路</button>
+      <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">📝 Cheatsheet</button>
+    </div>
+    <div class="note-panel" data-pid="{{ p.id }}"></div>
+    <div class="cs-panel" data-pid="{{ p.id }}"></div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="empty">今天新题配额已满。多刷是自愿加餐 —— 看下面 💪。</p>
+{% endif %}
+
+{% if d.extras_pool %}
+<h2>💪 想再来几道？（{{ d.extras_pool|length }}）</h2>
+<p class="hint">今日目标之外的加练池，按分类顺序，未刷池里紧跟着今日新题的下 {{ d.extras_pool|length }} 道。有空就顺手多刷一两道。</p>
+<div class="cards">
+  {% for p in d.extras_pool %}
+  <div class="card extra" data-pid="{{ p.id }}">
+    <div class="card-head">
+      <span class="pid">#{{ p.id }}</span>
+      <span class="cat">{{ p.category }}</span>
+      <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
+    </div>
+    <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
+    <div class="meta"><a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">🔗 力扣</a></div>
+    {% if p.note %}<div class="note-preview" data-pid="{{ p.id }}" title="{{ p.note }}">💡 {{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% else %}<div class="note-preview" data-pid="{{ p.id }}"></div>{% endif %}
+    <div class="actions">
+      <button class="btn open-code" data-pid="{{ p.id }}">📝 打开代码</button>
+      <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">🟢 稳</button>
+      <button class="btn ok" data-solve="shaky" data-pid="{{ p.id }}">🟡 磕绊</button>
+      <button class="btn hard" data-solve="forgot" data-pid="{{ p.id }}">🔴 忘</button>
+      <button class="btn ghost note-toggle" data-pid="{{ p.id }}">💡 思路</button>
+      <button class="btn ghost cs-toggle" data-pid="{{ p.id }}">📝 Cheatsheet</button>
+    </div>
+    <div class="note-panel" data-pid="{{ p.id }}"></div>
+    <div class="cs-panel" data-pid="{{ p.id }}"></div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

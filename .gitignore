@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# 私人数据 —— 不上传公开仓库
+config.local.json
+data/progress.local.json
+data/autocommit.log
+data/autocommit.err.log
+data/feishu.log
+data/feishu.err.log
+
+# 你写的题解代码不上传，只保留目录结构和模板
+solutions/*/[0-9]*.py
+solutions/*/[0-9]*.go
+solutions/*/[0-9]*.cpp
+solutions/*/[0-9]*.java
+
+# 备份文件
+data/progress.backup.*.json

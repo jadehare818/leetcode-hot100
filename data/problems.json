@@ -1,0 +1,189 @@
+{
+  "categories": [
+    {
+      "name": "哈希",
+      "problems": [
+        {"id": 1, "title": "两数之和", "slug": "two-sum", "difficulty": "简单"},
+        {"id": 49, "title": "字母异位词分组", "slug": "group-anagrams", "difficulty": "中等"},
+        {"id": 128, "title": "最长连续序列", "slug": "longest-consecutive-sequence", "difficulty": "中等"}
+      ]
+    },
+    {
+      "name": "双指针",
+      "problems": [
+        {"id": 283, "title": "移动零", "slug": "move-zeroes", "difficulty": "简单"},
+        {"id": 11, "title": "盛最多水的容器", "slug": "container-with-most-water", "difficulty": "中等"},
+        {"id": 15, "title": "三数之和", "slug": "3sum", "difficulty": "中等"},
+        {"id": 42, "title": "接雨水", "slug": "trapping-rain-water", "difficulty": "困难"}
+      ]
+    },
+    {
+      "name": "滑动窗口",
+      "problems": [
+        {"id": 3, "title": "无重复字符的最长子串", "slug": "longest-substring-without-repeating-characters", "difficulty": "中等"},
+        {"id": 438, "title": "找到字符串中所有字母异位词", "slug": "find-all-anagrams-in-a-string", "difficulty": "中等"}
+      ]
+    },
+    {
+      "name": "子串",
+      "problems": [
+        {"id": 560, "title": "和为 K 的子数组", "slug": "subarray-sum-equals-k", "difficulty": "中等"},
+        {"id": 239, "title": "滑动窗口最大值", "slug": "sliding-window-maximum", "difficulty": "困难"},
+        {"id": 76, "title": "最小覆盖子串", "slug": "minimum-window-substring", "difficulty": "困难"}
+      ]
+    },
+    {
+      "name": "普通数组",
+      "problems": [
+        {"id": 53, "title": "最大子数组和", "slug": "maximum-subarray", "difficulty": "中等"},
+        {"id": 56, "title": "合并区间", "slug": "merge-intervals", "difficulty": "中等"},
+        {"id": 189, "title": "轮转数组", "slug": "rotate-array", "difficulty": "中等"},
+        {"id": 238, "title": "除自身以外数组的乘积", "slug": "product-of-array-except-self", "difficulty": "中等"},
+        {"id": 41, "title": "缺失的第一个正数", "slug": "first-missing-positive", "difficulty": "困难"}
+      ]
+    },
+    {
+      "name": "矩阵",
+      "problems": [
+        {"id": 73, "title": "矩阵置零", "slug": "set-matrix-zeroes", "difficulty": "中等"},
+        {"id": 54, "title": "螺旋矩阵", "slug": "spiral-matrix", "difficulty": "中等"},
+        {"id": 48, "title": "旋转图像", "slug": "rotate-image", "difficulty": "中等"},
+        {"id": 240, "title": "搜索二维矩阵 II", "slug": "search-a-2d-matrix-ii", "difficulty": "中等"}
+      ]
+    },
+    {
+      "name": "链表",
+      "problems": [
+        {"id": 160, "title": "相交链表", "slug": "intersection-of-two-linked-lists", "difficulty": "简单"},
+        {"id": 206, "title": "反转链表", "slug": "reverse-linked-list", "difficulty": "简单"},
+        {"id": 234, "title": "回文链表", "slug": "palindrome-linked-list", "difficulty": "简单"},
+        {"id": 141, "title": "环形链表", "slug": "linked-list-cycle", "difficulty": "简单"},
+        {"id": 142, "title": "环形链表 II", "slug": "linked-list-cycle-ii", "difficulty": "中等"},
+        {"id": 21, "title": "合并两个有序链表", "slug": "merge-two-sorted-lists", "difficulty": "简单"},
+        {"id": 2, "title": "两数相加", "slug": "add-two-numbers", "difficulty": "中等"},
+        {"id": 19, "title": "删除链表的倒数第 N 个结点", "slug": "remove-nth-node-from-end-of-list", "difficulty": "中等"},
+        {"id": 24, "title": "两两交换链表中的节点", "slug": "swap-nodes-in-pairs", "difficulty": "中等"},
+        {"id": 25, "title": "K 个一组翻转链表", "slug": "reverse-nodes-in-k-group", "difficulty": "困难"},
+        {"id": 138, "title": "随机链表的复制", "slug": "copy-list-with-random-pointer", "difficulty": "中等"},
+        {"id": 148, "title": "排序链表", "slug": "sort-list", "difficulty": "中等"},
+        {"id": 23, "title": "合并 K 个升序链表", "slug": "merge-k-sorted-lists", "difficulty": "困难"},
+        {"id": 146, "title": "LRU 缓存", "slug": "lru-cache", "difficulty": "中等"}
+      ]
+    },
+    {
+      "name": "二叉树",
+      "problems": [
+        {"id": 94, "title": "二叉树的中序遍历", "slug": "binary-tree-inorder-traversal", "difficulty": "简单"},
+        {"id": 104, "title": "二叉树的最大深度", "slug": "maximum-depth-of-binary-tree", "difficulty": "简单"},
+        {"id": 226, "title": "翻转二叉树", "slug": "invert-binary-tree", "difficulty": "简单"},
+        {"id": 101, "title": "对称二叉树", "slug": "symmetric-tree", "difficulty": "简单"},
+        {"id": 543, "title": "二叉树的直径", "slug": "diameter-of-binary-tree", "difficulty": "简单"},
+        {"id": 102, "title": "二叉树的层序遍历", "slug": "binary-tree-level-order-traversal", "difficulty": "中等"},
+        {"id": 108, "title": "将有序数组转换为二叉搜索树", "slug": "convert-sorted-array-to-binary-search-tree", "difficulty": "简单"},
+        {"id": 98, "title": "验证二叉搜索树", "slug": "validate-binary-search-tree", "difficulty": "中等"},
+        {"id": 230, "title": "二叉搜索树中第 K 小的元素", "slug": "kth-smallest-element-in-a-bst", "difficulty": "中等"},
+        {"id": 199, "title": "二叉树的右视图", "slug": "binary-tree-right-side-view", "difficulty": "中等"},
+        {"id": 114, "title": "二叉树展开为链表", "slug": "flatten-binary-tree-to-linked-list", "difficulty": "中等"},
+        {"id": 105, "title": "从前序与中序遍历序列构造二叉树", "slug": "construct-binary-tree-from-preorder-and-inorder-traversal", "difficulty": "中等"},
+        {"id": 437, "title": "路径总和 III", "slug": "path-sum-iii", "difficulty": "中等"},
+        {"id": 236, "title": "二叉树的最近公共祖先", "slug": "lowest-common-ancestor-of-a-binary-tree", "difficulty": "中等"},
+        {"id": 124, "title": "二叉树中的最大路径和", "slug": "binary-tree-maximum-path-sum", "difficulty": "困难"}
+      ]
+    },
+    {
+      "name": "图论",
+      "problems": [
+        {"id": 200, "title": "岛屿数量", "slug": "number-of-islands", "difficulty": "中等"},
+        {"id": 994, "title": "腐烂的橘子", "slug": "rotting-oranges", "difficulty": "中等"},
+        {"id": 207, "title": "课程表", "slug": "course-schedule", "difficulty": "中等"},
+        {"id": 208, "title": "实现 Trie (前缀树)", "slug": "implement-trie-prefix-tree", "difficulty": "中等"}
+      ]
+    },
+    {
+      "name": "回溯",
+      "problems": [
+        {"id": 46, "title": "全排列", "slug": "permutations", "difficulty": "中等"},
+        {"id": 78, "title": "子集", "slug": "subsets", "difficulty": "中等"},
+        {"id": 17, "title": "电话号码的字母组合", "slug": "letter-combinations-of-a-phone-number", "difficulty": "中等"},
+        {"id": 39, "title": "组合总和", "slug": "combination-sum", "difficulty": "中等"},
+        {"id": 22, "title": "括号生成", "slug": "generate-parentheses", "difficulty": "中等"},
+        {"id": 79, "title": "单词搜索", "slug": "word-search", "difficulty": "中等"},
+        {"id": 131, "title": "分割回文串", "slug": "palindrome-partitioning", "difficulty": "中等"},
+        {"id": 51, "title": "N 皇后", "slug": "n-queens", "difficulty": "困难"}
+      ]
+    },
+    {
+      "name": "二分查找",
+      "problems": [
+        {"id": 35, "title": "搜索插入位置", "slug": "search-insert-position", "difficulty": "简单"},
+        {"id": 74, "title": "搜索二维矩阵", "slug": "search-a-2d-matrix", "difficulty": "中等"},
+        {"id": 34, "title": "在排序数组中查找元素的第一个和最后一个位置", "slug": "find-first-and-last-position-of-element-in-sorted-array", "difficulty": "中等"},
+        {"id": 33, "title": "搜索旋转排序数组", "slug": "search-in-rotated-sorted-array", "difficulty": "中等"},
+        {"id": 153, "title": "寻找旋转排序数组中的最小值", "slug": "find-minimum-in-rotated-sorted-array", "difficulty": "中等"},
+        {"id": 4, "title": "寻找两个正序数组的中位数", "slug": "median-of-two-sorted-arrays", "difficulty": "困难"}
+      ]
+    },
+    {
+      "name": "栈",
+      "problems": [
+        {"id": 20, "title": "有效的括号", "slug": "valid-parentheses", "difficulty": "简单"},
+        {"id": 155, "title": "最小栈", "slug": "min-stack", "difficulty": "中等"},
+        {"id": 394, "title": "字符串解码", "slug": "decode-string", "difficulty": "中等"},
+        {"id": 739, "title": "每日温度", "slug": "daily-temperatures", "difficulty": "中等"},
+        {"id": 84, "title": "柱状图中最大的矩形", "slug": "largest-rectangle-in-histogram", "difficulty": "困难"}
+      ]
+    },
+    {
+      "name": "堆",
+      "problems": [
+        {"id": 215, "title": "数组中的第K个最大元素", "slug": "kth-largest-element-in-an-array", "difficulty": "中等"},
+        {"id": 347, "title": "前 K 个高频元素", "slug": "top-k-frequent-elements", "difficulty": "中等"},
+        {"id": 295, "title": "数据流的中位数", "slug": "find-median-from-data-stream", "difficulty": "困难"}
+      ]
+    },
+    {
+      "name": "贪心算法",
+      "problems": [
+        {"id": 121, "title": "买卖股票的最佳时机", "slug": "best-time-to-buy-and-sell-stock", "difficulty": "简单"},
+        {"id": 55, "title": "跳跃游戏", "slug": "jump-game", "difficulty": "中等"},
+        {"id": 45, "title": "跳跃游戏 II", "slug": "jump-game-ii", "difficulty": "中等"},
+        {"id": 763, "title": "划分字母区间", "slug": "partition-labels", "difficulty": "中等"}
+      ]
+    },
+    {
+      "name": "动态规划",
+      "problems": [
+        {"id": 70, "title": "爬楼梯", "slug": "climbing-stairs", "difficulty": "简单"},
+        {"id": 118, "title": "杨辉三角", "slug": "pascals-triangle", "difficulty": "简单"},
+        {"id": 198, "title": "打家劫舍", "slug": "house-robber", "difficulty": "中等"},
+        {"id": 279, "title": "完全平方数", "slug": "perfect-squares", "difficulty": "中等"},
+        {"id": 322, "title": "零钱兑换", "slug": "coin-change", "difficulty": "中等"},
+        {"id": 139, "title": "单词拆分", "slug": "word-break", "difficulty": "中等"},
+        {"id": 300, "title": "最长递增子序列", "slug": "longest-increasing-subsequence", "difficulty": "中等"},
+        {"id": 152, "title": "乘积最大子数组", "slug": "maximum-product-subarray", "difficulty": "中等"},
+        {"id": 416, "title": "分割等和子集", "slug": "partition-equal-subset-sum", "difficulty": "中等"},
+        {"id": 32, "title": "最长有效括号", "slug": "longest-valid-parentheses", "difficulty": "困难"}
+      ]
+    },
+    {
+      "name": "多维动态规划",
+      "problems": [
+        {"id": 62, "title": "不同路径", "slug": "unique-paths", "difficulty": "中等"},
+        {"id": 64, "title": "最小路径和", "slug": "minimum-path-sum", "difficulty": "中等"},
+        {"id": 5, "title": "最长回文子串", "slug": "longest-palindromic-substring", "difficulty": "中等"},
+        {"id": 1143, "title": "最长公共子序列", "slug": "longest-common-subsequence", "difficulty": "中等"},
+        {"id": 72, "title": "编辑距离", "slug": "edit-distance", "difficulty": "中等"}
+      ]
+    },
+    {
+      "name": "技巧",
+      "problems": [
+        {"id": 136, "title": "只出现一次的数字", "slug": "single-number", "difficulty": "简单"},
+        {"id": 169, "title": "多数元素", "slug": "majority-element", "difficulty": "简单"},
+        {"id": 75, "title": "颜色分类", "slug": "sort-colors", "difficulty": "中等"},
+        {"id": 31, "title": "下一个排列", "slug": "next-permutation", "difficulty": "中等"},
+        {"id": 287, "title": "寻找重复数", "slug": "find-the-duplicate-number", "difficulty": "中等"}
+      ]
+    }
+  ]
+}

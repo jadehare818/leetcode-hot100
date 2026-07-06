@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+每天早 9:00 推送今日看板到 Feishu。
+
+安装：
+  1. 把这个文件里的 PROJECT_DIR 换成实际路径（默认 /Users/bytedance/leetcode-hot100）
+  2. cp feishu_daily.launchd.plist ~/Library/LaunchAgents/com.wyt.leetcode-hot100.feishu.plist
+  3. launchctl load ~/Library/LaunchAgents/com.wyt.leetcode-hot100.feishu.plist
+  4. 手动跑一次验证：
+     launchctl start com.wyt.leetcode-hot100.feishu
+
+卸载：
+  launchctl unload ~/Library/LaunchAgents/com.wyt.leetcode-hot100.feishu.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.wyt.leetcode-hot100.feishu</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/bytedance/leetcode-hot100/.venv/bin/python</string>
+    <string>/Users/bytedance/leetcode-hot100/scripts/feishu_daily.py</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/bytedance/leetcode-hot100</string>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>9</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/bytedance/leetcode-hot100/data/feishu.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/bytedance/leetcode-hot100/data/feishu.err.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

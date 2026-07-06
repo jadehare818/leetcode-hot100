@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+每天 22:00 跑一次：如果有变更就 commit + push 到 GitHub，没变更就跳过。
+
+安装：
+  cp scripts/daily_autocommit.launchd.plist ~/Library/LaunchAgents/com.wyt.leetcode-hot100.autocommit.plist
+  launchctl load ~/Library/LaunchAgents/com.wyt.leetcode-hot100.autocommit.plist
+
+卸载：
+  launchctl unload ~/Library/LaunchAgents/com.wyt.leetcode-hot100.autocommit.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.wyt.leetcode-hot100.autocommit</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/bytedance/leetcode-hot100/scripts/daily_autocommit.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/bytedance/leetcode-hot100</string>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>22</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/bytedance/leetcode-hot100/data/autocommit.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/bytedance/leetcode-hot100/data/autocommit.err.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <!-- 让 launchd 拿到 SSH agent socket，git push 才认得 SSH key -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+</dict>
+</plist>

@@ -1,0 +1,5 @@
+{
+  "_note": "复制此文件为 config.local.json 并填入敏感字段。config.local.json 在 .gitignore 里，不进版本控制。",
+  "feishu_webhook": "https://open.larkoffice.com/open-apis/bot/v2/hook/YOUR_HOOK_ID",
+  "feishu_secret": "YOUR_SECRET"
+}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}#{{ p.id }} {{ p.title }}{% endblock %}
+{% block content %}
+<a href="{{ url_for('problems_page') }}" class="back">← 返回全部</a>
+<h1>#{{ p.id }} {{ p.title }}</h1>
+<div class="meta-row">
+  <span class="cat">{{ p.category }}</span>
+  <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
+  <span>状态：<b class="st st-{{ entry.status }}">{{ entry.status }}</b></span>
+  <span>下次复习：{{ entry.next_review or '—' }}</span>
+  <span>档位：{{ entry.review_stage }}</span>
+</div>
+
+<div class="link-row">
+  <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank">🔗 力扣题目</a>
+  <button class="btn open-code" data-pid="{{ p.id }}">📝 打开 / 创建代码文件</button>
+  {% if entry.code_file %}<span class="filepath">{{ entry.code_file }}</span>{% endif %}
+</div>
+
+<h3>思路</h3>
+<textarea id="note" data-pid="{{ p.id }}" rows="3" placeholder="一句话思路（关键 idea）">{{ entry.note }}</textarea>
+<button id="save-note" class="btn primary">保存思路</button>
+<span id="note-hint" class="hint"></span>
+
+<h3>Cheatsheet（可 markdown）</h3>
+<button class="btn cs-toggle" data-pid="{{ p.id }}">📝 展开 / 收起</button>
+<div class="cs-panel open" data-pid="{{ p.id }}"></div>
+<script>
+  // 详情页默认展开：主动触发一次加载
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.querySelector('.cs-toggle[data-pid="{{ p.id }}"]');
+    if (btn) btn.click();
+  });
+</script>
+
+<h3>操作</h3>
+<div class="actions big">
+  {% if entry.status == 'todo' %}
+    <span>刚刷完这道？</span>
+    <button class="btn easy" data-solve="solid" data-pid="{{ p.id }}">🟢 稳</button>
+    <button class="btn ok" data-solve="shaky" data-pid="{{ p.id }}">🟡 磕绊</button>
+    <button class="btn hard" data-solve="forgot" data-pid="{{ p.id }}">🔴 忘</button>
+  {% else %}
+    <span>复习打分：</span>
+    <button class="btn easy" data-review="easy" data-pid="{{ p.id }}">😄 秒A</button>
+    <button class="btn ok" data-review="ok" data-pid="{{ p.id }}">🙂 磕绊</button>
+    <button class="btn hard" data-review="hard" data-pid="{{ p.id }}">😩 卡住</button>
+  {% endif %}
+</div>
+
+<h3>历史</h3>
+<ul class="history">
+{% for h in entry.history|reverse %}
+  <li>{{ h.date }} · {{ h.action }}{% if h.status %} → {{ h.status }}{% endif %}{% if h.score %} · {{ h.score }}{% endif %}</li>
+{% endfor %}
+{% if not entry.history %}<li class="empty">还没有记录</li>{% endif %}
+</ul>
+{% endblock %}
