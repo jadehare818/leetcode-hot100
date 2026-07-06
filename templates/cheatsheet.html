@@ -47,9 +47,12 @@
 </div>
 {% endif %}
 
+{% endblock %}
+
+{% block extra_scripts %}
 <script>
-// 把 tojson 出来的 markdown 用 marked 渲染进 body，然后在保存时会通过 cs-toggle
-// 打开的那个内联编辑器覆盖回来（cheatsheet_inline.js 在 saved 时会同步 body）。
+// 在 base.html 的 marked CDN 加载完之后执行；把 tojson 出来的 markdown
+// 用 marked 渲染进 body，之后编辑器保存时会通过 cs-toggle 内联覆盖回来。
 document.querySelectorAll('script[data-cheat-src]').forEach(s => {
   const pid = s.dataset.cheatSrc;
   const md = JSON.parse(s.textContent);
