@@ -65,6 +65,31 @@
         </label>
       </div>
 
+      <div class="setting-block">
+        <div class="setting-label">
+          <span class="k">每天几点结束</span>
+          <span class="hint-inline">默认 00:00（自然日）。如设 03:00，则凌晨 3 点前的操作仍算前一天</span>
+        </div>
+        <div class="setting-row">
+          <select id="day-boundary">
+            <option value="0">00:00 · 自然日（默认）</option>
+            <option value="0.5">00:30</option>
+            <option value="1">01:00</option>
+            <option value="1.5">01:30</option>
+            <option value="2">02:00</option>
+            <option value="2.5">02:30</option>
+            <option value="3">03:00</option>
+            <option value="3.5">03:30</option>
+            <option value="4">04:00</option>
+            <option value="4.5">04:30</option>
+            <option value="5">05:00</option>
+            <option value="5.5">05:30</option>
+            <option value="6">06:00</option>
+          </select>
+        </div>
+        <div class="setting-warn">⚠️ 频繁改动会让当天的完成数暂时看起来变化，建议只在初次配置时调整。</div>
+      </div>
+
       <div class="setting-note">
         改动写入 <code>config.local.json</code>，不进 git。刷新页面立即生效。
       </div>

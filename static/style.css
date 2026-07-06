@@ -1168,9 +1168,31 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
 }
 .modal input[type="number"] { width: 76px; text-align: right; }
 .modal input[type="text"] { width: 100%; }
-.modal input:focus {
+.modal select {
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  border-radius: 3px;
+  padding: 6px 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.modal input:focus,
+.modal select:focus {
   outline: none;
   border-color: var(--amber);
+}
+
+.setting-warn {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #FCF5E9;
+  border-left: 3px solid var(--amber);
+  border-radius: 2px;
+  color: var(--ink-2);
+  font-size: 11.5px;
+  line-height: 1.55;
 }
 
 .setting-note {

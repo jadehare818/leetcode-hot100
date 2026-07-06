@@ -13,7 +13,6 @@ import re
 import subprocess
 from datetime import date, datetime, timedelta
 from pathlib import Path
-from pathlib import Path
 
 from flask import (
     Flask,
@@ -65,6 +64,25 @@ def save_json(path: Path, data) -> None:
     with tmp.open("w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     tmp.replace(path)
+
+
+def _today() -> date:
+    """返回"今天"的日期，考虑用户配置的 day_boundary_hour（一天何时结束）。
+
+    默认 0（0 点）—— 自然日，等价于 date.today()。
+    如果配置成 3（03:00），凌晨 0:00~2:59 仍然算"昨天"，直到 03:00 才切到新一天。
+    值域 [0, 6]，允许 0.5 步长（例如 3.5 → 03:30）。
+    """
+    boundary = float(load_config().get("day_boundary_hour", 0) or 0)
+    if boundary <= 0:
+        return date.today()
+    now = datetime.now()
+    boundary_hour = int(boundary)
+    boundary_minute = int(round((boundary - boundary_hour) * 60))
+    threshold = now.replace(hour=boundary_hour, minute=boundary_minute, second=0, microsecond=0)
+    if now < threshold:
+        return (now - timedelta(days=1)).date()
+    return now.date()
 
 
 def _load_dotenv() -> None:
@@ -152,7 +170,7 @@ def _next_review_date(stage: int) -> str:
     if stage >= len(intervals):
         return ""  # archived
     delta = intervals[stage]
-    return (date.today() + timedelta(days=delta)).isoformat()
+    return (_today() + timedelta(days=delta)).isoformat()
 
 
 def _default_entry() -> dict:
@@ -171,7 +189,7 @@ def _default_entry() -> dict:
 
 def apply_first_solve(entry: dict, status: str) -> dict:
     """第一次刷完 / 手动改状态。status ∈ {forgot, shaky, solid}。"""
-    today = date.today().isoformat()
+    today = _today().isoformat()
     entry["status"] = status
     entry["last_done"] = today
     if status == STATUS_SOLID:
@@ -186,7 +204,7 @@ def apply_first_solve(entry: dict, status: str) -> dict:
 
 def apply_review(entry: dict, score: str) -> dict:
     """复习后打分：easy 前进一档；ok 保持；hard 回退到档 0。"""
-    today = date.today().isoformat()
+    today = _today().isoformat()
     intervals = _intervals()
     stage = entry.get("review_stage", 0)
     if stage < 0:
@@ -230,7 +248,7 @@ def _get_next_review(prog: dict, pid: int) -> str:
 
 def _daily_quota() -> int:
     cfg = load_config().get("daily_quota", {"weekday": 3, "weekend": 6})
-    is_weekend = date.today().weekday() >= 5
+    is_weekend = _today().weekday() >= 5
     return cfg["weekend"] if is_weekend else cfg["weekday"]
 
 
@@ -240,7 +258,7 @@ def _done_today(prog: dict) -> set[int]:
     只算 action == 'solve' | 'review'。推迟（postpone / postpone-batch）
     和归档（archive）不算完成 —— 它们是维护动作，不是刷题。
     """
-    today = date.today().isoformat()
+    today = _today().isoformat()
     counted_actions = {"solve", "review"}
     done = set()
     for pid, entry in prog.items():
@@ -306,13 +324,13 @@ def _estimate_finish(todo_left: int, weekday_q: int, weekend_q: int, done_today:
         }
     """
     if todo_left <= 0:
-        return {"days_left": 0, "finish_date": date.today().isoformat(), "reachable": True}
+        return {"days_left": 0, "finish_date": _today().isoformat(), "reachable": True}
     if weekday_q <= 0 and weekend_q <= 0:
         return {"days_left": None, "finish_date": None, "reachable": False}
 
     remaining = todo_left
     # 今天：能挤出来的 = quota_today - done_today (最少 0)
-    today = date.today()
+    today = _today()
     today_slot = max(0, quota_today - done_today)
     if today_slot > 0:
         remaining -= min(remaining, today_slot)
@@ -344,7 +362,7 @@ def build_dashboard() -> dict:
     """动态构造今日看板。"""
     problems = load_problems()
     prog = load_progress()
-    today = date.today().isoformat()
+    today = _today().isoformat()
     overdue_days = load_config().get("overdue_alert_days", 3)
 
     by_id = {p["id"]: p for p in problems}
@@ -371,7 +389,7 @@ def build_dashboard() -> dict:
             due_review.append(item)
             # 逾期红牌
             try:
-                if (date.today() - date.fromisoformat(nr)).days > overdue_days:
+                if (_today() - date.fromisoformat(nr)).days > overdue_days:
                     overdue.append(pid)
             except ValueError:
                 pass
@@ -422,7 +440,7 @@ def build_dashboard() -> dict:
 
     return {
         "date": today,
-        "is_weekend": date.today().weekday() >= 5,
+        "is_weekend": _today().weekday() >= 5,
         "quota": quota,
         "done_today": sorted(done_today_ids),
         "due_review": due_review,
@@ -617,7 +635,7 @@ def api_set_status(pid: int):
     elif status == STATUS_ARCHIVED:
         entry["status"] = STATUS_ARCHIVED
         entry["next_review"] = ""
-        entry["history"].append({"date": date.today().isoformat(), "action": "archive"})
+        entry["history"].append({"date": _today().isoformat(), "action": "archive"})
     else:
         entry = apply_first_solve(entry, status)
     prog[str(pid)] = entry
@@ -713,9 +731,9 @@ def api_postpone(pid: int):
     entry = prog.get(str(pid))
     if not entry or not entry.get("next_review"):
         return jsonify({"error": "not in review queue"}), 400
-    tomorrow = (date.today() + timedelta(days=1)).isoformat()
+    tomorrow = (_today() + timedelta(days=1)).isoformat()
     entry["next_review"] = tomorrow
-    entry["history"].append({"date": date.today().isoformat(), "action": "postpone"})
+    entry["history"].append({"date": _today().isoformat(), "action": "postpone"})
     prog[str(pid)] = entry
     save_progress(prog)
     return jsonify({"ok": True})
@@ -730,7 +748,7 @@ def api_postpone_overdue():
     """
     body = request.get_json(silent=True) or {}
     threshold = int(body.get("only_overdue_days", 0))
-    today = date.today()
+    today = _today()
     tomorrow_iso = (today + timedelta(days=1)).isoformat()
     today_iso = today.isoformat()
 
@@ -776,20 +794,18 @@ def api_settings_get():
         "daily_quota": cfg.get("daily_quota", {"weekday": 3, "weekend": 6}),
         "review_intervals_days": cfg.get("review_intervals_days", [1, 3, 7, 15, 30]),
         "overdue_alert_days": cfg.get("overdue_alert_days", 3),
+        "day_boundary_hour": cfg.get("day_boundary_hour", 0),
     })
 
 
 @app.post("/api/settings")
 def api_settings_save():
-    """把设置项写入 config.local.json（覆盖 config.json 里的默认值）。
-
-    只写这三个字段，其他 config 字段保持不变。
-    """
+    """把设置项写入 config.local.json（覆盖 config.json 里的默认值）。"""
     body = request.get_json(force=True)
-    # 简单校验
     dq = body.get("daily_quota", {})
     intervals = body.get("review_intervals_days", [])
     overdue = body.get("overdue_alert_days", 3)
+    boundary = body.get("day_boundary_hour", 0)
 
     if not isinstance(dq.get("weekday"), int) or not isinstance(dq.get("weekend"), int):
         return jsonify({"error": "daily_quota.weekday / weekend must be int"}), 400
@@ -801,12 +817,14 @@ def api_settings_save():
         return jsonify({"error": "review_intervals_days must have 1..10 elements"}), 400
     if not isinstance(overdue, int) or overdue < 0:
         return jsonify({"error": "overdue_alert_days must be non-negative int"}), 400
+    if not isinstance(boundary, (int, float)) or boundary < 0 or boundary > 6:
+        return jsonify({"error": "day_boundary_hour must be within [0, 6]"}), 400
 
-    # merge 到 config.local.json
     local = load_json(CONFIG_LOCAL_PATH, {})
     local["daily_quota"] = {"weekday": dq["weekday"], "weekend": dq["weekend"]}
     local["review_intervals_days"] = intervals
     local["overdue_alert_days"] = overdue
+    local["day_boundary_hour"] = boundary
     save_json(CONFIG_LOCAL_PATH, local)
     return jsonify({"ok": True})
 

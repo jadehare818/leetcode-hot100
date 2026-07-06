@@ -143,6 +143,7 @@ if (settingsBtn && settingsBackdrop) {
   const $we = document.getElementById('quota-weekend');
   const $iv = document.getElementById('intervals');
   const $od = document.getElementById('overdue');
+  const $db = document.getElementById('day-boundary');
   const $hint = document.getElementById('settings-hint');
 
   async function openSettings() {
@@ -152,6 +153,7 @@ if (settingsBtn && settingsBackdrop) {
     $we.value = d.daily_quota.weekend;
     $iv.value = d.review_intervals_days.join(', ');
     $od.value = d.overdue_alert_days;
+    $db.value = String(d.day_boundary_hour ?? 0);
     $hint.textContent = '';
     settingsBackdrop.hidden = false;
     setTimeout(() => $wd.focus(), 50);
@@ -189,6 +191,7 @@ if (settingsBtn && settingsBackdrop) {
       },
       review_intervals_days: intervals,
       overdue_alert_days: parseInt($od.value, 10) || 0,
+      day_boundary_hour: parseFloat($db.value) || 0,
     };
 
     saveSettings.disabled = true;
