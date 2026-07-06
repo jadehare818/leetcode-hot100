@@ -42,6 +42,21 @@
       <div class="k">Progress</div>
       <div class="v">{{ (done * 100 / d.total)|round(0, 'floor')|int }}<span class="unit">%</span></div>
     </div>
+    {% if d.finish.reachable %}
+    <div class="field finish" title="按当前配额精确模拟到完成日；改配额会立即反映">
+      <div class="k">Finish by</div>
+      {% if d.finish.days_left == 0 %}
+      <div class="v">已刷完 🎉</div>
+      {% else %}
+      <div class="v">{{ d.finish.days_left }}<span class="unit">天 · {{ d.finish.finish_date }}</span></div>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="field finish" title="工作日和周末配额都是 0，永远刷不完">
+      <div class="k">Finish by</div>
+      <div class="v">—<span class="unit">配额为 0</span></div>
+    </div>
+    {% endif %}
   </div>
 </section>
 

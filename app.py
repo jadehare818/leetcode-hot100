@@ -289,6 +289,51 @@ def _balanced_pick(todo_pool: list[dict], n: int) -> list[dict]:
     return [p for p in todo_pool if p["id"] in picked_ids][:n]
 
 
+def _estimate_finish(todo_left: int, weekday_q: int, weekend_q: int, done_today: int, quota_today: int) -> dict:
+    """精确日历模拟：从今天剩余配额开始，逐日按 weekday/weekend 扣，算完成日。
+
+    返回:
+        {
+          "days_left": int | None,      # 距离刷完还有几天（含今天）；None = 无解
+          "finish_date": "YYYY-MM-DD" | None,
+          "reachable": bool,            # False = 配额全 0 时 unreachable
+        }
+    """
+    if todo_left <= 0:
+        return {"days_left": 0, "finish_date": date.today().isoformat(), "reachable": True}
+    if weekday_q <= 0 and weekend_q <= 0:
+        return {"days_left": None, "finish_date": None, "reachable": False}
+
+    remaining = todo_left
+    # 今天：能挤出来的 = quota_today - done_today (最少 0)
+    today = date.today()
+    today_slot = max(0, quota_today - done_today)
+    if today_slot > 0:
+        remaining -= min(remaining, today_slot)
+        if remaining <= 0:
+            return {"days_left": 0, "finish_date": today.isoformat(), "reachable": True}
+
+    # 从明天开始逐日累计
+    d = today
+    days_counted = 0    # 从今天起过了几个整天
+    max_iter = 3650     # 硬顶 10 年，防止死循环
+    while remaining > 0 and days_counted < max_iter:
+        d = d + timedelta(days=1)
+        days_counted += 1
+        slot = weekend_q if d.weekday() >= 5 else weekday_q
+        if slot <= 0:
+            continue
+        remaining -= min(remaining, slot)
+
+    if remaining > 0:
+        return {"days_left": None, "finish_date": None, "reachable": False}
+    return {
+        "days_left": days_counted,
+        "finish_date": d.isoformat(),
+        "reachable": True,
+    }
+
+
 def build_dashboard() -> dict:
     """动态构造今日看板。"""
     problems = load_problems()
@@ -359,6 +404,16 @@ def build_dashboard() -> dict:
         STATUS_ARCHIVED: sum(1 for p in problems if _get_status(prog, p["id"]) == STATUS_ARCHIVED),
     }
 
+    # 完成预估：只算未刷题（复习是终身的，永远刷不完）
+    dq = load_config().get("daily_quota", {"weekday": 3, "weekend": 6})
+    finish = _estimate_finish(
+        todo_left=len(todo_pool),
+        weekday_q=int(dq.get("weekday", 0)),
+        weekend_q=int(dq.get("weekend", 0)),
+        done_today=len(done_today_ids),
+        quota_today=quota,
+    )
+
     return {
         "date": today,
         "is_weekend": date.today().weekday() >= 5,
@@ -370,6 +425,7 @@ def build_dashboard() -> dict:
         "todo_left": len(todo_pool),
         "counts": counts,
         "total": total,
+        "finish": finish,
     }
 
 
