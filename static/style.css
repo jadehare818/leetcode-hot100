@@ -502,11 +502,11 @@ h3 {
 .btn.hard { border-color: var(--tomato); color: var(--tomato); }
 .btn.hard:hover { background: var(--tomato-soft); }
 .btn.ghost {
-  border-color: transparent;
-  background: transparent;
+  border-color: var(--line);
+  background: var(--paper-2);
   color: var(--muted);
 }
-.btn.ghost:hover { background: var(--sand-2); color: var(--ink-2); }
+.btn.ghost:hover { background: var(--sand-2); color: var(--ink-2); border-color: var(--muted-2); }
 .btn.small {
   font-size: 11.5px;
   padding: 3px 10px;
