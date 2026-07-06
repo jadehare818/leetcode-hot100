@@ -46,6 +46,13 @@ function _renderPanel(panel, md) {
       if (r.ok) {
         hint.textContent = '已保存';
         setTimeout(() => hint.textContent = '', 1500);
+        // 同步刷新页面上任何一个"外部预览"（cheatsheet 首页的 .cheat-entry-body）
+        const external = document.querySelector(`.cheat-entry-body[data-pid="${pid}"]`);
+        if (external) {
+          external.innerHTML = edit.value ? marked.parse(edit.value) : '';
+        }
+        // 同步 dashboard 卡片的一句话预览（如果那题正好在看板里）
+        // note 和 cheatsheet 是不同字段，这里不动 note-preview
       }
       view.innerHTML = edit.value ? marked.parse(edit.value) : '<p class="empty">还没写笔记。</p>';
       edit.style.display = 'none';

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}全局语法速查 · Cheatsheet{% endblock %}
+{% block content %}
+
+<a href="{{ url_for('cheatsheet_page') }}" class="back">← 返回题目 Cheatsheet</a>
+
+<section class="journal-hero">
+  <div class="kicker">Notebook · Global Syntax Reference</div>
+  <h1>全局语法速查</h1>
+  <p class="lede">跨题通用的 Python 语法速查（sorted / defaultdict / heapq 等）。凡是"手一停就想不起来"的东西都往里塞。</p>
+</section>
+
+<div class="cheat-toolbar">
+  <button id="toggle-mode" class="btn primary">✏️ 编辑</button>
+  <span id="cheat-hint" class="hint"></span>
+</div>
+
+<div id="cheat-view" class="markdown-body"></div>
+<textarea id="cheat-edit" style="display:none">{{ markdown }}</textarea>
+
+<script>
+  window.__cheat_md = {{ markdown|tojson }};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="{{ url_for('static', filename='cheat.js') }}"></script>
+{% endblock %}

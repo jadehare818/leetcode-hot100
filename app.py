@@ -559,10 +559,45 @@ def problem_detail(pid: int):
 
 @app.route("/cheatsheet")
 def cheatsheet_page():
+    """Cheatsheet 首页：按最近编辑倒序平铺每题的 cheatsheet。"""
+    prog = load_progress()
+    problems = load_problems()
+    by_id = {p["id"]: p for p in problems}
+
+    entries = []
+    for pid_str, entry in prog.items():
+        cs = (entry.get("cheatsheet") or "").strip()
+        if not cs:
+            continue
+        pid = int(pid_str)
+        p = by_id.get(pid)
+        if not p:
+            continue
+        # 找最近一次跟这题相关的 history 时间戳；没有就用 last_done；再没有就 date.min
+        last = entry.get("last_done", "") or ""
+        for h in entry.get("history", []):
+            if h.get("date", "") > last:
+                last = h["date"]
+        entries.append({
+            "id": pid,
+            "title": p["title"],
+            "slug": p["slug"],
+            "difficulty": p["difficulty"],
+            "category": p["category"],
+            "cheatsheet": cs,
+            "last_edit": last or "0000-00-00",
+        })
+    entries.sort(key=lambda e: e["last_edit"], reverse=True)
+    return render_template("cheatsheet.html", entries=entries)
+
+
+@app.route("/cheatsheet/global")
+def cheatsheet_global_page():
+    """全局 Python 语法速查，独立子页。"""
     md = ""
     if CHEATSHEET_PATH.exists():
         md = CHEATSHEET_PATH.read_text(encoding="utf-8")
-    return render_template("cheatsheet.html", markdown=md)
+    return render_template("cheatsheet_global.html", markdown=md)
 
 
 # ---------- API ----------

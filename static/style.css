@@ -854,6 +854,83 @@ textarea:focus {
 }
 
 /* ================================================================ */
+/* cheatsheet timeline (per-problem entries)                         */
+/* ================================================================ */
+.cheat-timeline {
+  margin-top: 8px;
+}
+.cheat-entry {
+  padding: 24px 0 28px;
+  border-bottom: 1px solid var(--line);
+}
+.cheat-entry:last-child { border-bottom: none; }
+
+.cheat-entry-head {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-bottom: 14px;
+}
+.cheat-entry-head .line-1 {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+}
+.cheat-entry-head .pid {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.cheat-entry-head .title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-variation-settings: "opsz" 48, "SOFT" 40, "wght" 500;
+  color: var(--ink);
+  border-bottom: none;
+  letter-spacing: -0.01em;
+}
+.cheat-entry-head .title:hover { color: var(--amber); border-bottom: none; }
+.cheat-entry-head .cat {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  padding: 1px 8px;
+  border-radius: 2px;
+  background: var(--sand-2);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cheat-entry-head .line-2 {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.cheat-entry-head .last-edit { letter-spacing: 0.02em; }
+.cheat-entry-head .lc-link {
+  color: var(--muted);
+  border-bottom: 1px dotted var(--muted-2);
+}
+.cheat-entry-head .lc-link:hover { color: var(--harbor); border-bottom-color: var(--harbor); }
+
+.cheat-entry-body {
+  padding: 20px 28px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--harbor);
+  border-radius: var(--radius-card);
+  font-size: 14px;
+}
+.cheat-entry-body:empty {
+  padding: 12px 20px;
+  color: var(--muted-2);
+  font-style: italic;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+}
+
+/* ================================================================ */
 /* empty states                                                      */
 /* ================================================================ */
 .empty {

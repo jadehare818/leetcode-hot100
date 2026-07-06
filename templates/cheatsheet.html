@@ -5,20 +5,58 @@
 <section class="journal-hero">
   <div class="kicker">Notebook · Syntax &amp; Patterns</div>
   <h1>Cheatsheet</h1>
-  <p class="lede">写给自己的语法速查。凡是"手一停就想不起来"的东西都往里塞。</p>
+  <p class="lede">写给自己的复习速查。按最近编辑倒序，仅显示已写过的题。</p>
+  <div style="margin-top: 20px;">
+    <a href="{{ url_for('cheatsheet_global_page') }}" class="btn primary" style="text-decoration: none;">全局语法速查 ↗</a>
+  </div>
 </section>
 
-<div class="cheat-toolbar">
-  <button id="toggle-mode" class="btn primary">✏️ 编辑</button>
-  <span id="cheat-hint" class="hint"></span>
-</div>
+{% if entries %}
+<section class="cheat-timeline">
+  {% for e in entries %}
+  <article class="cheat-entry">
+    <header class="cheat-entry-head">
+      <div class="line-1">
+        <span class="pid">#{{ e.id }}</span>
+        <a href="{{ url_for('problem_detail', pid=e.id) }}" class="title">{{ e.title }}</a>
+        <span class="diff diff-{{ e.difficulty }}">{{ e.difficulty }}</span>
+        <span class="cat">{{ e.category }}</span>
+      </div>
+      <div class="line-2">
+        <span class="last-edit">最近 · {{ e.last_edit }}</span>
+        <a href="https://leetcode.cn/problems/{{ e.slug }}/" target="_blank" rel="noopener" class="lc-link">力扣 ↗</a>
+        <button class="btn ghost small cs-toggle" data-pid="{{ e.id }}">编辑</button>
+      </div>
+    </header>
 
-<div id="cheat-view" class="markdown-body"></div>
-<textarea id="cheat-edit" style="display:none">{{ markdown }}</textarea>
+    <div class="cheat-entry-body markdown-body" data-pid="{{ e.id }}">{# rendered by JS #}</div>
+    <script type="application/json" data-cheat-src="{{ e.id }}">{{ e.cheatsheet|tojson }}</script>
+
+    {# inline editor panel, closed by default #}
+    <div class="cs-panel" data-pid="{{ e.id }}"></div>
+  </article>
+  {% endfor %}
+</section>
+{% else %}
+<div class="empty-state">
+  <p class="empty">还没有任何题写过 cheatsheet。</p>
+  <p class="lede">
+    去 <a href="{{ url_for('problems_page') }}">题库</a> 或 <a href="{{ url_for('dashboard') }}">今日看板</a>
+    找一道题，点 📝 Cheatsheet 就能开始写。
+  </p>
+</div>
+{% endif %}
 
 <script>
-  window.__cheat_md = {{ markdown|tojson }};
+// 把 tojson 出来的 markdown 用 marked 渲染进 body，然后在保存时会通过 cs-toggle
+// 打开的那个内联编辑器覆盖回来（cheatsheet_inline.js 在 saved 时会同步 body）。
+document.querySelectorAll('script[data-cheat-src]').forEach(s => {
+  const pid = s.dataset.cheatSrc;
+  const md = JSON.parse(s.textContent);
+  const target = document.querySelector(`.cheat-entry-body[data-pid="${pid}"]`);
+  if (target && window.marked) {
+    target.innerHTML = marked.parse(md);
+  }
+});
 </script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="{{ url_for('static', filename='cheat.js') }}"></script>
 {% endblock %}
