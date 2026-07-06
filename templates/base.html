@@ -25,7 +25,56 @@
     </select>
   </label>
   <span class="today-tag">{{ (self._TemplateReference__context.get('d') or {}).get('date') or '' }}</span>
+  <button id="open-settings" class="settings-btn" title="设置" aria-label="设置">⚙</button>
 </nav>
+
+{# ========== 设置弹窗 ========== #}
+<div id="settings-backdrop" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-labelledby="settings-title" aria-modal="true">
+    <div class="modal-head">
+      <h3 id="settings-title">设置</h3>
+      <button class="modal-close" id="close-settings" aria-label="关闭">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="setting-block">
+        <div class="setting-label">
+          <span class="k">每日配额</span>
+          <span class="hint-inline">看板每天推的新题数（不含复习）</span>
+        </div>
+        <div class="setting-row">
+          <label>工作日 <input type="number" id="quota-weekday" min="0" max="30" step="1"></label>
+          <label>周末 <input type="number" id="quota-weekend" min="0" max="30" step="1"></label>
+        </div>
+      </div>
+
+      <div class="setting-block">
+        <div class="setting-label">
+          <span class="k">复习间隔（天）</span>
+          <span class="hint-inline">首刷完之后的复习档位。逗号分隔</span>
+        </div>
+        <input type="text" id="intervals" placeholder="1, 3, 7, 15, 30">
+      </div>
+
+      <div class="setting-block">
+        <div class="setting-label">
+          <span class="k">逾期警告阈值</span>
+          <span class="hint-inline">超过这个天数才算逾期，显示红色徽章</span>
+        </div>
+        <label class="setting-row">
+          <input type="number" id="overdue" min="0" max="30" step="1"> 天
+        </label>
+      </div>
+
+      <div class="setting-note">
+        改动写入 <code>config.local.json</code>，不进 git。刷新页面立即生效。
+      </div>
+    </div>
+    <div class="modal-foot">
+      <span id="settings-hint" class="hint"></span>
+      <button id="save-settings" class="btn primary">保存</button>
+    </div>
+  </div>
+</div>
 <main>
 {% block content %}{% endblock %}
 </main>

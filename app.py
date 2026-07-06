@@ -671,6 +671,49 @@ def api_dashboard():
     return jsonify(build_dashboard())
 
 
+@app.get("/api/settings")
+def api_settings_get():
+    """返回可编辑的设置项。"""
+    cfg = load_config()
+    return jsonify({
+        "daily_quota": cfg.get("daily_quota", {"weekday": 3, "weekend": 6}),
+        "review_intervals_days": cfg.get("review_intervals_days", [1, 3, 7, 15, 30]),
+        "overdue_alert_days": cfg.get("overdue_alert_days", 3),
+    })
+
+
+@app.post("/api/settings")
+def api_settings_save():
+    """把设置项写入 config.local.json（覆盖 config.json 里的默认值）。
+
+    只写这三个字段，其他 config 字段保持不变。
+    """
+    body = request.get_json(force=True)
+    # 简单校验
+    dq = body.get("daily_quota", {})
+    intervals = body.get("review_intervals_days", [])
+    overdue = body.get("overdue_alert_days", 3)
+
+    if not isinstance(dq.get("weekday"), int) or not isinstance(dq.get("weekend"), int):
+        return jsonify({"error": "daily_quota.weekday / weekend must be int"}), 400
+    if dq["weekday"] < 0 or dq["weekend"] < 0 or dq["weekday"] > 30 or dq["weekend"] > 30:
+        return jsonify({"error": "daily_quota out of range 0..30"}), 400
+    if not isinstance(intervals, list) or not all(isinstance(x, int) and x > 0 for x in intervals):
+        return jsonify({"error": "review_intervals_days must be list of positive ints"}), 400
+    if len(intervals) < 1 or len(intervals) > 10:
+        return jsonify({"error": "review_intervals_days must have 1..10 elements"}), 400
+    if not isinstance(overdue, int) or overdue < 0:
+        return jsonify({"error": "overdue_alert_days must be non-negative int"}), 400
+
+    # merge 到 config.local.json
+    local = load_json(CONFIG_LOCAL_PATH, {})
+    local["daily_quota"] = {"weekday": dq["weekday"], "weekend": dq["weekend"]}
+    local["review_intervals_days"] = intervals
+    local["overdue_alert_days"] = overdue
+    save_json(CONFIG_LOCAL_PATH, local)
+    return jsonify({"ok": True})
+
+
 # ---------- Entry ----------
 
 if __name__ == "__main__":

@@ -130,3 +130,77 @@ function applyFilters() {
 }
 document.querySelectorAll('[data-filter]').forEach(cb => cb.addEventListener('change', applyFilters));
 applyFilters();
+
+// ========== 设置弹窗 ==========
+const settingsBtn = document.getElementById('open-settings');
+const settingsBackdrop = document.getElementById('settings-backdrop');
+const closeSettings = document.getElementById('close-settings');
+const saveSettings = document.getElementById('save-settings');
+
+if (settingsBtn && settingsBackdrop) {
+  const $wd = document.getElementById('quota-weekday');
+  const $we = document.getElementById('quota-weekend');
+  const $iv = document.getElementById('intervals');
+  const $od = document.getElementById('overdue');
+  const $hint = document.getElementById('settings-hint');
+
+  async function openSettings() {
+    const r = await fetch('/api/settings');
+    const d = await r.json();
+    $wd.value = d.daily_quota.weekday;
+    $we.value = d.daily_quota.weekend;
+    $iv.value = d.review_intervals_days.join(', ');
+    $od.value = d.overdue_alert_days;
+    $hint.textContent = '';
+    settingsBackdrop.hidden = false;
+    setTimeout(() => $wd.focus(), 50);
+  }
+
+  function hideSettings() { settingsBackdrop.hidden = true; }
+
+  settingsBtn.addEventListener('click', openSettings);
+  closeSettings.addEventListener('click', hideSettings);
+  settingsBackdrop.addEventListener('click', (e) => {
+    if (e.target === settingsBackdrop) hideSettings();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !settingsBackdrop.hidden) hideSettings();
+  });
+
+  saveSettings.addEventListener('click', async () => {
+    // 解析 intervals: 允许逗号或空格分隔
+    const intervals = $iv.value
+      .split(/[,\s]+/)
+      .map(s => s.trim())
+      .filter(Boolean)
+      .map(s => parseInt(s, 10));
+
+    if (intervals.some(n => isNaN(n) || n <= 0)) {
+      $hint.textContent = '间隔天数只能是正整数';
+      $hint.style.color = 'var(--tomato)';
+      return;
+    }
+
+    const body = {
+      daily_quota: {
+        weekday: parseInt($wd.value, 10) || 0,
+        weekend: parseInt($we.value, 10) || 0,
+      },
+      review_intervals_days: intervals,
+      overdue_alert_days: parseInt($od.value, 10) || 0,
+    };
+
+    saveSettings.disabled = true;
+    const r = await post('/api/settings', body);
+    saveSettings.disabled = false;
+
+    if (r.ok) {
+      $hint.textContent = '已保存 · 刷新页面…';
+      $hint.style.color = 'var(--sage)';
+      setTimeout(() => location.reload(), 700);
+    } else {
+      $hint.textContent = r.error || '保存失败';
+      $hint.style.color = 'var(--tomato)';
+    }
+  });
+}
