@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}明日 Preview · Hot 100{% endblock %}
+{% block content %}
+
+<section class="journal-hero">
+  <div class="kicker">Preview · {{ d.date }} · {% if d.is_weekend %}周末 · Weekend Session{% else %}工作日 · Weekday Session{% endif %}</div>
+  <h1>明日 <em>预告</em></h1>
+  <p class="lede">
+    明天进看板将看到的题。只读预告，不能打卡也不能改状态。<br>
+    如果你今晚多刷了几道，明天进这里再看会自动重算。
+  </p>
+
+  <div class="today-brief">
+    <div class="field">
+      <div class="k">Reviews due</div>
+      <div class="v">{{ d.due_review|length }}<span class="unit">道</span></div>
+    </div>
+    <div class="field">
+      <div class="k">New quota</div>
+      <div class="v">{{ d.quota }}<span class="unit">道</span></div>
+    </div>
+  </div>
+</section>
+
+<h2 data-chapter="I">
+  Reviews due
+  <span class="cat-count">{{ d.due_review|length }}</span>
+</h2>
+{% if d.due_review %}
+<div class="cards">
+  {% for p in d.due_review %}
+  <article class="card due-review readonly {{ 'overdue' if p.is_overdue else '' }}" data-pid="{{ p.id }}">
+    <div class="card-head">
+      <span class="pid">#{{ p.id }}</span>
+      <span class="cat">{{ p.category }}</span>
+      <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
+      {% if p.is_overdue %}<span class="overdue-badge">Overdue</span>{% endif %}
+    </div>
+    <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
+    <div class="meta">Stage {{ p.review_stage }} · Due {{ p.next_review }} · <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
+    {% if p.note %}<div class="note-preview" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<p class="empty">明天没有到期复习。</p>
+{% endif %}
+
+<h2 data-chapter="II">
+  New tomorrow
+  <span class="cat-count">{{ d.today_new|length }}</span>
+</h2>
+{% if d.today_new %}
+<div class="cards">
+  {% for p in d.today_new %}
+  <article class="card new readonly" data-pid="{{ p.id }}">
+    <div class="card-head">
+      <span class="pid">#{{ p.id }}</span>
+      <span class="cat">{{ p.category }}</span>
+      <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
+    </div>
+    <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
+    <div class="meta"><a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
+    {% if p.note %}<div class="note-preview" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<p class="empty">未刷池已空，明天没有新题可推。</p>
+{% endif %}
+
+{% endblock %}

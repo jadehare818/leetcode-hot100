@@ -467,6 +467,60 @@ def build_dashboard() -> dict:
     }
 
 
+def build_preview(target: date) -> dict:
+    """预测某一天（通常是明天）打开看板会看到什么。
+
+    只读快照：模拟 target 那天进看板时 build_dashboard 会算出的数据。
+    - 复习列表 = 那天到期或已过期（next_review <= target），且不在"今天已做"里
+    - 新题列表 = 从当前 todo 池里按难度均衡取 quota 道（quota 按 target 是工作日/周末算）
+    """
+    problems = load_problems()
+    prog = load_progress()
+    by_id = {p["id"]: p for p in problems}
+    target_str = target.isoformat()
+    overdue_days = load_config().get("overdue_alert_days", 3)
+
+    # 复习到期（假设 today 到 target 之间用户没做题；如果做了会自动从 todo 池里减）
+    due_review = []
+    for pid_str, entry in prog.items():
+        if entry.get("status") in (STATUS_ARCHIVED, STATUS_TODO):
+            continue
+        nr = entry.get("next_review", "")
+        if not nr or nr > target_str:
+            continue
+        pid = int(pid_str)
+        item = {
+            **by_id.get(pid, {"id": pid, "title": "?", "difficulty": "?", "slug": ""}),
+            "status": entry["status"],
+            "next_review": nr,
+            "review_stage": entry.get("review_stage", 0),
+            "note": entry.get("note", ""),
+        }
+        try:
+            days_overdue = (target - date.fromisoformat(nr)).days
+            item["is_overdue"] = days_overdue > overdue_days
+        except ValueError:
+            item["is_overdue"] = False
+        due_review.append(item)
+
+    # 新题：quota 按 target 是否周末算
+    dq = load_config().get("daily_quota", {"weekday": 3, "weekend": 6})
+    quota = dq["weekend"] if target.weekday() >= 5 else dq["weekday"]
+
+    todo_pool = [p for p in problems if _get_status(prog, p["id"]) == STATUS_TODO]
+    today_new = _balanced_pick(todo_pool, quota)
+    for p in today_new:
+        p["note"] = prog.get(str(p["id"]), {}).get("note", "")
+
+    return {
+        "date": target_str,
+        "is_weekend": target.weekday() >= 5,
+        "quota": quota,
+        "due_review": due_review,
+        "today_new": today_new,
+    }
+
+
 # ---------- 代码文件 ----------
 
 _SAFE_TITLE_RE = re.compile(r"[\\/:*?\"<>|\s]+")
@@ -630,6 +684,14 @@ def cheatsheet_global_page():
     if CHEATSHEET_PATH.exists():
         md = CHEATSHEET_PATH.read_text(encoding="utf-8")
     return render_template("cheatsheet_global.html", markdown=md)
+
+
+@app.route("/preview")
+def preview_page():
+    """明日 preview：只读展示明天预计要刷/复习的题。"""
+    tomorrow = _today() + timedelta(days=1)
+    d = build_preview(tomorrow)
+    return render_template("preview.html", d=d)
 
 
 @app.route("/calendar")

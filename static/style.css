@@ -1745,3 +1745,12 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
 .calendar-split .calendar-month .month-grid {
   min-height: 260px;
 }
+
+/* 只读卡片：视觉上淡一点点，去掉 hover 高亮 */
+.card.readonly {
+  opacity: 0.95;
+}
+.card.readonly:hover {
+  box-shadow: var(--shadow-card);
+  transform: none;
+}
