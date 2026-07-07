@@ -14,6 +14,7 @@
   <a href="{{ url_for('dashboard') }}" class="{% if request.endpoint == 'dashboard' %}active{% endif %}">今日</a>
   <a href="{{ url_for('problems_page') }}" class="{% if request.endpoint == 'problems_page' %}active{% endif %}">题库</a>
   <a href="{{ url_for('cheatsheet_page') }}" class="{% if request.endpoint == 'cheatsheet_page' %}active{% endif %}">Cheatsheet</a>
+  <a href="{{ url_for('calendar_page') }}" class="{% if request.endpoint == 'calendar_page' %}active{% endif %}">日历</a>
   <span class="spacer"></span>
   <label class="lang-picker" title="切换编程语言（不删除已有文件）">
     Lang

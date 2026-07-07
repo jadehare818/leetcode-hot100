@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}日历 · Hot 100{% endblock %}
+{% block content %}
+
+<section class="journal-hero">
+  <div class="kicker">Calendar · Last 30 Days</div>
+  <h1>打卡节奏</h1>
+  <p class="lede">最近 30 天每天做过的题数（首刷 + 复习合计）。空白格代表那天没动过题。</p>
+
+  <div class="today-brief">
+    <div class="field">
+      <div class="k">30-day total</div>
+      <div class="v">{{ total_all }}<span class="unit">道</span></div>
+    </div>
+    <div class="field">
+      <div class="k">Active days</div>
+      <div class="v">{{ active_days }}<span class="unit">/ 30</span></div>
+    </div>
+    <div class="field finish">
+      <div class="k">Streak</div>
+      <div class="v">{{ streak }}<span class="unit">连续天</span></div>
+    </div>
+    <div class="field">
+      <div class="k">Peak</div>
+      <div class="v">{{ max_total }}<span class="unit">道 / 日</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="calendar-bars">
+  <div class="bars-wrap" style="--max-total: {{ [max_total, 1]|max }};">
+    {% for d in series %}
+    <div class="bar-col {% if d.is_today %}today{% endif %} {% if d.is_weekend %}weekend{% endif %}"
+         style="--total: {{ d.total }};"
+         data-solve="{{ d.solve }}" data-review="{{ d.review }}" data-total="{{ d.total }}">
+      <div class="bar-count">{% if d.total %}{{ d.total }}{% endif %}</div>
+      <div class="bar-fill"
+           title="{{ d.date }} · 首刷 {{ d.solve }} · 复习 {{ d.review }}">
+        {% if d.total %}
+        <div class="bar-fill-solve" style="flex-grow: {{ d.solve }};"></div>
+        <div class="bar-fill-review" style="flex-grow: {{ d.review }};"></div>
+        {% endif %}
+      </div>
+      <div class="bar-day">{{ d.day }}</div>
+      <div class="bar-weekday">周{{ d.weekday }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="calendar-legend">
+    <span class="legend-item"><span class="swatch swatch-solve"></span>首刷</span>
+    <span class="legend-item"><span class="swatch swatch-review"></span>复习</span>
+    <span class="legend-item">悬停某天查看拆解</span>
+  </div>
+</section>
+
+{% endblock %}

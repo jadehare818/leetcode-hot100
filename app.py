@@ -617,6 +617,77 @@ def cheatsheet_global_page():
     return render_template("cheatsheet_global.html", markdown=md)
 
 
+@app.route("/calendar")
+def calendar_page():
+    """最近 30 天打卡日历：每天 solve + review 的总数。"""
+    prog = load_progress()
+    today = _today()
+    # 反向 30 天（含今天）
+    days = [today - timedelta(days=i) for i in range(29, -1, -1)]
+
+    # 汇总每天的 counts
+    counted_actions = {"solve", "review"}
+    daily: dict[str, dict] = {}
+    for d in days:
+        daily[d.isoformat()] = {"solve": 0, "review": 0}
+
+    for pid, entry in prog.items():
+        for h in entry.get("history", []):
+            action = h.get("action")
+            if action not in counted_actions:
+                continue
+            d_str = h.get("date", "")
+            if d_str in daily:
+                daily[d_str][action] += 1
+
+    # 转成有序列表 + 附加 weekday
+    zh_weekdays = ["一", "二", "三", "四", "五", "六", "日"]
+    series = []
+    max_total = 0
+    total_all = 0
+    streak = 0
+    streak_broken = False
+    for d in days:
+        d_str = d.isoformat()
+        c = daily[d_str]
+        total = c["solve"] + c["review"]
+        max_total = max(max_total, total)
+        total_all += total
+        series.append({
+            "date": d_str,
+            "day": d.day,
+            "month": d.month,
+            "weekday": zh_weekdays[d.weekday()],
+            "is_weekend": d.weekday() >= 5,
+            "is_today": d == today,
+            "solve": c["solve"],
+            "review": c["review"],
+            "total": total,
+        })
+
+    # 连续打卡：从今天倒着数，遇到第一个 total=0（不含今天，因为今天可能还没开始）
+    for i, day in enumerate(reversed(series)):  # 从今天开始倒推
+        if day["total"] > 0:
+            streak += 1
+        elif i == 0 and day["is_today"]:
+            # 今天还没打卡不算断
+            continue
+        else:
+            break
+
+    # 30 天内实际打卡了多少天
+    active_days = sum(1 for d in series if d["total"] > 0)
+
+    return render_template(
+        "calendar.html",
+        series=series,
+        max_total=max_total,
+        total_all=total_all,
+        streak=streak,
+        active_days=active_days,
+    )
+
+
 # ---------- API ----------
 
 @app.post("/api/problem/<int:pid>/status")

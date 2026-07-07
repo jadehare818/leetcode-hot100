@@ -1219,6 +1219,111 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   display: flex; align-items: center; justify-content: flex-end; gap: 12px;
   background: var(--paper-2);
 }
+
+/* ================================================================ */
+/* calendar bars                                                     */
+/* ================================================================ */
+.calendar-bars { margin-top: 28px; }
+
+.bars-wrap {
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  gap: 4px;
+  align-items: end;
+  padding: 20px 12px 16px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow-x: auto;
+  min-height: 220px;
+}
+
+.bar-col {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px;
+  min-width: 20px;
+  position: relative;
+  transition: transform .15s;
+}
+.bar-col:hover { transform: translateY(-2px); }
+
+.bar-count {
+  height: 14px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+}
+.bar-col.today .bar-count { color: var(--amber); font-weight: 600; }
+
+.bar-fill {
+  width: 100%;
+  min-width: 14px;
+  height: calc(140px * var(--total) / var(--max-total));
+  min-height: 0;
+  display: flex; flex-direction: column-reverse;
+  border-radius: 3px;
+  overflow: hidden;
+  background: transparent;
+  transition: opacity .15s;
+}
+.bar-col[data-total="0"] .bar-fill {
+  height: 3px;
+  background: var(--sand-2);
+}
+.bar-col:hover .bar-fill { opacity: 0.88; }
+
+.bar-fill-solve  { background: var(--amber); }
+.bar-fill-review { background: var(--harbor); }
+
+.bar-day {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  margin-top: 4px;
+}
+.bar-weekday {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--muted-2);
+  letter-spacing: 0.04em;
+}
+.bar-col.weekend .bar-day,
+.bar-col.weekend .bar-weekday { color: var(--brown); }
+
+.bar-col.today::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+.bar-col.today .bar-day { color: var(--amber); font-weight: 600; }
+
+.calendar-legend {
+  margin-top: 24px;
+  display: flex; gap: 24px; flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  padding: 12px 16px;
+  border-top: 1px dashed var(--line);
+}
+.calendar-legend .legend-item { display: inline-flex; align-items: center; gap: 8px; }
+.calendar-legend .swatch {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 2px;
+}
+.calendar-legend .swatch-solve { background: var(--amber); }
+.calendar-legend .swatch-review { background: var(--harbor); }
+
 @media (max-width: 720px) {
   main {
     padding: 24px 20px 60px;
