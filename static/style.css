@@ -1754,3 +1754,21 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   box-shadow: var(--shadow-card);
   transform: none;
 }
+
+/* 题库多表格列对齐：固定列宽 + table-layout: fixed */
+.ptable {
+  table-layout: fixed;
+}
+.ptable th:nth-child(1), .ptable td:nth-child(1) { width: 60px; }   /* # */
+.ptable th:nth-child(2), .ptable td:nth-child(2) { width: auto; }   /* 题名（弹性） */
+.ptable th:nth-child(3), .ptable td:nth-child(3) { width: 80px; }   /* 难度 */
+.ptable th:nth-child(4), .ptable td:nth-child(4) { width: 90px; }   /* 状态 */
+.ptable th:nth-child(5), .ptable td:nth-child(5) { width: 130px; }  /* Next review */
+.ptable th:nth-child(6), .ptable td:nth-child(6) { width: 190px; }  /* 操作 */
+
+/* 题名列过长时截断（table-layout: fixed 会强制列宽，题名溢出需要处理） */
+.ptable td:nth-child(2) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
