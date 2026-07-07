@@ -1677,3 +1677,33 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
 .calendar-split .calendar-month .month-grid {
   flex: 1;
 }
+
+/* 月历标题嵌入卡片内部（保证卡片顶部对齐条形图卡片顶部） */
+.calendar-split .month-title-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px;
+  padding: 0 4px 8px;
+  border-bottom: 1px dashed var(--line);
+  margin-bottom: 8px;
+}
+.calendar-split .month-label-inline {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-variation-settings: "opsz" 32, "SOFT" 40, "wght" 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  flex: 1;
+  text-align: center;
+}
+.calendar-split .month-nav {
+  color: var(--muted);
+  font-size: 14px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: none;
+}
+.calendar-split .month-nav:hover { background: var(--sand-2); color: var(--ink); }
+.calendar-split .month-nav.disabled { color: var(--muted-2); cursor: default; }
+.calendar-split .month-nav.disabled:hover { background: transparent; }

@@ -31,9 +31,6 @@
 
 {# ─── 条形图视图 · 左侧 75% ─── #}
 <section class="calendar-bars view" data-view="bars">
-  <div class="bars-header">
-    <h2 class="bars-label">最近 30 天</h2>
-  </div>
   <div class="bars-wrap" style="--max-total: {{ [max_total, 1]|max }};">
     {% for d in series %}
     <div class="bar-col {% if d.is_today %}today{% endif %} {% if d.is_weekend %}weekend{% endif %}"
@@ -61,21 +58,20 @@
 
 {# ─── 月历视图 · 右侧 25% ─── #}
 <section class="calendar-month view" data-view="month">
-  <div class="month-header">
-    {% if prev_month_str %}
-      <a class="btn small ghost" href="?month={{ prev_month_str }}#month">← 上月</a>
-    {% else %}
-      <span class="btn small ghost disabled">←</span>
-    {% endif %}
-    <h2 class="month-label">{{ month_label }}</h2>
-    {% if next_month_str %}
-      <a class="btn small ghost" href="?month={{ next_month_str }}#month">下月 →</a>
-    {% else %}
-      <span class="btn small ghost disabled">→</span>
-    {% endif %}
-  </div>
-
   <div class="month-grid" role="grid">
+    <div class="month-title-row">
+      {% if prev_month_str %}
+        <a class="month-nav" href="?month={{ prev_month_str }}#month">←</a>
+      {% else %}
+        <span class="month-nav disabled">←</span>
+      {% endif %}
+      <div class="month-label-inline">{{ month_label }}</div>
+      {% if next_month_str %}
+        <a class="month-nav" href="?month={{ next_month_str }}#month">→</a>
+      {% else %}
+        <span class="month-nav disabled">→</span>
+      {% endif %}
+    </div>
     <div class="month-head" role="row">
       {% for wd in ["一","二","三","四","五","六","日"] %}
       <div class="month-head-cell {% if loop.index >= 6 %}weekend{% endif %}">周{{ wd }}</div>
