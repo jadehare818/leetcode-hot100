@@ -25,14 +25,11 @@
       <div class="v">{{ max_total }}<span class="unit">道 / 日</span></div>
     </div>
   </div>
-
-  <div class="cal-toggle" role="tablist">
-    <button data-view="bars" class="cal-toggle-btn active" role="tab">条形图 · 30 天</button>
-    <button data-view="month" class="cal-toggle-btn" role="tab">月历</button>
-  </div>
 </section>
 
-{# ─── 条形图视图 ─── #}
+<div class="calendar-split">
+
+{# ─── 条形图视图 · 左侧 75% ─── #}
 <section class="calendar-bars view" data-view="bars">
   <div class="bars-wrap" style="--max-total: {{ [max_total, 1]|max }};">
     {% for d in series %}
@@ -59,8 +56,8 @@
   </div>
 </section>
 
-{# ─── 月历视图 ─── #}
-<section class="calendar-month view" data-view="month" hidden>
+{# ─── 月历视图 · 右侧 25% ─── #}
+<section class="calendar-month view" data-view="month">
   <div class="month-header">
     {% if prev_month_str %}
       <a class="btn small ghost" href="?month={{ prev_month_str }}#month">← 上月</a>
@@ -126,72 +123,61 @@
   <div id="cell-tooltip" class="cell-tooltip" hidden></div>
 </section>
 
+</div>
+
 <script>
 (function() {
-  // 视图切换 + localStorage 记忆
-  const KEY = 'lc-hot100-calview';
-  const btns = document.querySelectorAll('.cal-toggle-btn');
-  const views = document.querySelectorAll('.view[data-view]');
-
-  function apply(view) {
-    btns.forEach(b => b.classList.toggle('active', b.dataset.view === view));
-    views.forEach(v => v.hidden = (v.dataset.view !== view));
-    localStorage.setItem(KEY, view);
-  }
-
-  // URL hash #month 优先 → 保证从"下月/上月"链接跳转时自动切到月历视图
-  const initial = (location.hash === '#month') ? 'month' : (localStorage.getItem(KEY) || 'bars');
-  apply(initial);
-
-  btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.view)));
-
-  // ---- 月历 tooltip ----
+  // 月历 tooltip（无需视图切换 —— 两图并列显示）
   const tt = document.getElementById('cell-tooltip');
-  if (tt) {
-    const zhWeekdays = ['一','二','三','四','五','六','日'];
-    function fmt(cell) {
-      const date = cell.dataset.date;
-      const solve = parseInt(cell.dataset.solve, 10);
-      const review = parseInt(cell.dataset.review, 10);
-      const solveTitles = (cell.dataset.solveTitles || '').split('|').filter(Boolean);
-      const reviewTitles = (cell.dataset.reviewTitles || '').split('|').filter(Boolean);
-      const d = new Date(date);
-      const wd = zhWeekdays[(d.getDay() + 6) % 7];   // JS Sunday=0, we want Monday=0
-      let html = `<div class="tt-head">${date} · 周${wd}</div>`;
-      if (solve > 0) {
-        html += `<div class="tt-sec"><span class="tt-tag solve">首刷 ${solve}</span></div>`;
-        html += '<ul>' + solveTitles.map(t => `<li>${t}</li>`).join('') + '</ul>';
-      }
-      if (review > 0) {
-        html += `<div class="tt-sec"><span class="tt-tag review">复习 ${review}</span></div>`;
-        html += '<ul>' + reviewTitles.map(t => `<li>${t}</li>`).join('') + '</ul>';
-      }
-      if (solve === 0 && review === 0) {
-        html += '<div class="tt-empty">这天没打卡</div>';
-      }
-      return html;
-    }
+  if (!tt) return;
 
-    function show(cell) {
-      tt.innerHTML = fmt(cell);
-      tt.hidden = false;
-      const rect = cell.getBoundingClientRect();
-      const wrapRect = document.querySelector('.month-grid').getBoundingClientRect();
-      // 定位在格子下方；如果 tooltip 会溢出右边界，往左对齐
-      let left = rect.left + rect.width / 2 - tt.offsetWidth / 2;
-      left = Math.max(wrapRect.left + 4, Math.min(left, wrapRect.right - tt.offsetWidth - 4));
-      tt.style.left = (left + window.scrollX) + 'px';
-      tt.style.top = (rect.bottom + window.scrollY + 6) + 'px';
+  const zhWeekdays = ['一','二','三','四','五','六','日'];
+  function fmt(cell) {
+    const date = cell.dataset.date;
+    const solve = parseInt(cell.dataset.solve, 10);
+    const review = parseInt(cell.dataset.review, 10);
+    const solveTitles = (cell.dataset.solveTitles || '').split('|').filter(Boolean);
+    const reviewTitles = (cell.dataset.reviewTitles || '').split('|').filter(Boolean);
+    const d = new Date(date);
+    const wd = zhWeekdays[(d.getDay() + 6) % 7];
+    let html = `<div class="tt-head">${date} · 周${wd}</div>`;
+    if (solve > 0) {
+      html += `<div class="tt-sec"><span class="tt-tag solve">首刷 ${solve}</span></div>`;
+      html += '<ul>' + solveTitles.map(t => `<li>${t}</li>`).join('') + '</ul>';
     }
-    function hide() { tt.hidden = true; }
-
-    document.querySelectorAll('.month-cell[data-date]').forEach(cell => {
-      cell.addEventListener('mouseenter', () => show(cell));
-      cell.addEventListener('mouseleave', hide);
-      cell.addEventListener('focus', () => show(cell));
-      cell.addEventListener('blur', hide);
-    });
+    if (review > 0) {
+      html += `<div class="tt-sec"><span class="tt-tag review">复习 ${review}</span></div>`;
+      html += '<ul>' + reviewTitles.map(t => `<li>${t}</li>`).join('') + '</ul>';
+    }
+    if (solve === 0 && review === 0) {
+      html += '<div class="tt-empty">这天没打卡</div>';
+    }
+    return html;
   }
+
+  function show(cell) {
+    tt.innerHTML = fmt(cell);
+    tt.hidden = false;
+    const rect = cell.getBoundingClientRect();
+    // 定位在格子右侧；如果 tooltip 会溢出右边界，放到左边
+    let left = rect.right + 8;
+    if (left + tt.offsetWidth > window.innerWidth - 8) {
+      left = rect.left - tt.offsetWidth - 8;
+    }
+    let top = rect.top;
+    // 上下不超屏
+    top = Math.max(8, Math.min(top, window.innerHeight - tt.offsetHeight - 8));
+    tt.style.left = (left + window.scrollX) + 'px';
+    tt.style.top = (top + window.scrollY) + 'px';
+  }
+  function hide() { tt.hidden = true; }
+
+  document.querySelectorAll('.month-cell[data-date]').forEach(cell => {
+    cell.addEventListener('mouseenter', () => show(cell));
+    cell.addEventListener('mouseleave', hide);
+    cell.addEventListener('focus', () => show(cell));
+    cell.addEventListener('blur', hide);
+  });
 })();
 </script>
 

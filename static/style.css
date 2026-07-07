@@ -1574,3 +1574,78 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ================================================================ */
+/* calendar split: bars 75% + month 25% side by side                 */
+/* ================================================================ */
+.calendar-split {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-top: 20px;
+}
+.calendar-split .calendar-bars,
+.calendar-split .calendar-month {
+  margin-top: 0;
+  max-width: none;
+}
+
+/* 月历在窄侧的紧凑样式 */
+.calendar-split .month-header {
+  margin-bottom: 12px;
+  gap: 8px;
+}
+.calendar-split .month-label {
+  font-size: 15px;
+  font-variation-settings: "opsz" 32, "SOFT" 40, "wght" 500;
+}
+.calendar-split .btn.small {
+  padding: 2px 8px;
+  font-size: 11px;
+  margin-left: 0;
+}
+.calendar-split .month-grid {
+  padding: 10px;
+  gap: 3px;
+}
+.calendar-split .month-head,
+.calendar-split .month-row {
+  gap: 3px;
+}
+.calendar-split .month-head-cell {
+  font-size: 9px;
+  padding: 2px 0;
+  letter-spacing: 0.03em;
+}
+.calendar-split .month-cell {
+  min-height: 0;
+  padding: 3px 4px;
+  border-radius: 2px;
+}
+.calendar-split .month-cell.is-today {
+  padding: 2px 3px;
+}
+.calendar-split .month-cell .cell-day {
+  font-size: 9.5px;
+}
+.calendar-split .month-cell .cell-total {
+  font-size: 11px;
+  font-variation-settings: "opsz" 24, "SOFT" 30, "wght" 500;
+}
+.calendar-split .calendar-legend {
+  gap: 8px 12px;
+  padding: 8px 10px;
+  font-size: 10.5px;
+  margin-top: 12px;
+}
+.calendar-split .calendar-legend .lvl {
+  width: 9px; height: 9px;
+}
+
+@media (max-width: 900px) {
+  .calendar-split {
+    grid-template-columns: 1fr;
+  }
+  .calendar-split .calendar-month { max-width: 640px; }
+}
