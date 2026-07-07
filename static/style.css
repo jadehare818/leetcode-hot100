@@ -1732,3 +1732,16 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   min-height: 48px;
   align-items: center;
 }
+
+/* 强制两侧 section 同高，卡片撑到 section 底部 */
+.calendar-split {
+  align-items: stretch;
+}
+.calendar-split .calendar-bars,
+.calendar-split .calendar-month {
+  min-height: 0;  /* 允许 stretch */
+}
+.calendar-split .calendar-bars .bars-wrap,
+.calendar-split .calendar-month .month-grid {
+  min-height: 260px;
+}
