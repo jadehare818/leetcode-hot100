@@ -17,6 +17,9 @@
   <a href="{{ url_for('cheatsheet_page') }}" class="{% if request.endpoint == 'cheatsheet_page' %}active{% endif %}">Cheat Sheet</a>
   <a href="{{ url_for('calendar_page') }}" class="{% if request.endpoint == 'calendar_page' %}active{% endif %}">Calendar</a>
   <span class="spacer"></span>
+  {% if request.endpoint == 'dashboard' %}
+  <button id="open-checkin-card" class="share-btn" title="生成打卡卡片">📸 Share</button>
+  {% endif %}
   <label class="lang-picker" title="切换编程语言（不删除已有文件）">
     Lang
     <select id="lang-select">

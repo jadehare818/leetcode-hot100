@@ -16,10 +16,6 @@
   {% endif %}
   <p class="lede">复习到期的题优先，剩下配额从未刷池按难度均衡挑。<br>没做完的会顺延到明天，不会打乱间隔曲线。</p>
 
-  <div style="margin-top: 16px;">
-    <button id="open-checkin-card" class="btn primary">📸 生成打卡卡片</button>
-  </div>
-
   {# progress ribbon: solid + shaky + forgot + archived + todo (todo = empty gap at end) #}
   {% set done = d.total - d.counts.todo %}
   <div class="progress-ribbon" title="已完成 {{ done }} / {{ d.total }}">
