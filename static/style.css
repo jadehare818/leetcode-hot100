@@ -2044,7 +2044,7 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   margin-top: 22px;
   padding-top: 14px;
   border-top: 1px solid var(--line);
-  display: flex; justify-content: center;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
 }
 .cc-foot-l {
   font-family: var(--font-mono);
@@ -2052,6 +2052,13 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   letter-spacing: 0.16em;
   color: var(--muted-2);
   text-transform: uppercase;
+}
+.cc-foot-repo {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.06em;
+  color: var(--muted-2);
+  opacity: 0.6;
 }
 
 /* topnav 里的 Share 按钮 */
