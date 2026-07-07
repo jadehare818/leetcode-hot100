@@ -1353,3 +1353,217 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
     50% { transform: translateY(0); }
   }
 }
+
+/* ================================================================ */
+/* calendar: view toggle                                             */
+/* ================================================================ */
+.cal-toggle {
+  margin-top: 20px;
+  display: inline-flex;
+  gap: 4px;
+  padding: 3px;
+  background: var(--sand-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.cal-toggle-btn {
+  border: none; background: transparent;
+  padding: 6px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--muted);
+  transition: background .15s, color .15s;
+}
+.cal-toggle-btn.active {
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(26, 29, 36, 0.06);
+}
+.cal-toggle-btn:hover { color: var(--ink); }
+
+.view[hidden] { display: none; }
+
+/* ================================================================ */
+/* calendar: month grid                                              */
+/* ================================================================ */
+.calendar-month { margin-top: 28px; }
+
+.month-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+.month-label {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-variation-settings: "opsz" 72, "SOFT" 40, "wght" 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.month-label::before { content: none; }
+.btn.small.disabled {
+  color: var(--muted-2);
+  cursor: default;
+  background: transparent;
+  border-color: transparent;
+}
+
+.month-grid {
+  display: flex; flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+}
+.month-head,
+.month-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.month-head { margin-bottom: 4px; }
+.month-head-cell {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  padding: 4px 0;
+}
+.month-head-cell.weekend { color: var(--brown); }
+
+.month-cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 6px 8px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  transition: transform .12s, box-shadow .12s;
+  cursor: default;
+  min-height: 56px;
+}
+.month-cell.empty {
+  border: 1px dashed transparent;
+  background: transparent;
+}
+.month-cell[data-date]:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+  z-index: 2;
+}
+.month-cell .cell-day {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+.month-cell .cell-total {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-variation-settings: "opsz" 48, "SOFT" 30, "wght" 500;
+  color: var(--ink);
+  align-self: flex-end;
+  line-height: 1;
+}
+.month-cell.weekend .cell-day { color: var(--brown); }
+.month-cell.is-future {
+  opacity: 0.35;
+}
+.month-cell.is-future:hover {
+  transform: none;
+  box-shadow: none;
+}
+.month-cell.is-today {
+  border-color: var(--amber);
+  border-width: 2px;
+  padding: 5px 7px;
+}
+.month-cell.is-today .cell-day { color: var(--amber); font-weight: 600; }
+
+/* level colors: 4-step amber scale */
+.month-cell.level-0 { background: var(--paper); }
+.month-cell.level-1 { background: #FCEDD5; border-color: #F4D9B4; }
+.month-cell.level-2 { background: #F5C989; border-color: #E6AC61; }
+.month-cell.level-3 { background: #D89550; border-color: #B45309; }
+.month-cell.level-3 .cell-day { color: var(--paper-2); }
+.month-cell.level-3 .cell-total { color: var(--paper); }
+
+/* legend "lvl" swatches */
+.calendar-legend .lvl {
+  display: inline-block;
+  width: 12px; height: 12px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.calendar-legend .lvl-0 { background: var(--paper); }
+.calendar-legend .lvl-1 { background: #FCEDD5; border-color: #F4D9B4; }
+.calendar-legend .lvl-2 { background: #F5C989; border-color: #E6AC61; }
+.calendar-legend .lvl-3 { background: #D89550; border-color: #B45309; }
+
+/* ================================================================ */
+/* calendar: cell tooltip                                            */
+/* ================================================================ */
+.cell-tooltip {
+  position: absolute;
+  z-index: 50;
+  max-width: 320px;
+  min-width: 220px;
+  padding: 12px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  line-height: 1.55;
+  box-shadow: 0 12px 32px -8px rgba(26, 29, 36, 0.45);
+  pointer-events: none;
+}
+.cell-tooltip[hidden] { display: none; }
+.cell-tooltip .tt-head {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--sand);
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(232, 225, 211, 0.25);
+}
+.cell-tooltip .tt-sec { margin-top: 8px; }
+.cell-tooltip .tt-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cell-tooltip .tt-tag.solve { background: var(--amber); color: var(--ink); }
+.cell-tooltip .tt-tag.review { background: var(--harbor); color: var(--paper); }
+.cell-tooltip ul {
+  margin: 6px 0 0;
+  padding: 0 0 0 18px;
+}
+.cell-tooltip li {
+  margin: 2px 0;
+  font-size: 12px;
+  color: #E6E1D6;
+  word-break: break-all;
+}
+.cell-tooltip .tt-empty {
+  color: var(--muted-2);
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .month-cell { min-height: 44px; padding: 4px 5px; }
+  .month-cell .cell-total { font-size: 16px; }
+  .month-label { font-size: 20px; }
+  .cell-tooltip { max-width: 260px; }
+}
