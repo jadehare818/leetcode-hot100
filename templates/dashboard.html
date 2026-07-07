@@ -16,6 +16,10 @@
   {% endif %}
   <p class="lede">复习到期的题优先，剩下配额从未刷池按难度均衡挑。<br>没做完的会顺延到明天，不会打乱间隔曲线。</p>
 
+  <div style="margin-top: 16px;">
+    <button id="open-checkin-card" class="btn primary">📸 生成打卡卡片</button>
+  </div>
+
   {# progress ribbon: solid + shaky + forgot + archived + todo (todo = empty gap at end) #}
   {% set done = d.total - d.counts.todo %}
   <div class="progress-ribbon" title="已完成 {{ done }} / {{ d.total }}">
@@ -182,5 +186,32 @@
   {% endfor %}
 </div>
 {% endif %}
+
+{# ============================================================ #}
+{# 打卡卡片 modal                                                 #}
+{# ============================================================ #}
+<div id="checkin-backdrop" class="modal-backdrop" hidden>
+  <div class="checkin-modal" role="dialog" aria-labelledby="checkin-title" aria-modal="true">
+    <div class="checkin-modal-head">
+      <h3 id="checkin-title">今日打卡</h3>
+      <button class="modal-close" id="close-checkin" aria-label="关闭">×</button>
+    </div>
+
+    <div class="checkin-modal-body">
+      {# 卡片本体：html2canvas 会截这个 div #}
+      <div id="checkin-card" class="checkin-card">
+        {# 内容由 JS 填充 #}
+      </div>
+    </div>
+
+    <div class="checkin-modal-foot">
+      <span id="checkin-hint" class="hint"></span>
+      <button id="save-checkin" class="btn primary">💾 保存图片</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="{{ url_for('static', filename='checkin.js') }}"></script>
 
 {% endblock %}

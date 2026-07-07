@@ -1016,6 +1016,119 @@ def api_dashboard():
     return jsonify(build_dashboard())
 
 
+@app.get("/api/checkin")
+def api_checkin():
+    """给打卡卡片用：dashboard 关键数字 + streak + finish + today 具体题。"""
+    prog = load_progress()
+    problems = load_problems()
+    by_id = {p["id"]: p for p in problems}
+    today = _today()
+    today_str = today.isoformat()
+
+    solved_ids, reviewed_ids = _done_today(prog)
+    solved = [{
+        "id": pid,
+        "title": by_id.get(pid, {}).get("title", "?"),
+        "difficulty": by_id.get(pid, {}).get("difficulty", "?"),
+    } for pid in sorted(solved_ids)]
+    reviewed = [{
+        "id": pid,
+        "title": by_id.get(pid, {}).get("title", "?"),
+        "difficulty": by_id.get(pid, {}).get("difficulty", "?"),
+    } for pid in sorted(reviewed_ids)]
+
+    # streak: 从今天倒推，直到遇到"没打卡"的一天
+    counted = {"solve", "review"}
+    active_dates: set[str] = set()
+    for pid, entry in prog.items():
+        for h in entry.get("history", []):
+            if h.get("action") in counted:
+                active_dates.add(h.get("date", ""))
+    streak = 0
+    cursor = today
+    while True:
+        if cursor.isoformat() in active_dates:
+            streak += 1
+            cursor -= timedelta(days=1)
+        else:
+            # 今天还没打卡不算断
+            if cursor == today:
+                cursor -= timedelta(days=1)
+                continue
+            break
+
+    # counts + finish 复用 dashboard 里的逻辑
+    total = len(problems)
+    counts = {
+        STATUS_TODO: sum(1 for p in problems if _get_status(prog, p["id"]) == STATUS_TODO),
+        STATUS_FORGOT: sum(1 for p in problems if _get_status(prog, p["id"]) == STATUS_FORGOT),
+        STATUS_SHAKY: sum(1 for p in problems if _get_status(prog, p["id"]) == STATUS_SHAKY),
+        STATUS_SOLID: sum(1 for p in problems if _get_status(prog, p["id"]) == STATUS_SOLID),
+        STATUS_ARCHIVED: sum(1 for p in problems if _get_status(prog, p["id"]) == STATUS_ARCHIVED),
+    }
+    done_count = total - counts[STATUS_TODO]
+
+    dq = load_config().get("daily_quota", {"weekday": 3, "weekend": 6})
+    quota = dq["weekend"] if today.weekday() >= 5 else dq["weekday"]
+    todo_pool_size = counts[STATUS_TODO]
+    finish = _estimate_finish(
+        todo_left=todo_pool_size,
+        weekday_q=int(dq.get("weekday", 0)),
+        weekend_q=int(dq.get("weekend", 0)),
+        done_today=len(solved_ids),
+        quota_today=quota,
+    )
+
+    # 今日活跃题目的难度分布（只算已 solve 或 reviewed）
+    today_diff = {"简单": 0, "中等": 0, "困难": 0}
+    for item in solved + reviewed:
+        d_ = item.get("difficulty")
+        if d_ in today_diff:
+            today_diff[d_] += 1
+
+    # 全部有笔记的题里各难度总数（可选，用于卡片下方展示"总体分布"）
+    overall_diff = {"简单": 0, "中等": 0, "困难": 0}
+    for p in problems:
+        s = _get_status(prog, p["id"])
+        if s == STATUS_TODO:
+            continue
+        d_ = p["difficulty"]
+        if d_ in overall_diff:
+            overall_diff[d_] += 1
+
+    # 一句励志话（按 streak / 完成度 分段）
+    if done_count == 0:
+        blurb = "起点即出发"
+    elif done_count == total:
+        blurb = "刷完 hot100，稳。"
+    elif streak >= 7:
+        blurb = f"连续 {streak} 天，节奏很稳"
+    elif streak >= 3:
+        blurb = f"连续 {streak} 天，继续保持"
+    elif len(solved_ids) + len(reviewed_ids) > 0:
+        blurb = "今天动了动，就好"
+    else:
+        blurb = "明天再来"
+
+    return jsonify({
+        "date": today_str,
+        "is_weekend": today.weekday() >= 5,
+        "weekday": ["一","二","三","四","五","六","日"][today.weekday()],
+        "quota": quota,
+        "solved": solved,
+        "reviewed": reviewed,
+        "streak": streak,
+        "counts": counts,
+        "total": total,
+        "done_count": done_count,
+        "todo_left": todo_pool_size,
+        "finish": finish,
+        "today_diff": today_diff,
+        "overall_diff": overall_diff,
+        "blurb": blurb,
+    })
+
+
 @app.get("/api/settings")
 def api_settings_get():
     """返回可编辑的设置项。"""
