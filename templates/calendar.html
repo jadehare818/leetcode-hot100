@@ -31,6 +31,9 @@
 
 {# ─── 条形图视图 · 左侧 75% ─── #}
 <section class="calendar-bars view" data-view="bars">
+  <div class="bars-header">
+    <h2 class="bars-label">最近 30 天</h2>
+  </div>
   <div class="bars-wrap" style="--max-total: {{ [max_total, 1]|max }};">
     {% for d in series %}
     <div class="bar-col {% if d.is_today %}today{% endif %} {% if d.is_weekend %}weekend{% endif %}"

@@ -1649,3 +1649,19 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   }
   .calendar-split .calendar-month { max-width: 640px; }
 }
+
+/* 让条形图侧的顶部也有个 header，跟月历 header 同高，从而两侧内容区顶部对齐 */
+.calendar-split .bars-header {
+  margin-bottom: 12px;
+  min-height: 32px;      /* 跟 .calendar-split .month-header 相当（label 15px + line-height） */
+  display: flex; align-items: center;
+}
+.calendar-split .bars-label {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-variation-settings: "opsz" 32, "SOFT" 40, "wght" 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.calendar-split .bars-label::before { content: none; }
