@@ -13,8 +13,8 @@
   <div class="brand">Hot 100 · <em>Journal</em></div>
   <a href="{{ url_for('dashboard') }}" class="{% if request.endpoint == 'dashboard' %}active{% endif %}">Today</a>
   <a href="{{ url_for('preview_page') }}" class="{% if request.endpoint == 'preview_page' %}active{% endif %}">Preview</a>
-  <a href="{{ url_for('problems_page') }}" class="{% if request.endpoint == 'problems_page' %}active{% endif %}">Problems</a>
-  <a href="{{ url_for('cheatsheet_page') }}" class="{% if request.endpoint == 'cheatsheet_page' %}active{% endif %}">Cheatsheet</a>
+  <a href="{{ url_for('problems_page') }}" class="{% if request.endpoint == 'problems_page' %}active{% endif %}">Problem Set</a>
+  <a href="{{ url_for('cheatsheet_page') }}" class="{% if request.endpoint == 'cheatsheet_page' %}active{% endif %}">Cheat Sheet</a>
   <a href="{{ url_for('calendar_page') }}" class="{% if request.endpoint == 'calendar_page' %}active{% endif %}">Calendar</a>
   <span class="spacer"></span>
   <label class="lang-picker" title="切换编程语言（不删除已有文件）">
