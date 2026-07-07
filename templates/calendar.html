@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}日历 · Hot 100{% endblock %}
+{% block title %}Calendar · Hot 100{% endblock %}
 {% block content %}
 
 <section class="journal-hero">
-  <div class="kicker">Calendar · Last 30 Days</div>
+  <div class="kicker">Calendar · Streak &amp; Rhythm</div>
   <h1>打卡节奏</h1>
-  <p class="lede">最近 30 天每天做过的题数（首刷 + 复习合计）。空白格代表那天没动过题。</p>
+  <p class="lede">最近 30 天每天做过的题数（首刷 + 复习合计）。切换到月历看整月一眼览。</p>
 
   <div class="today-brief">
     <div class="field">
@@ -25,17 +25,22 @@
       <div class="v">{{ max_total }}<span class="unit">道 / 日</span></div>
     </div>
   </div>
+
+  <div class="cal-toggle" role="tablist">
+    <button data-view="bars" class="cal-toggle-btn active" role="tab">条形图 · 30 天</button>
+    <button data-view="month" class="cal-toggle-btn" role="tab">月历</button>
+  </div>
 </section>
 
-<section class="calendar-bars">
+{# ─── 条形图视图 ─── #}
+<section class="calendar-bars view" data-view="bars">
   <div class="bars-wrap" style="--max-total: {{ [max_total, 1]|max }};">
     {% for d in series %}
     <div class="bar-col {% if d.is_today %}today{% endif %} {% if d.is_weekend %}weekend{% endif %}"
          style="--total: {{ d.total }};"
          data-solve="{{ d.solve }}" data-review="{{ d.review }}" data-total="{{ d.total }}">
       <div class="bar-count">{% if d.total %}{{ d.total }}{% endif %}</div>
-      <div class="bar-fill"
-           title="{{ d.date }} · 首刷 {{ d.solve }} · 复习 {{ d.review }}">
+      <div class="bar-fill" title="{{ d.date }} · 首刷 {{ d.solve }} · 复习 {{ d.review }}">
         {% if d.total %}
         <div class="bar-fill-solve" style="flex-grow: {{ d.solve }};"></div>
         <div class="bar-fill-review" style="flex-grow: {{ d.review }};"></div>
@@ -53,5 +58,141 @@
     <span class="legend-item">悬停某天查看拆解</span>
   </div>
 </section>
+
+{# ─── 月历视图 ─── #}
+<section class="calendar-month view" data-view="month" hidden>
+  <div class="month-header">
+    {% if prev_month_str %}
+      <a class="btn small ghost" href="?month={{ prev_month_str }}#month">← 上月</a>
+    {% else %}
+      <span class="btn small ghost disabled">←</span>
+    {% endif %}
+    <h2 class="month-label">{{ month_label }}</h2>
+    {% if next_month_str %}
+      <a class="btn small ghost" href="?month={{ next_month_str }}#month">下月 →</a>
+    {% else %}
+      <span class="btn small ghost disabled">→</span>
+    {% endif %}
+  </div>
+
+  <div class="month-grid" role="grid">
+    <div class="month-head" role="row">
+      {% for wd in ["一","二","三","四","五","六","日"] %}
+      <div class="month-head-cell {% if loop.index >= 6 %}weekend{% endif %}">周{{ wd }}</div>
+      {% endfor %}
+    </div>
+    {% for week in weeks %}
+    <div class="month-row" role="row">
+      {% for cell in week %}
+        {% if cell %}
+          {% set level = 0 %}
+          {% if cell.total == 0 %}{% set level = 0 %}
+          {% elif cell.total <= 2 %}{% set level = 1 %}
+          {% elif cell.total <= 5 %}{% set level = 2 %}
+          {% else %}{% set level = 3 %}{% endif %}
+          <div class="month-cell level-{{ level }}
+                      {% if cell.is_today %} is-today{% endif %}
+                      {% if cell.is_weekend %} weekend{% endif %}
+                      {% if cell.is_future %} is-future{% endif %}"
+               data-date="{{ cell.date }}"
+               data-total="{{ cell.total }}"
+               data-solve="{{ cell.solve }}"
+               data-review="{{ cell.review }}"
+               data-solve-titles="{{ cell.solve_titles|join('|') }}"
+               data-review-titles="{{ cell.review_titles|join('|') }}"
+               role="gridcell"
+               tabindex="{{ 0 if cell.total else -1 }}">
+            <span class="cell-day">{{ cell.day }}</span>
+            {% if cell.total %}<span class="cell-total">{{ cell.total }}</span>{% endif %}
+          </div>
+        {% else %}
+          <div class="month-cell empty" role="gridcell" aria-hidden="true"></div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="calendar-legend">
+    <span class="legend-item">题数</span>
+    <span class="legend-item"><span class="lvl lvl-0"></span>0</span>
+    <span class="legend-item"><span class="lvl lvl-1"></span>1–2</span>
+    <span class="legend-item"><span class="lvl lvl-2"></span>3–5</span>
+    <span class="legend-item"><span class="lvl lvl-3"></span>6+</span>
+    <span class="legend-item">点或悬停某格查看当天做的题</span>
+  </div>
+
+  {# tooltip 容器：JS 填内容并定位 #}
+  <div id="cell-tooltip" class="cell-tooltip" hidden></div>
+</section>
+
+<script>
+(function() {
+  // 视图切换 + localStorage 记忆
+  const KEY = 'lc-hot100-calview';
+  const btns = document.querySelectorAll('.cal-toggle-btn');
+  const views = document.querySelectorAll('.view[data-view]');
+
+  function apply(view) {
+    btns.forEach(b => b.classList.toggle('active', b.dataset.view === view));
+    views.forEach(v => v.hidden = (v.dataset.view !== view));
+    localStorage.setItem(KEY, view);
+  }
+
+  // URL hash #month 优先 → 保证从"下月/上月"链接跳转时自动切到月历视图
+  const initial = (location.hash === '#month') ? 'month' : (localStorage.getItem(KEY) || 'bars');
+  apply(initial);
+
+  btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.view)));
+
+  // ---- 月历 tooltip ----
+  const tt = document.getElementById('cell-tooltip');
+  if (tt) {
+    const zhWeekdays = ['一','二','三','四','五','六','日'];
+    function fmt(cell) {
+      const date = cell.dataset.date;
+      const solve = parseInt(cell.dataset.solve, 10);
+      const review = parseInt(cell.dataset.review, 10);
+      const solveTitles = (cell.dataset.solveTitles || '').split('|').filter(Boolean);
+      const reviewTitles = (cell.dataset.reviewTitles || '').split('|').filter(Boolean);
+      const d = new Date(date);
+      const wd = zhWeekdays[(d.getDay() + 6) % 7];   // JS Sunday=0, we want Monday=0
+      let html = `<div class="tt-head">${date} · 周${wd}</div>`;
+      if (solve > 0) {
+        html += `<div class="tt-sec"><span class="tt-tag solve">首刷 ${solve}</span></div>`;
+        html += '<ul>' + solveTitles.map(t => `<li>${t}</li>`).join('') + '</ul>';
+      }
+      if (review > 0) {
+        html += `<div class="tt-sec"><span class="tt-tag review">复习 ${review}</span></div>`;
+        html += '<ul>' + reviewTitles.map(t => `<li>${t}</li>`).join('') + '</ul>';
+      }
+      if (solve === 0 && review === 0) {
+        html += '<div class="tt-empty">这天没打卡</div>';
+      }
+      return html;
+    }
+
+    function show(cell) {
+      tt.innerHTML = fmt(cell);
+      tt.hidden = false;
+      const rect = cell.getBoundingClientRect();
+      const wrapRect = document.querySelector('.month-grid').getBoundingClientRect();
+      // 定位在格子下方；如果 tooltip 会溢出右边界，往左对齐
+      let left = rect.left + rect.width / 2 - tt.offsetWidth / 2;
+      left = Math.max(wrapRect.left + 4, Math.min(left, wrapRect.right - tt.offsetWidth - 4));
+      tt.style.left = (left + window.scrollX) + 'px';
+      tt.style.top = (rect.bottom + window.scrollY + 6) + 'px';
+    }
+    function hide() { tt.hidden = true; }
+
+    document.querySelectorAll('.month-cell[data-date]').forEach(cell => {
+      cell.addEventListener('mouseenter', () => show(cell));
+      cell.addEventListener('mouseleave', hide);
+      cell.addEventListener('focus', () => show(cell));
+      cell.addEventListener('blur', hide);
+    });
+  }
+})();
+</script>
 
 {% endblock %}

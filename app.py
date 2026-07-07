@@ -619,40 +619,63 @@ def cheatsheet_global_page():
 
 @app.route("/calendar")
 def calendar_page():
-    """最近 30 天打卡日历：每天 solve + review 的总数。"""
+    """打卡日历：两种视图（条形图 = 最近 30 天；月历 = 当月）共用同一份数据。
+
+    URL 参数 `month=YYYY-MM` 用于月历视图切月份；不传则显示当月。
+    """
     prog = load_progress()
     today = _today()
-    # 反向 30 天（含今天）
-    days = [today - timedelta(days=i) for i in range(29, -1, -1)]
+    problems = load_problems()
+    by_id = {p["id"]: p for p in problems}
 
-    # 汇总每天的 counts
+    # ---- 收集完整 history: date -> {solve: [pid,...], review: [pid,...]} ----
     counted_actions = {"solve", "review"}
-    daily: dict[str, dict] = {}
-    for d in days:
-        daily[d.isoformat()] = {"solve": 0, "review": 0}
-
-    for pid, entry in prog.items():
+    per_day: dict[str, dict] = {}
+    for pid_str, entry in prog.items():
+        pid = int(pid_str)
         for h in entry.get("history", []):
             action = h.get("action")
             if action not in counted_actions:
                 continue
             d_str = h.get("date", "")
-            if d_str in daily:
-                daily[d_str][action] += 1
+            if not d_str:
+                continue
+            per_day.setdefault(d_str, {"solve": [], "review": []})
+            per_day[d_str][action].append(pid)
 
-    # 转成有序列表 + 附加 weekday
+    # ---- 找有数据的最早月份，用于月历视图的翻页边界 ----
+    earliest_month = None
+    if per_day:
+        earliest_str = min(per_day.keys())
+        earliest_date = date.fromisoformat(earliest_str)
+        earliest_month = earliest_date.replace(day=1)
+
+    def _day_detail(d_str: str) -> dict:
+        raw = per_day.get(d_str, {"solve": [], "review": []})
+        # 拼出题名列表用于 tooltip
+        solve_titles = [f"#{pid} {by_id.get(pid,{}).get('title','?')}" for pid in raw["solve"]]
+        review_titles = [f"#{pid} {by_id.get(pid,{}).get('title','?')}" for pid in raw["review"]]
+        return {
+            "solve": len(raw["solve"]),
+            "review": len(raw["review"]),
+            "total": len(raw["solve"]) + len(raw["review"]),
+            "solve_titles": solve_titles,
+            "review_titles": review_titles,
+        }
+
+    # ============================================================
+    # 条形图视图：最近 30 天
+    # ============================================================
+    days = [today - timedelta(days=i) for i in range(29, -1, -1)]
     zh_weekdays = ["一", "二", "三", "四", "五", "六", "日"]
     series = []
-    max_total = 0
+    max_total_bar = 0
     total_all = 0
-    streak = 0
-    streak_broken = False
     for d in days:
         d_str = d.isoformat()
-        c = daily[d_str]
-        total = c["solve"] + c["review"]
-        max_total = max(max_total, total)
-        total_all += total
+        detail = _day_detail(d_str)
+        max_total_bar = max(max_total_bar, detail["total"])
+        total_all += detail["total"]
         series.append({
             "date": d_str,
             "day": d.day,
@@ -660,31 +683,91 @@ def calendar_page():
             "weekday": zh_weekdays[d.weekday()],
             "is_weekend": d.weekday() >= 5,
             "is_today": d == today,
-            "solve": c["solve"],
-            "review": c["review"],
-            "total": total,
+            **detail,
         })
 
-    # 连续打卡：从今天倒着数，遇到第一个 total=0（不含今天，因为今天可能还没开始）
-    for i, day in enumerate(reversed(series)):  # 从今天开始倒推
+    # 连续天：从今天倒推
+    streak = 0
+    for i, day in enumerate(reversed(series)):
         if day["total"] > 0:
             streak += 1
         elif i == 0 and day["is_today"]:
-            # 今天还没打卡不算断
             continue
         else:
             break
 
-    # 30 天内实际打卡了多少天
     active_days = sum(1 for d in series if d["total"] > 0)
+
+    # ============================================================
+    # 月历视图：目标月份（默认当月）
+    # ============================================================
+    month_param = request.args.get("month", "")
+    try:
+        year, mon = map(int, month_param.split("-"))
+        target_month = date(year, mon, 1)
+    except (ValueError, AttributeError):
+        target_month = today.replace(day=1)
+
+    # 生成本月所有日期 + weekday-of-week-start
+    if target_month.month == 12:
+        next_month = target_month.replace(year=target_month.year + 1, month=1)
+    else:
+        next_month = target_month.replace(month=target_month.month + 1)
+    days_in_month = (next_month - target_month).days
+    # 周一开始的 week，Monday = 0
+    first_weekday = target_month.weekday()  # 0..6
+    month_days = []
+    for i in range(days_in_month):
+        d = target_month + timedelta(days=i)
+        d_str = d.isoformat()
+        detail = _day_detail(d_str)
+        month_days.append({
+            "date": d_str,
+            "day": d.day,
+            "weekday": zh_weekdays[d.weekday()],
+            "is_weekend": d.weekday() >= 5,
+            "is_today": d == today,
+            "is_future": d > today,
+            **detail,
+        })
+
+    # 拼成 weeks（每周 7 格，前后不属于本月的留空）
+    weeks: list[list] = []
+    leading = [None] * first_weekday
+    tail_needed = (7 - (len(leading) + len(month_days)) % 7) % 7
+    trailing = [None] * tail_needed
+    cells = leading + month_days + trailing
+    for i in range(0, len(cells), 7):
+        weeks.append(cells[i:i + 7])
+
+    # 上/下月导航
+    def _shift(dt: date, months: int) -> date:
+        m = dt.month + months
+        y = dt.year + (m - 1) // 12
+        m = ((m - 1) % 12) + 1
+        return date(y, m, 1)
+
+    prev_month = _shift(target_month, -1)
+    next_month_start = _shift(target_month, 1)
+    can_prev = (earliest_month is None) or (prev_month >= earliest_month)
+    # 未来月不给翻
+    today_month = today.replace(day=1)
+    can_next = next_month_start <= today_month
 
     return render_template(
         "calendar.html",
+        # 条形图数据
         series=series,
-        max_total=max_total,
+        max_total=max_total_bar,
         total_all=total_all,
         streak=streak,
         active_days=active_days,
+        # 月历数据
+        target_month=target_month,
+        weeks=weeks,
+        month_label=f"{target_month.year} 年 {target_month.month} 月",
+        prev_month_str=prev_month.strftime("%Y-%m") if can_prev else "",
+        next_month_str=next_month_start.strftime("%Y-%m") if can_next else "",
     )
 
 
