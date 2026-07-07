@@ -1567,3 +1567,10 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   .month-label { font-size: 20px; }
   .cell-tooltip { max-width: 260px; }
 }
+
+/* 月历整体宽度收窄，格子跟着变小 */
+.calendar-month {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
