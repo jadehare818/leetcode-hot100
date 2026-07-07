@@ -110,6 +110,7 @@
 
       <footer class="cc-foot">
         <div class="cc-foot-l">— #hot100 · 每日一题 —</div>
+        <div class="cc-foot-repo">github.com/jadehare818/leetcode-hot100</div>
       </footer>
     `;
   }
