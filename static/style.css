@@ -2073,3 +2073,23 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   border-color: var(--amber);
   color: var(--paper);
 }
+
+/* 通用图标按钮（Share + Settings 共用） */
+.topnav .icon-btn {
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  color: var(--muted);
+  width: 28px; height: 28px;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.topnav .icon-btn:hover { color: var(--amber); border-color: var(--amber); background: var(--paper); }
+.topnav .icon-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* 旧 share/settings 特有样式覆盖为无（保留其他页面兼容） */
+.topnav .share-btn,
+.topnav .settings-btn { display: none; }

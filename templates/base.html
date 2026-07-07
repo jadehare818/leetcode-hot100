@@ -17,9 +17,6 @@
   <a href="{{ url_for('cheatsheet_page') }}" class="{% if request.endpoint == 'cheatsheet_page' %}active{% endif %}">Cheat Sheet</a>
   <a href="{{ url_for('calendar_page') }}" class="{% if request.endpoint == 'calendar_page' %}active{% endif %}">Calendar</a>
   <span class="spacer"></span>
-  {% if request.endpoint == 'dashboard' %}
-  <button id="open-checkin-card" class="share-btn" title="生成打卡卡片">📸 Share</button>
-  {% endif %}
   <label class="lang-picker" title="切换编程语言（不删除已有文件）">
     Lang
     <select id="lang-select">
@@ -30,7 +27,21 @@
     </select>
   </label>
   <span class="today-tag">{{ (self._TemplateReference__context.get('d') or {}).get('date') or '' }}</span>
-  <button id="open-settings" class="settings-btn" title="设置" aria-label="设置">⚙</button>
+  {% if request.endpoint == 'dashboard' %}
+  <button id="open-checkin-card" class="icon-btn" title="生成打卡卡片" aria-label="生成打卡卡片">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/>
+      <polyline points="16 6 12 2 8 6"/>
+      <line x1="12" y1="2" x2="12" y2="15"/>
+    </svg>
+  </button>
+  {% endif %}
+  <button id="open-settings" class="icon-btn" title="设置" aria-label="设置">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+  </button>
 </nav>
 
 {# ========== 设置弹窗 ========== #}
