@@ -1707,3 +1707,28 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
 .calendar-split .month-nav:hover { background: var(--sand-2); color: var(--ink); }
 .calendar-split .month-nav.disabled { color: var(--muted-2); cursor: default; }
 .calendar-split .month-nav.disabled:hover { background: transparent; }
+
+/* 用 grid subgrid 让 bars-wrap 和 month-grid 严格对齐（顶+底） */
+.calendar-split {
+  align-items: start;
+  grid-template-rows: auto;
+}
+.calendar-split .calendar-bars,
+.calendar-split .calendar-month {
+  display: grid;
+  grid-template-rows: 1fr auto;   /* card 撑满，legend 底部 */
+  height: auto;
+  min-height: 260px;
+}
+.calendar-split .calendar-bars .bars-wrap,
+.calendar-split .calendar-month .month-grid {
+  height: 100%;
+  flex: none;
+}
+/* legend 高度对齐：不管几行都撑成一样 */
+.calendar-split .calendar-bars .calendar-legend,
+.calendar-split .calendar-month .calendar-legend {
+  align-self: end;
+  min-height: 48px;
+  align-items: center;
+}
