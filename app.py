@@ -394,10 +394,9 @@ def build_dashboard() -> dict:
             except ValueError:
                 pass
 
-    # 未刷池按分类原顺序排；今日新题配额 = quota - 已刷 - 待复习（复习也算工作量）
+    # 未刷池按分类原顺序排；今日新题配额只由"今天已刷"扣减 —— 复习不吃新题配额
     quota = _daily_quota()
-    already_worked = len(done_today_ids) + len(due_review)
-    new_slots = max(0, quota - already_worked)
+    new_slots = max(0, quota - len(done_today_ids))
 
     todo_pool = []
     for p in problems:

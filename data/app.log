@@ -23,3 +23,48 @@
 127.0.0.1 - - [07/Jul/2026 00:34:31] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
 127.0.0.1 - - [07/Jul/2026 00:34:31] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 127.0.0.1 - - [07/Jul/2026 00:34:31] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:42:52] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:42:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:42:52] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:42:52] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:42:52] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:43:20] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:20] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:20] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:27] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:43:27] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:27] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:27] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:27] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:32] "GET /api/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:43:42] "POST /api/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:43:42] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:43:42] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:42] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:42] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:46] "GET /api/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:43:49] "POST /api/settings HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:43:50] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 00:43:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:50] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:50] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 00:43:50] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 11:46:28] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 11:46:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 11:46:28] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 11:46:28] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 11:46:28] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 11:50:25] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 11:50:25] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 11:50:25] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 11:50:25] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 11:50:25] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+ * Detected change in '/Users/bytedance/leetcode-hot100/app.py', reloading
+ * Restarting with stat
+ * Tip: There are .env files present. Install python-dotenv to use them.
+ * Debugger is active!
+ * Debugger PIN: 955-848-850
+127.0.0.1 - - [07/Jul/2026 11:51:55] "GET /api/dashboard HTTP/1.1" 200 -
