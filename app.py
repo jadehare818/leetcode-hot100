@@ -1096,7 +1096,17 @@ def api_checkin():
         if d_ in overall_diff:
             overall_diff[d_] += 1
 
-    # 一句励志话（按 streak / 完成度 分段）
+    # 一句励志话（按 streak / 完成度 分段；中间态从随机池抽）
+    BLURB_POOL = [
+        "一天一点，不着急",
+        "慢一点也是往前",
+        "做了就是做了",
+        "与 bug 和解的一天",
+        "AC 一下，人生小胜",
+        "稳住节奏，稳住手感",
+        "保持出场率",
+        "今天也守住了",
+    ]
     if done_count == 0:
         blurb = "起点即出发"
     elif done_count == total:
@@ -1106,7 +1116,9 @@ def api_checkin():
     elif streak >= 3:
         blurb = f"连续 {streak} 天，继续保持"
     elif len(solved_ids) + len(reviewed_ids) > 0:
-        blurb = "今天动了动，就好"
+        # 每次打开随机一句 —— 增加打开卡片的小惊喜
+        import random
+        blurb = random.choice(BLURB_POOL)
     else:
         blurb = "明天再来"
 
