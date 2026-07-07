@@ -252,21 +252,33 @@ def _daily_quota() -> int:
     return cfg["weekend"] if is_weekend else cfg["weekday"]
 
 
-def _done_today(prog: dict) -> set[int]:
-    """今天真正做完题的 pid 集合。
+def _done_today(prog: dict) -> tuple[set[int], set[int]]:
+    """今天完成的 pid 集合，拆成 (solved_ids, reviewed_ids)。
 
-    只算 action == 'solve' | 'review'。推迟（postpone / postpone-batch）
-    和归档（archive）不算完成 —— 它们是维护动作，不是刷题。
+    - solve：新题第一次刷完 → 消耗新题配额
+    - review：复习到期的题 → 不消耗新题配额（复习自成一路）
+    - 推迟 / 归档：都不算完成
+
+    返回两个 disjoint 集合。同一天既 solve 又 review 同一题（极端情况）
+    只算 solve。
     """
     today = _today().isoformat()
-    counted_actions = {"solve", "review"}
-    done = set()
+    solved: set[int] = set()
+    reviewed: set[int] = set()
     for pid, entry in prog.items():
+        pid_int = int(pid)
         for h in entry.get("history", []):
-            if h.get("date") == today and h.get("action") in counted_actions:
-                done.add(int(pid))
+            if h.get("date") != today:
+                continue
+            action = h.get("action")
+            if action == "solve":
+                solved.add(pid_int)
+                reviewed.discard(pid_int)
                 break
-    return done
+            elif action == "review":
+                if pid_int not in solved:
+                    reviewed.add(pid_int)
+    return solved, reviewed
 
 
 def _balanced_pick(todo_pool: list[dict], n: int) -> list[dict]:
@@ -366,7 +378,8 @@ def build_dashboard() -> dict:
     overdue_days = load_config().get("overdue_alert_days", 3)
 
     by_id = {p["id"]: p for p in problems}
-    done_today_ids = _done_today(prog)
+    solved_today_ids, reviewed_today_ids = _done_today(prog)
+    done_today_ids = solved_today_ids | reviewed_today_ids
 
     # 到期复习：next_review <= today 且状态在复习队列内
     due_review = []
@@ -394,9 +407,9 @@ def build_dashboard() -> dict:
             except ValueError:
                 pass
 
-    # 未刷池按分类原顺序排；今日新题配额只由"今天已刷"扣减 —— 复习不吃新题配额
+    # 未刷池按分类原顺序排；今日新题配额只由"今天已刷新题"扣减 —— 复习不吃新题配额
     quota = _daily_quota()
-    new_slots = max(0, quota - len(done_today_ids))
+    new_slots = max(0, quota - len(solved_today_ids))
 
     todo_pool = []
     for p in problems:
@@ -433,7 +446,7 @@ def build_dashboard() -> dict:
         todo_left=len(todo_pool),
         weekday_q=int(dq.get("weekday", 0)),
         weekend_q=int(dq.get("weekend", 0)),
-        done_today=len(done_today_ids),
+        done_today=len(solved_today_ids),
         quota_today=quota,
     )
 
@@ -442,6 +455,8 @@ def build_dashboard() -> dict:
         "is_weekend": _today().weekday() >= 5,
         "quota": quota,
         "done_today": sorted(done_today_ids),
+        "solved_today": sorted(solved_today_ids),
+        "reviewed_today": sorted(reviewed_today_ids),
         "due_review": due_review,
         "today_new": today_new,
         "extras_pool": extras_pool,

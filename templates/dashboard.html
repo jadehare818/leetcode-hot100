@@ -5,9 +5,9 @@
 {# ─── HERO: today's date, progress ribbon, brief ─── #}
 <section class="journal-hero">
   <div class="kicker">{{ d.date }} · {% if d.is_weekend %}周末 · Weekend Session{% else %}工作日 · Weekday Session{% endif %}</div>
-  {% set done_count = d.done_today|length %}
-  {% set remain = d.quota - done_count %}
-  {% if done_count == 0 %}
+  {% set solved_count = d.solved_today|length %}
+  {% set remain = d.quota - solved_count %}
+  {% if solved_count == 0 %}
   <h1>今天，<em>{{ d.quota }}</em> 道</h1>
   {% elif remain > 0 %}
   <h1>今天，还剩 <em>{{ remain }}</em> 道</h1>
@@ -36,7 +36,11 @@
   <div class="today-brief">
     <div class="field">
       <div class="k">Done today</div>
-      <div class="v">{{ d.done_today|length }}<span class="unit">/ {{ d.quota }}</span></div>
+      <div class="v">{{ d.solved_today|length }}<span class="unit">/ {{ d.quota }}</span></div>
+    </div>
+    <div class="field">
+      <div class="k">Reviewed</div>
+      <div class="v">{{ d.reviewed_today|length }}</div>
     </div>
     <div class="field">
       <div class="k">Reviews due</div>
