@@ -1665,3 +1665,15 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   letter-spacing: -0.005em;
 }
 .calendar-split .bars-label::before { content: none; }
+
+/* 两侧卡片同高、顶部严格对齐 */
+.calendar-split { align-items: stretch; }
+.calendar-split .calendar-bars,
+.calendar-split .calendar-month {
+  display: flex; flex-direction: column;
+  height: 100%;
+}
+.calendar-split .calendar-bars .bars-wrap,
+.calendar-split .calendar-month .month-grid {
+  flex: 1;
+}
