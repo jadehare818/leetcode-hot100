@@ -85,3 +85,13 @@
 127.0.0.1 - - [07/Jul/2026 12:04:37] "GET /calendar HTTP/1.1" 200 -
 127.0.0.1 - - [07/Jul/2026 12:04:37] "GET /calendar HTTP/1.1" 200 -
 127.0.0.1 - - [07/Jul/2026 12:04:37] "GET /calendar HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 12:05:32] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 12:05:32] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 12:05:32] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 12:05:32] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 12:05:32] "GET /static/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 12:05:34] "GET /calendar HTTP/1.1" 200 -
+127.0.0.1 - - [07/Jul/2026 12:05:34] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 12:05:34] "[36mGET /static/cheatsheet_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 12:05:34] "[36mGET /static/note_inline.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2026 12:05:34] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
