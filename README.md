@@ -35,7 +35,7 @@
 
 刷 hot100 的三种典型痛点：
 
-1. **一部分题思路记得，但 Python 语法忘了**（`sorted(key=...)` / `defaultdict` / `heapq` / `bisect` 一停手就想不起来）
+1. **一部分题思路记得，但代码语法忘了**（Python 的 `sorted(key=...)` / `defaultdict` / `heapq` / `bisect`，Go 的 slice tricks，C++ 的 STL 用法 —— 一停手就想不起来）
 2. **一部分复杂题（DP、回溯）思路完全忘了**
 3. **还有一部分从没刷过**
 
