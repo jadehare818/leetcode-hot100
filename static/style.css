@@ -2100,3 +2100,144 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
 /* 旧 share/settings 特有样式覆盖为无（保留其他页面兼容） */
 .topnav .share-btn,
 .topnav .settings-btn { display: none; }
+
+/* ============================================================
+   Preview · 7-day intensity bars (复用 .calendar-bars 骨架)
+   ============================================================ */
+.preview-bars { margin-top: 28px; margin-bottom: 28px; }
+
+/* 30 列窄柱，保证单行不换行、不横向滚动 */
+.preview-bars-wrap {
+  grid-template-columns: repeat(30, 1fr);
+  gap: 8px;
+  padding: 20px 14px 16px;
+  overflow-x: visible;  /* 覆盖 .bars-wrap 的 overflow-x: auto，杜绝横向滚动条 */
+}
+.preview-bars .bar-col {
+  min-width: 0;         /* 覆盖 .bar-col 的 min-width: 20px，防标签宽度撑破网格 */
+}
+.preview-bars .bar-day {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  margin-top: 4px;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+.preview-bars .bar-weekday {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--muted-2);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.preview-bars .bar-count {
+  font-size: 10.5px;
+  white-space: nowrap;
+}
+
+/* swap 区域切换时的柔和淡入 */
+#preview-swap { transition: opacity .18s ease; }
+#preview-swap.is-loading { opacity: 0.55; }
+
+/* legend 按钮可点击（review / new 切显隐） */
+.preview-legend .legend-toggle {
+  border: 0;
+  background: transparent;
+  padding: 4px 6px;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 3px;
+  transition: opacity .15s, background .15s;
+}
+.preview-legend .legend-toggle:hover { background: var(--sand-2); }
+.preview-legend .legend-toggle:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+.preview-legend .legend-toggle[aria-pressed="false"] { opacity: 0.35; }
+.preview-legend .legend-toggle[aria-pressed="false"] .swatch {
+  background: var(--muted-2) !important;
+  border-color: var(--muted-2) !important;
+}
+.preview-legend .legend-hint { color: var(--muted-2); font-style: italic; }
+
+/* 段切显隐 —— bar 高度基于当前可见段动态重算 */
+.preview-bars .bar-col { --shown: var(--total); }
+.preview-bars[data-hide~="review"] .bar-col { --shown: var(--new-q); }
+.preview-bars[data-hide~="new"] .bar-col { --shown: var(--rev); }
+.preview-bars[data-hide~="review"][data-hide~="new"] .bar-col { --shown: 0; }
+
+.preview-bars .bar-fill {
+  height: calc(140px * var(--shown) / var(--max-total));
+  transition: height .2s ease;
+}
+.preview-bars[data-hide~="review"] .bar-fill-review { display: none; }
+.preview-bars[data-hide~="new"] .bar-fill-new { display: none; }
+
+/* 让整根柱子作为链接热区 */
+.preview-bar-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.preview-bar-link:hover .bar-fill { opacity: 0.85; }
+.preview-bar-link:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+/* new/quota 段配色 —— 用实心 amber，对齐 calendar 首刷段 */
+.preview-bars .bar-fill-new {
+  background: var(--amber);
+}
+/* 但当只有 new 一段时（review=0），补个下描边让视觉不悬空 */
+.preview-bars .bar-fill:only-child { border-radius: 3px; }
+
+/* 选中那天：柱子加实体 amber 描边 + 底部小圆点（类似 today 的 marker） */
+.preview-bar-link.selected .bar-fill {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+.preview-bar-link.selected .bar-count,
+.preview-bar-link.selected .bar-day {
+  color: var(--amber);
+  font-weight: 600;
+}
+.preview-bar-link.selected::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+/* legend 里 new 的 swatch */
+.calendar-legend .swatch-new {
+  background: var(--amber);
+}
+
+/* Day+2..+7 的新题占位块 */
+.preview-placeholder {
+  font-family: "Inter", sans-serif;
+  color: var(--muted);
+  font-style: italic;
+  padding: 16px 20px;
+  background: var(--sand-2);
+  border-left: 3px solid var(--amber);
+  border-radius: 2px;
+}
+.preview-placeholder strong {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--amber);
+  font-style: normal;
+}

@@ -1,71 +1,229 @@
 {% extends "base.html" %}
-{% block title %}明日 Preview · Hot 100{% endblock %}
+{% block title %}未来预告 · Hot 100{% endblock %}
 {% block content %}
 
-<section class="journal-hero">
-  <div class="kicker">Preview · {{ d.date }} · {% if d.is_weekend %}周末 · Weekend Session{% else %}工作日 · Weekday Session{% endif %}</div>
-  <h1>明日 <em>预告</em></h1>
-  <p class="lede">
-    明天进看板会看到的题。只读预告，不能打卡也不能改状态。
-  </p>
+{% set is_tomorrow = (day == 1) %}
+{% set weekday_zh = ['一','二','三','四','五','六','日'] %}
 
-  <div class="today-brief">
-    <div class="field">
-      <div class="k">Reviews due</div>
-      <div class="v">{{ d.due_review|length }}<span class="unit">道</span></div>
-    </div>
-    <div class="field">
-      <div class="k">New quota</div>
-      <div class="v">{{ d.quota }}<span class="unit">道</span></div>
-    </div>
+<section class="journal-hero">
+  <div class="kicker">
+    Preview · Day+{{ day }} · {{ d.date }} · 周{{ weekday_zh[(chart[day-1].weekday)] }} ·
+    {% if d.is_weekend %}周末 · Weekend Session{% else %}工作日 · Weekday Session{% endif %}
   </div>
+  <h1>未来<em>预告</em></h1>
 </section>
 
-<h2 data-chapter="I">
-  Reviews due
-  <span class="cat-count">{{ d.due_review|length }}</span>
-</h2>
-{% if d.due_review %}
-<div class="cards">
-  {% for p in d.due_review %}
-  <article class="card due-review readonly {{ 'overdue' if p.is_overdue else '' }}" data-pid="{{ p.id }}">
-    <div class="card-head">
-      <span class="pid">#{{ p.id }}</span>
-      <span class="cat">{{ p.category }}</span>
-      <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
-      {% if p.is_overdue %}<span class="overdue-badge">Overdue</span>{% endif %}
-    </div>
-    <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
-    <div class="meta">Stage {{ p.review_stage }} · Due {{ p.next_review }} · <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
-    {% if p.note %}<div class="note-preview" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% endif %}
-  </article>
-  {% endfor %}
-</div>
-{% else %}
-<p class="empty">明天没有到期复习。</p>
-{% endif %}
+<div id="preview-swap" data-day="{{ day }}">
+  <section class="journal-hero preview-hero-inner">
+    <p class="lede">
+      {% if is_tomorrow %}
+        明天进看板会看到的题。只读预告，不能打卡也不能改状态。
+      {% else %}
+        {{ day }} 天后只显示到期复习；新题当天从未刷池现算，此处仅显示 quota 占位。
+      {% endif %}
+    </p>
 
-<h2 data-chapter="II">
-  New tomorrow
-  <span class="cat-count">{{ d.today_new|length }}</span>
-</h2>
-{% if d.today_new %}
-<div class="cards">
-  {% for p in d.today_new %}
-  <article class="card new readonly" data-pid="{{ p.id }}">
-    <div class="card-head">
-      <span class="pid">#{{ p.id }}</span>
-      <span class="cat">{{ p.category }}</span>
-      <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
+    <div class="today-brief">
+      <div class="field">
+        <div class="k">Reviews due</div>
+        <div class="v">{{ d.due_review|length }}<span class="unit">道</span></div>
+      </div>
+      <div class="field">
+        <div class="k">New quota</div>
+        <div class="v">{{ d.quota }}<span class="unit">道</span></div>
+      </div>
     </div>
-    <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
-    <div class="meta"><a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
-    {% if p.note %}<div class="note-preview" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% endif %}
-  </article>
-  {% endfor %}
+  </section>
+
+  <!-- ============ 15 天强度柱状图（沿用 calendar-bars 风格） ============ -->
+  {% set peak = namespace(v=1) %}
+  {% for c in chart %}{% if c.review + c.new > peak.v %}{% set peak.v = c.review + c.new %}{% endif %}{% endfor %}
+
+  <section class="calendar-bars preview-bars">
+    <div class="bars-wrap preview-bars-wrap" style="--max-total: {{ peak.v }};">
+      {% for c in chart %}
+      {% set total = c.review + c.new %}
+      <a class="bar-col preview-bar-link {% if c.day_index == day %}selected{% endif %} {% if c.is_weekend %}weekend{% endif %}"
+         style="--total: {{ total }}; --rev: {{ c.review }}; --new-q: {{ c.new }};"
+         href="?day={{ c.day_index }}"
+         data-day-index="{{ c.day_index }}"
+         data-total="{{ total }}"
+         title="Day+{{ c.day_index }} · {{ c.date }} · 复习 {{ c.review }} · 新题 {{ c.new }}">
+        <div class="bar-count">{{ total }}</div>
+        <div class="bar-fill">
+          {% if total %}
+          <div class="bar-fill-review" style="flex-grow: {{ c.review }};"></div>
+          <div class="bar-fill-new" style="flex-grow: {{ c.new }};"></div>
+          {% endif %}
+        </div>
+        <div class="bar-day">{{ c.date[8:]|int }}</div>
+        <div class="bar-weekday">周{{ weekday_zh[c.weekday] }}</div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="calendar-legend preview-legend">
+      <button type="button" class="legend-item legend-toggle" data-toggle="review" aria-pressed="true">
+        <span class="swatch swatch-review"></span>复习到期
+      </button>
+      <button type="button" class="legend-item legend-toggle" data-toggle="new" aria-pressed="true">
+        <span class="swatch swatch-new"></span>新题 / quota
+      </button>
+      <span class="legend-item legend-hint">点击柱子查看该日详情 · 点标签切换显隐</span>
+    </div>
+  </section>
+
+  <!-- ============ 选中那天的详细 ============ -->
+
+  <h2 data-chapter="I">
+    Reviews due
+    <span class="cat-count">{{ d.due_review|length }}</span>
+  </h2>
+  {% if d.due_review %}
+  <div class="cards">
+    {% for p in d.due_review %}
+    <article class="card due-review readonly {{ 'overdue' if p.is_overdue else '' }}" data-pid="{{ p.id }}">
+      <div class="card-head">
+        <span class="pid">#{{ p.id }}</span>
+        <span class="cat">{{ p.category }}</span>
+        <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
+        {% if p.is_overdue %}<span class="overdue-badge">Overdue</span>{% endif %}
+      </div>
+      <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
+      <div class="meta">Stage {{ p.review_stage }} · Due {{ p.next_review }} · <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
+      {% if p.note %}<div class="note-preview" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty">Day+{{ day }} 没有到期复习。</p>
+  {% endif %}
+
+  <h2 data-chapter="II">
+    New {% if is_tomorrow %}tomorrow{% else %}(Day+{{ day }}){% endif %}
+    <span class="cat-count">{{ d.quota }}</span>
+  </h2>
+  {% if is_tomorrow %}
+    {% if d.today_new %}
+    <div class="cards">
+      {% for p in d.today_new %}
+      <article class="card new readonly" data-pid="{{ p.id }}">
+        <div class="card-head">
+          <span class="pid">#{{ p.id }}</span>
+          <span class="cat">{{ p.category }}</span>
+          <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
+        </div>
+        <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
+        <div class="meta"><a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
+        {% if p.note %}<div class="note-preview" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% endif %}
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty">未刷池已空，明天没有新题可推。</p>
+    {% endif %}
+  {% else %}
+    <p class="empty preview-placeholder">
+      预留 <strong>{{ d.quota }}</strong> 道新题时段 · 具体题目当天从未刷池现算。
+    </p>
+  {% endif %}
 </div>
-{% else %}
-<p class="empty">未刷池已空，明天没有新题可推。</p>
-{% endif %}
+
+<script>
+(function() {
+  // 丝滑切换：拦截柱子点击，fetch 新页面、只 swap 动态区域，滚动条不动
+  const swap = document.getElementById('preview-swap');
+  if (!swap) return;
+
+  async function loadDay(dayIdx, push) {
+    const url = '?day=' + dayIdx;
+    try {
+      swap.classList.add('is-loading');
+      const res = await fetch(url, { headers: { 'X-Requested-With': 'fetch' } });
+      if (!res.ok) throw new Error('http ' + res.status);
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const fresh = doc.getElementById('preview-swap');
+      if (!fresh) throw new Error('no preview-swap in response');
+      // 保留 hero 顶部 kicker 也要更新 —— 它在 swap 外，单独换
+      const freshKicker = doc.querySelector('.journal-hero .kicker');
+      const oldKicker = document.querySelector('.journal-hero .kicker');
+      if (freshKicker && oldKicker) oldKicker.innerHTML = freshKicker.innerHTML;
+      swap.innerHTML = fresh.innerHTML;
+      swap.dataset.day = dayIdx;
+      // 更新 <title>
+      const newTitle = doc.querySelector('title');
+      if (newTitle) document.title = newTitle.textContent;
+      if (push) history.pushState({ day: dayIdx }, '', url);
+      // swap 后 legend button 是新的，重新绑事件 + 恢复显隐
+      initLegend();
+    } catch (err) {
+      // fetch 失败时退化为普通跳转
+      location.href = url;
+      return;
+    } finally {
+      swap.classList.remove('is-loading');
+    }
+  }
+
+  // 事件委托：任何 .preview-bar-link 点击都走这里
+  swap.addEventListener('click', function(e) {
+    const link = e.target.closest('.preview-bar-link');
+    if (!link) return;
+    // 允许 cmd/ctrl 点开新标签
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    const idx = link.dataset.dayIndex;
+    if (idx) loadDay(idx, true);
+  });
+
+  // 图例切显隐（复习/新题）
+  function initLegend() {
+    const bars = swap.querySelector('.preview-bars');
+    if (!bars) return;
+    // 读上次状态，或默认全开
+    let hidden = new Set();
+    try {
+      const saved = JSON.parse(localStorage.getItem('previewLegendHidden') || '[]');
+      saved.forEach(k => hidden.add(k));
+    } catch (_) {}
+    function apply() {
+      bars.dataset.hide = [...hidden].join(' ');
+      swap.querySelectorAll('.legend-toggle').forEach(btn => {
+        const key = btn.dataset.toggle;
+        btn.setAttribute('aria-pressed', hidden.has(key) ? 'false' : 'true');
+      });
+      // 同步每根柱子顶端数字
+      const showRev = !hidden.has('review');
+      const showNew = !hidden.has('new');
+      swap.querySelectorAll('.preview-bar-link').forEach(link => {
+        const s = link.style;
+        const rev = parseInt(s.getPropertyValue('--rev') || '0', 10);
+        const nq  = parseInt(s.getPropertyValue('--new-q') || '0', 10);
+        const shown = (showRev ? rev : 0) + (showNew ? nq : 0);
+        const countEl = link.querySelector('.bar-count');
+        if (countEl) countEl.textContent = shown;
+      });
+      localStorage.setItem('previewLegendHidden', JSON.stringify([...hidden]));
+    }
+    swap.querySelectorAll('.legend-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.toggle;
+        if (hidden.has(key)) hidden.delete(key); else hidden.add(key);
+        apply();
+      });
+    });
+    apply();
+  }
+  initLegend();
+
+  // 浏览器后退/前进按钮支持
+  window.addEventListener('popstate', function() {
+    const params = new URLSearchParams(location.search);
+    const idx = params.get('day') || '1';
+    loadDay(idx, false);
+  });
+})();
+</script>
 
 {% endblock %}

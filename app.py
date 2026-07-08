@@ -522,6 +522,108 @@ def build_preview(target: date) -> dict:
     }
 
 
+def build_preview_range(start: date, days: int = 30) -> list[dict]:
+    """未来 days 天的 preview —— 前向模拟版。
+
+    假设：从今天起，用户每次都按时复习，且每次都"秒 A"（stage +1，next_review 按新
+    stage 重算）。这样一道 stage 2、明天到期的题，明天做完会跳到 stage 3、按 +7 天
+    重排；预告里它就只在明天出现一次，而不是天天出现。
+
+    每题模拟到 stage 超出 intervals → 归档，从后续预告里消失。
+
+    新题（未刷池）：只在 Day+1 显示具体题目（当天的新题池未定）；Day+2..+N 只保留
+    quota 数字给图表柱高用。
+    """
+    intervals = _intervals()
+    prog = load_progress()
+    problems = load_problems()
+    by_id = {p["id"]: p for p in problems}
+    overdue_days = load_config().get("overdue_alert_days", 3)
+    dq = load_config().get("daily_quota", {"weekday": 3, "weekend": 6})
+
+    # 拷一份可推进的状态：{pid: {"stage": int, "next": "YYYY-MM-DD", "status": str}}
+    # 只收进入过复习的题（有 next_review 且状态非 todo/archived），新题 / 归档不参与。
+    sim: dict[int, dict] = {}
+    for pid_str, entry in prog.items():
+        if entry.get("status") in (STATUS_ARCHIVED, STATUS_TODO):
+            continue
+        nr = entry.get("next_review", "")
+        if not nr:
+            continue
+        sim[int(pid_str)] = {
+            "stage": entry.get("review_stage", 0),
+            "next": nr,
+            "status": entry["status"],
+            "note": entry.get("note", ""),
+        }
+
+    # 今天已经逾期的题：假设 Day+1 时用户"补做"，因此让它们在 Day+1 那天到期一次。
+    # 这样 15 天预告不会天天冒同一堆逾期题。同时用当初真正的 next_review 计算 is_overdue。
+    today_str = _today().isoformat()
+    start_str = start.isoformat()  # Day+1
+    for pid, s in sim.items():
+        if s["next"] < start_str:  # 逾期，包括 == today 也顺延到 Day+1
+            s["_original_due"] = s["next"]
+            s["next"] = start_str
+
+    out = []
+    for i in range(days):
+        target = start + timedelta(days=i)
+        target_str = target.isoformat()
+
+        # 落在 target 那天到期的题
+        due_ids = [pid for pid, s in sim.items() if s["next"] == target_str]
+        due_review = []
+        for pid in due_ids:
+            s = sim[pid]
+            base = by_id.get(pid, {"id": pid, "title": "?", "difficulty": "?", "slug": "", "category": "?"})
+            # is_overdue 参考"真实的"逾期程度（相对今天，不是 Day+i）
+            original = s.get("_original_due", s["next"])
+            try:
+                real_overdue = (_today() - date.fromisoformat(original)).days
+                is_overdue = real_overdue > overdue_days
+            except ValueError:
+                is_overdue = False
+            due_review.append({
+                **base,
+                "status": s["status"],
+                "next_review": original,  # 展示原始到期日，让用户看到"这本来该 X 号复习"
+                "review_stage": s["stage"],
+                "note": s["note"],
+                "is_overdue": is_overdue,
+            })
+
+            # 模拟推进：秒 A → stage+1，next 按新 stage 重算（从 target 起算）
+            new_stage = s["stage"] + 1
+            if new_stage >= len(intervals):
+                # 归档，退出模拟池
+                sim[pid]["next"] = ""  # 之后再也不匹配任何 target
+                sim[pid]["stage"] = new_stage
+            else:
+                delta = intervals[new_stage]
+                sim[pid]["stage"] = new_stage
+                sim[pid]["next"] = (target + timedelta(days=delta)).isoformat()
+            sim[pid].pop("_original_due", None)
+
+        # quota（按 target 是否周末算）
+        quota = dq["weekend"] if target.weekday() >= 5 else dq["weekday"]
+
+        # 新题：只在 Day+1 拉具体题目（用 build_preview 那份现成逻辑）
+        today_new = []
+        if i == 0:
+            today_new = build_preview(target)["today_new"]
+
+        out.append({
+            "date": target_str,
+            "is_weekend": target.weekday() >= 5,
+            "quota": quota,
+            "due_review": due_review,
+            "today_new": today_new,
+        })
+
+    return out
+
+
 # ---------- 代码文件 ----------
 
 _SAFE_TITLE_RE = re.compile(r"[\\/:*?\"<>|\s]+")
@@ -689,10 +791,37 @@ def cheatsheet_global_page():
 
 @app.route("/preview")
 def preview_page():
-    """明日 preview：只读展示明天预计要刷/复习的题。"""
-    tomorrow = _today() + timedelta(days=1)
-    d = build_preview(tomorrow)
-    return render_template("preview.html", d=d)
+    """未来 30 天 preview：默认 Day+1（明天）；?day=1..30 切换看具体某天。
+
+    图表数据用 range 全量；下方列表用选中那天的详细。新题只在 Day+1 有具体题目，
+    Day+2..+30 是占位（quota 已定，题目当天算）。
+    """
+    try:
+        day = int(request.args.get("day", 1))
+    except ValueError:
+        day = 1
+    day = max(1, min(day, 30))
+
+    start = _today() + timedelta(days=1)
+    range_ = build_preview_range(start, days=30)
+    selected = range_[day - 1]
+    # 图表要的最小数据集：日期 / weekday / review 数 / new 或 quota 数
+    chart = []
+    for i, d in enumerate(range_):
+        chart.append({
+            "day_index": i + 1,
+            "date": d["date"],
+            "weekday": (start + timedelta(days=i)).weekday(),  # 0=Mon
+            "is_weekend": d["is_weekend"],
+            "review": len(d["due_review"]),
+            "new": d["quota"],  # Day+2..+N 也用 quota 作为占位柱高
+        })
+    return render_template(
+        "preview.html",
+        d=selected,
+        day=day,
+        chart=chart,
+    )
 
 
 @app.route("/calendar")

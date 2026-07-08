@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 .DS_Store
+.claude/
 
 # 构建产物（.app 是本机生成，不进 git）
 dist/
