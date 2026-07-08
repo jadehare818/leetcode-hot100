@@ -6,8 +6,6 @@
   "review_intervals_days": [1, 3, 7, 15, 30],
   "overdue_alert_days": 3,
   "day_boundary_hour": 0,
-  "feishu_webhook": "",
-  "feishu_secret": "",
   "port": 5001,
   "languages": ["python", "go", "cpp", "java"],
   "default_language": "python"
