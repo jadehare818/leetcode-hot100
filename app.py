@@ -1097,7 +1097,7 @@ def api_checkin():
         if d_ in overall_diff:
             overall_diff[d_] += 1
 
-    # 一句励志话（按 streak / 完成度 分段；中间态从随机池抽）
+    # 一句励志话（分层：完成态 > 里程碑 > 随机池 > 兜底）
     BLURB_POOL = [
         "一天一点，不着急",
         "慢一点也是往前",
@@ -1111,13 +1111,14 @@ def api_checkin():
     if done_count == 0:
         blurb = "起点即出发"
     elif done_count == total:
-        blurb = "刷完 hot100，稳。"
-    elif streak >= 7:
-        blurb = f"连续 {streak} 天，节奏很稳"
-    elif streak >= 3:
-        blurb = f"连续 {streak} 天，继续保持"
+        blurb = "100 题首战告捷，恭喜！"
+    elif streak > 0 and streak % 7 == 0:
+        # 7 的倍数 → "连续 N 周"（周优先，覆盖同时是 5 倍数的场景）
+        blurb = f"连续 {streak // 7} 周"
+    elif streak == 3 or (streak > 0 and streak % 5 == 0):
+        # 3 天 · 或 5 / 10 / 15 / 20 / ... 天里程碑
+        blurb = f"连续 {streak} 天"
     elif len(solved_ids) + len(reviewed_ids) > 0:
-        # 每次打开随机一句 —— 增加打开卡片的小惊喜
         import random
         blurb = random.choice(BLURB_POOL)
     else:
