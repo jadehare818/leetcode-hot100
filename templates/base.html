@@ -27,7 +27,6 @@
     </select>
   </label>
   <span class="today-tag">{{ (self._TemplateReference__context.get('d') or {}).get('date') or '' }}</span>
-  {% if request.endpoint == 'dashboard' %}
   <button id="open-checkin-card" class="icon-btn" title="生成打卡卡片" aria-label="生成打卡卡片">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/>
@@ -35,7 +34,6 @@
       <line x1="12" y1="2" x2="12" y2="15"/>
     </svg>
   </button>
-  {% endif %}
   <button id="open-settings" class="icon-btn" title="设置" aria-label="设置">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="3"/>
@@ -119,6 +117,29 @@
 <main>
 {% block content %}{% endblock %}
 </main>
+
+{# ============================================================ #}
+{# 打卡卡片 modal（全局：所有页面都能触发）                       #}
+{# ============================================================ #}
+<div id="checkin-backdrop" class="modal-backdrop" hidden>
+  <div class="checkin-modal" role="dialog" aria-labelledby="checkin-title" aria-modal="true">
+    <div class="checkin-modal-head">
+      <h3 id="checkin-title">今日打卡</h3>
+      <button class="modal-close" id="close-checkin" aria-label="关闭">×</button>
+    </div>
+    <div class="checkin-modal-body">
+      <div id="checkin-card" class="checkin-card">{# 内容由 JS 填充 #}</div>
+    </div>
+    <div class="checkin-modal-foot">
+      <span id="checkin-hint" class="hint"></span>
+      <button id="send-checkin-feishu" class="btn ghost">Send to Feishu</button>
+      <button id="save-checkin" class="btn primary">💾 保存图片</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="{{ url_for('static', filename='checkin.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="{{ url_for('static', filename='cheatsheet_inline.js') }}"></script>
 <script src="{{ url_for('static', filename='note_inline.js') }}"></script>
