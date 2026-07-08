@@ -4,6 +4,9 @@ __pycache__/
 .DS_Store
 .claude/
 
+# 数据分支专用说明，只在 data-<user> 分支根目录出现，不进 main
+_BRANCH_README.md
+
 # 构建产物（.app 是本机生成，不进 git）
 dist/
 
