@@ -366,9 +366,19 @@ h3 {
   border-radius: var(--radius-card);
   padding: 14px 16px 14px 18px;
   box-shadow: var(--shadow-card);
-  transition: box-shadow .18s, transform .18s;
+  transition: box-shadow .18s, transform .18s, opacity 2s linear;
 }
 .card:hover { box-shadow: var(--shadow-hover); }
+
+/* 2s pending: 卡片开始淡出，2s 到 → 提交请求 → reload；再点撤销即恢复 */
+.card.is-pending { opacity: 0.15; pointer-events: auto; }
+/* 切换按钮时短暂禁用过渡，让 opacity 立刻跳回 1 再重新 2s 淡出 */
+.card.no-transition { transition: none !important; }
+/* pending 状态里被"锁定"的那个按钮加个视觉标记 */
+.card.is-pending .btn.is-armed {
+  outline: 2px dashed var(--amber);
+  outline-offset: 2px;
+}
 
 /* left color band varies by card kind */
 .card.due-review { border-left-color: var(--harbor); }

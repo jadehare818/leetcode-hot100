@@ -23,13 +23,86 @@ if (langSelect) {
   });
 }
 
+// 复习打分 / 首刷 —— 卡片内的按钮走 2s 延迟 + 可撤销；卡片外（如详情页）保持即时
+//
+// 交互约定（简版）：
+//   - 点某个状态按钮 → 卡片开始淡出（2s），2s 后发请求 + reload
+//   - 2s 内再点同一按钮 → 撤销，卡片恢复原样，请求不发
+//   - 2s 内点了不同按钮 → 换选择，倒计时重置（新的 2s 起算）
+//   - 每卡独立，互不影响；页面刷新时 pending 视为放弃
+const PENDING_DELAY_MS = 2000;
+const cardTimers = new WeakMap();  // card element → { timerId, pendingKey, pendingBtn }
+
+function commitCardStatus(card, url, payload, btn) {
+  // 请求发出前把所有相关按钮 disable，防止 reload 抢跑
+  card.querySelectorAll('[data-review], [data-solve]').forEach(b => b.disabled = true);
+  post(url, payload).then(() => location.reload());
+}
+
+function cancelCardPending(card) {
+  const state = cardTimers.get(card);
+  if (!state) return;
+  clearTimeout(state.timerId);
+  cardTimers.delete(card);
+  card.classList.remove('is-pending');
+  card.querySelectorAll('[data-review], [data-solve]').forEach(b => b.classList.remove('is-armed'));
+}
+
+function armCardStatus(btn, kind /* 'review' | 'solve' */) {
+  const card = btn.closest('.card');
+  if (!card) {
+    // 详情页等：没有卡片容器，走即时逻辑
+    return null;
+  }
+  const pid = btn.dataset.pid;
+  const value = btn.dataset[kind];  // dataset.review 或 dataset.solve
+  const key = `${kind}:${value}`;
+  const state = cardTimers.get(card);
+
+  // 情况 1：再次点击同一个按钮 → 撤销
+  if (state && state.pendingKey === key) {
+    cancelCardPending(card);
+    return;
+  }
+
+  // 情况 2：切换到别的按钮 → 清掉旧的，重新计时（下面统一处理）
+  if (state) {
+    clearTimeout(state.timerId);
+    card.querySelectorAll('[data-review], [data-solve]').forEach(b => b.classList.remove('is-armed'));
+    // 立刻跳回不透明，再重新开始 2s 淡出（否则会从当前中间透明度接着补完剩余 transition）
+    card.classList.add('no-transition');
+    card.classList.remove('is-pending');
+    void card.offsetWidth;  // 强制 reflow，让浏览器认可"opacity 已经回到 1"
+    card.classList.remove('no-transition');
+  }
+
+  // 情况 3：新的 pending 状态
+  card.classList.add('is-pending');
+  btn.classList.add('is-armed');
+  const url = kind === 'review'
+    ? `/api/problem/${pid}/review`
+    : `/api/problem/${pid}/status`;
+  const payload = kind === 'review' ? { score: value } : { status: value };
+  const timerId = setTimeout(() => {
+    cardTimers.delete(card);
+    commitCardStatus(card, url, payload, btn);
+  }, PENDING_DELAY_MS);
+  cardTimers.set(card, { timerId, pendingKey: key, pendingBtn: btn });
+}
+
 // 复习打分
 document.querySelectorAll('[data-review]').forEach(btn => {
   btn.addEventListener('click', async () => {
+    if (btn.disabled) return;
+    if (btn.closest('.card')) {
+      armCardStatus(btn, 'review');
+      return;
+    }
+    // 详情页等：即时提交
     const pid = btn.dataset.pid;
     const score = btn.dataset.review;
     btn.disabled = true;
-    await post(`/api/problem/${pid}/review`, {score});
+    await post(`/api/problem/${pid}/review`, { score });
     location.reload();
   });
 });
@@ -37,10 +110,16 @@ document.querySelectorAll('[data-review]').forEach(btn => {
 // 首刷 / 手动改状态（详情页 + dashboard 的新题按钮）
 document.querySelectorAll('[data-solve]').forEach(btn => {
   btn.addEventListener('click', async () => {
+    if (btn.disabled) return;
+    if (btn.closest('.card')) {
+      armCardStatus(btn, 'solve');
+      return;
+    }
+    // 详情页等：即时提交
     const pid = btn.dataset.pid;
     const status = btn.dataset.solve;
     btn.disabled = true;
-    await post(`/api/problem/${pid}/status`, {status});
+    await post(`/api/problem/${pid}/status`, { status });
     location.reload();
   });
 });
