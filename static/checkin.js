@@ -172,4 +172,42 @@
       saveBtn.disabled = false;
     }
   });
+
+  // ---------- Send to Feishu ----------
+  const sendBtn = document.getElementById('send-checkin-feishu');
+  if (sendBtn) {
+    sendBtn.addEventListener('click', async () => {
+      if (typeof html2canvas !== 'function') {
+        hintEl.textContent = 'html2canvas 未加载';
+        hintEl.style.color = 'var(--tomato)';
+        return;
+      }
+      sendBtn.disabled = true;
+      hintEl.textContent = '生成 & 上传中…';
+      hintEl.style.color = '';
+      try {
+        const canvas = await html2canvas(cardEl, {
+          scale: 2,
+          backgroundColor: null,
+          useCORS: true,
+          logging: false,
+        });
+        // canvas → blob → 上传
+        const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+        if (!blob) throw new Error('canvas.toBlob 返回空');
+        const form = new FormData();
+        form.append('image', blob, 'checkin.png');
+        const r = await fetch('/api/checkin/send-to-feishu', { method: 'POST', body: form });
+        const data = await r.json();
+        if (!r.ok || !data.ok) throw new Error(data.error || `HTTP ${r.status}`);
+        hintEl.textContent = '已发送到飞书 ✓';
+        hintEl.style.color = 'var(--sage)';
+      } catch (e) {
+        hintEl.textContent = '发送失败：' + e.message;
+        hintEl.style.color = 'var(--tomato)';
+      } finally {
+        sendBtn.disabled = false;
+      }
+    });
+  }
 })();

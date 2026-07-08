@@ -11,6 +11,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
@@ -1139,6 +1140,49 @@ def api_checkin():
         "overall_diff": overall_diff,
         "blurb": blurb,
     })
+
+
+@app.post("/api/checkin/send-to-feishu")
+def api_send_checkin_to_feishu():
+    """接收前端 html2canvas 生成的 PNG，直接上传并发到飞书私聊。
+
+    body: multipart/form-data，字段 `image` 是 PNG blob。
+    需要 .env 里的 FEISHU_APP_ID + FEISHU_APP_SECRET + FEISHU_TARGET_CHAT。
+    """
+    app_id = os.environ.get("FEISHU_APP_ID", "")
+    app_secret = os.environ.get("FEISHU_APP_SECRET", "")
+    chat_id = os.environ.get("FEISHU_TARGET_CHAT", "")
+    if not (app_id and app_secret and chat_id):
+        return jsonify({"error": "飞书凭证未配置 (FEISHU_APP_ID / _SECRET / _TARGET_CHAT)"}), 400
+
+    if "image" not in request.files:
+        return jsonify({"error": "缺少 image 字段"}), 400
+    upload = request.files["image"]
+
+    # 复用 feishu_daily.py 里的 helper
+    sys.path.insert(0, str(ROOT / "scripts"))
+    try:
+        from feishu_daily import _tenant_token, _upload_image, _send_image
+    except Exception as e:
+        return jsonify({"error": f"import failed: {e}"}), 500
+
+    # 存到临时文件（_upload_image 需要 Path）
+    import tempfile
+    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
+    try:
+        upload.save(tmp.name)
+        tmp.close()
+        token = _tenant_token(app_id, app_secret)
+        image_key = _upload_image(token, Path(tmp.name))
+        _send_image(token, chat_id, image_key)
+        return jsonify({"ok": True, "image_key": image_key})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        try:
+            os.unlink(tmp.name)
+        except Exception:
+            pass
 
 
 @app.get("/api/settings")
