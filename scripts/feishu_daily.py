@@ -134,14 +134,29 @@ def _upload_image(token: str, png_path: Path) -> str:
     return d["data"]["image_key"]
 
 
-def _send_image(token: str, chat_id: str, image_key: str) -> None:
+def _receive_id_type(receive_id: str) -> str:
+    """根据前缀选 receive_id_type：oc_→chat_id, ou_→open_id, on_→union_id, 含@→email。"""
+    if receive_id.startswith("oc_"):
+        return "chat_id"
+    if receive_id.startswith("ou_"):
+        return "open_id"
+    if receive_id.startswith("on_"):
+        return "union_id"
+    if "@" in receive_id:
+        return "email"
+    # 兜底：假设是企业内 user_id
+    return "user_id"
+
+
+def _send_image(token: str, receive_id: str, image_key: str) -> None:
+    rtype = _receive_id_type(receive_id)
     body = json.dumps({
-        "receive_id": chat_id,
+        "receive_id": receive_id,
         "msg_type": "image",
         "content": json.dumps({"image_key": image_key}),
     }).encode("utf-8")
     req = urllib.request.Request(
-        "https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=chat_id",
+        f"https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type={rtype}",
         data=body,
         headers={
             "Authorization": f"Bearer {token}",
@@ -152,7 +167,7 @@ def _send_image(token: str, chat_id: str, image_key: str) -> None:
         d = json.load(r)
     if d.get("code") != 0:
         raise RuntimeError(f"send image failed: {d}")
-    print(f"[image sent] message_id={d.get('data', {}).get('message_id', '?')}")
+    print(f"[image sent · via {rtype}] message_id={d.get('data', {}).get('message_id', '?')}")
 
 
 def send_image_via_app() -> bool:

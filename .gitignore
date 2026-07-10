@@ -32,3 +32,4 @@ solutions/*/[0-9]*.java
 
 # 备份文件
 data/progress.backup.*.json
+data/app.log
