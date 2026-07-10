@@ -91,7 +91,6 @@
       </div>
       <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
       <div class="meta">Stage {{ p.review_stage }} · Due {{ p.next_review }} · <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
-      {% if p.note %}<div class="note-preview" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% endif %}
     </article>
     {% endfor %}
   </div>
@@ -115,7 +114,6 @@
         </div>
         <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
         <div class="meta"><a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a></div>
-        {% if p.note %}<div class="note-preview" title="{{ p.note }}">{{ p.note[:60] }}{% if p.note|length > 60 %}…{% endif %}</div>{% endif %}
       </article>
       {% endfor %}
     </div>
