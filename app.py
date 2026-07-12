@@ -1246,6 +1246,18 @@ def api_dashboard():
     return jsonify(build_dashboard())
 
 
+@app.get("/api/preview")
+def api_preview():
+    """N 天后预告（供 bot 用）。?day=N 默认 1。"""
+    try:
+        n = int(request.args.get("day", "1"))
+    except ValueError:
+        n = 1
+    n = max(1, min(30, n))
+    target = _today() + timedelta(days=n)
+    return jsonify(build_preview(target))
+
+
 @app.get("/api/checkin")
 def api_checkin():
     """给打卡卡片用：dashboard 关键数字 + streak + finish + today 具体题。"""
