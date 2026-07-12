@@ -119,16 +119,25 @@
 </main>
 
 {# ============================================================ #}
-{# 打卡卡片 modal（全局：所有页面都能触发）                       #}
+{# 分享 modal：两种卡片切换（Check-in 打卡卡 / Calendar 节奏卡）    #}
 {# ============================================================ #}
 <div id="checkin-backdrop" class="modal-backdrop" hidden>
   <div class="checkin-modal" role="dialog" aria-labelledby="checkin-title" aria-modal="true">
     <div class="checkin-modal-head">
-      <h3 id="checkin-title">今日打卡</h3>
+      <h3 id="checkin-title">分享卡片</h3>
+      <div class="checkin-tabs" role="tablist">
+        <button class="checkin-tab active" data-card="checkin" role="tab">打卡卡片</button>
+        <button class="checkin-tab" data-card="calendar" role="tab">Calendar 卡片</button>
+      </div>
       <button class="modal-close" id="close-checkin" aria-label="关闭">×</button>
     </div>
     <div class="checkin-modal-body">
-      <div id="checkin-card" class="checkin-card">{# 内容由 JS 填充 #}</div>
+      {# Check-in 卡：直接 DOM 渲染 #}
+      <div id="checkin-card" class="checkin-card" data-card-view="checkin"></div>
+      {# Calendar 卡：用 iframe 嵌 /calendar-card 页 —— 避免样式跟 dashboard 打架 #}
+      <iframe id="calendar-card-frame" data-card-view="calendar"
+              src="about:blank"
+              title="Calendar card preview" hidden></iframe>
     </div>
     <div class="checkin-modal-foot">
       <span id="checkin-hint" class="hint"></span>

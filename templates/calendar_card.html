@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Hot 100 · Calendar Card</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+  /* 独立卡片页：无 padding，纯白背景（外部截图靠 .calendar-card 本身） */
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #EDE5D0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: var(--font-body);
+  }
+  body::before { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="calendar-card">
+  <div class="cal-corner-mark">HOT 100</div>
+
+  <header class="cal-hero">
+    <div class="cal-eyebrow">{{ today_str }} · 周{{ today_weekday }} · Calendar · Streak &amp; Rhythm</div>
+    <h1 class="cal-title">打卡节奏</h1>
+  </header>
+
+  <section class="cal-brief">
+    <div class="cal-brief-field">
+      <div class="k">30-day total</div>
+      <div class="v">{{ total_all }}<span class="unit">道</span></div>
+    </div>
+    <div class="cal-brief-field">
+      <div class="k">Active days</div>
+      <div class="v">{{ active_days }}<span class="unit">/ 30</span></div>
+    </div>
+    <div class="cal-brief-field highlight">
+      <div class="k">Streak</div>
+      <div class="v">{{ streak }}<span class="unit">连续天</span></div>
+    </div>
+    <div class="cal-brief-field">
+      <div class="k">Peak</div>
+      <div class="v">{{ max_total }}<span class="unit">道 / 日</span></div>
+    </div>
+  </section>
+
+  <div class="cal-split">
+    {# ─── 左：30 天条形图（占 65%）─── #}
+    <section class="cal-left">
+      <div class="cal-section-title">最近 30 天</div>
+      <div class="cal-bars" style="--max-total: {{ [max_total, 1]|max }};">
+        {% for d in series %}
+        <div class="cal-bar {% if d.is_today %}today{% endif %} {% if d.is_weekend %}weekend{% endif %}"
+             style="--total: {{ d.total }};">
+          <div class="cal-bar-count">{% if d.total %}{{ d.total }}{% endif %}</div>
+          <div class="cal-bar-fill">
+            {% if d.total %}
+            <div class="cal-bar-fill-solve" style="flex-grow: {{ d.solve }};"></div>
+            <div class="cal-bar-fill-review" style="flex-grow: {{ d.review }};"></div>
+            {% endif %}
+          </div>
+          <div class="cal-bar-day">{{ d.day }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="cal-legend">
+        <span class="cal-legend-item"><span class="sw sw-solve"></span>首刷</span>
+        <span class="cal-legend-item"><span class="sw sw-review"></span>复习</span>
+      </div>
+    </section>
+
+    {# ─── 右：当月月历（占 35%）─── #}
+    <section class="cal-right">
+      <div class="cal-section-title">{{ month_label }}</div>
+      <div class="cal-month">
+        <div class="cal-month-head">
+          {% for wd in ["一","二","三","四","五","六","日"] %}
+          <div class="cal-mh-cell {% if loop.index >= 6 %}weekend{% endif %}">周{{ wd }}</div>
+          {% endfor %}
+        </div>
+        {% for week in weeks %}
+        <div class="cal-month-row">
+          {% for cell in week %}
+            {% if cell %}
+              {% set level = 0 %}
+              {% if cell.total == 0 %}{% set level = 0 %}
+              {% elif cell.total <= 2 %}{% set level = 1 %}
+              {% elif cell.total <= 5 %}{% set level = 2 %}
+              {% else %}{% set level = 3 %}{% endif %}
+              <div class="cal-mc level-{{ level }} {% if cell.is_today %}is-today{% endif %} {% if cell.is_weekend %}weekend{% endif %} {% if cell.is_future %}is-future{% endif %}">
+                <span class="cal-mc-day">{{ cell.day }}</span>
+                {% if cell.total %}<span class="cal-mc-total">{{ cell.total }}</span>{% endif %}
+              </div>
+            {% else %}
+              <div class="cal-mc empty"></div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="cal-legend">
+        <span class="cal-legend-item">题数</span>
+        <span class="cal-legend-item"><span class="lvl lvl-0"></span>0</span>
+        <span class="cal-legend-item"><span class="lvl lvl-1"></span>1–2</span>
+        <span class="cal-legend-item"><span class="lvl lvl-2"></span>3–5</span>
+        <span class="cal-legend-item"><span class="lvl lvl-3"></span>6+</span>
+      </div>
+    </section>
+  </div>
+
+  <footer class="cal-foot">
+    <div class="cal-foot-l">— #HOT100 · 打卡节奏 —</div>
+    <div class="cal-foot-repo">github.com/jadehare818/leetcode-hot100</div>
+  </footer>
+</div>
+
+</body>
+</html>

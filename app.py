@@ -978,6 +978,106 @@ def calendar_page():
     )
 
 
+@app.route("/calendar-card")
+def calendar_card_page():
+    """独立的 Calendar 卡片页面（截图专用，16:9 横版）。
+
+    没有 topnav / hero，只有一张卡。playwright 截 .calendar-card 元素。
+    也可以直接浏览器访问预览。
+    """
+    prog = load_progress()
+    today = _today()
+    problems = load_problems()
+
+    # ---- 收集 per_day（跟 calendar_page 一样）----
+    counted = {"solve", "review"}
+    per_day: dict[str, dict] = {}
+    for pid_str, entry in prog.items():
+        for h in entry.get("history", []):
+            if h.get("action") not in counted:
+                continue
+            d_str = h.get("date", "")
+            if not d_str:
+                continue
+            per_day.setdefault(d_str, {"solve": 0, "review": 0})
+            per_day[d_str][h["action"]] += 1
+
+    zh_weekdays = ["一", "二", "三", "四", "五", "六", "日"]
+
+    # ---- 30-day bars ----
+    days = [today - timedelta(days=i) for i in range(29, -1, -1)]
+    series = []
+    max_total = 0
+    total_all = 0
+    for d in days:
+        raw = per_day.get(d.isoformat(), {"solve": 0, "review": 0})
+        total = raw["solve"] + raw["review"]
+        max_total = max(max_total, total)
+        total_all += total
+        series.append({
+            "date": d.isoformat(),
+            "day": d.day,
+            "weekday": zh_weekdays[d.weekday()],
+            "is_weekend": d.weekday() >= 5,
+            "is_today": d == today,
+            "solve": raw["solve"],
+            "review": raw["review"],
+            "total": total,
+        })
+
+    # streak
+    streak = 0
+    for i, dd in enumerate(reversed(series)):
+        if dd["total"] > 0:
+            streak += 1
+        elif i == 0 and dd["is_today"]:
+            continue
+        else:
+            break
+
+    active_days = sum(1 for d in series if d["total"] > 0)
+
+    # ---- 当月月历 ----
+    target_month = today.replace(day=1)
+    if target_month.month == 12:
+        next_month = target_month.replace(year=target_month.year + 1, month=1)
+    else:
+        next_month = target_month.replace(month=target_month.month + 1)
+    days_in_month = (next_month - target_month).days
+    first_weekday = target_month.weekday()
+    month_days = []
+    for i in range(days_in_month):
+        d = target_month + timedelta(days=i)
+        raw = per_day.get(d.isoformat(), {"solve": 0, "review": 0})
+        total = raw["solve"] + raw["review"]
+        month_days.append({
+            "day": d.day,
+            "is_weekend": d.weekday() >= 5,
+            "is_today": d == today,
+            "is_future": d > today,
+            "total": total,
+        })
+    weeks = []
+    leading = [None] * first_weekday
+    tail_needed = (7 - (len(leading) + len(month_days)) % 7) % 7
+    cells = leading + month_days + [None] * tail_needed
+    for i in range(0, len(cells), 7):
+        weeks.append(cells[i:i + 7])
+
+    return render_template(
+        "calendar_card.html",
+        today_str=today.isoformat(),
+        today_weekday=zh_weekdays[today.weekday()],
+        series=series,
+        max_total=max_total,
+        total_all=total_all,
+        streak=streak,
+        active_days=active_days,
+        weeks=weeks,
+        month_label=f"{target_month.year} 年 {target_month.month} 月",
+    )
+
+
 # ---------- API ----------
 
 @app.post("/api/problem/<int:pid>/status")
