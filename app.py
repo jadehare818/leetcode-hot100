@@ -1248,14 +1248,19 @@ def api_dashboard():
 
 @app.get("/api/preview")
 def api_preview():
-    """N 天后预告（供 bot 用）。?day=N 默认 1。"""
+    """N 天后预告（供 bot 用）。?day=N 默认 1，最大 30。
+
+    使用跟网页 /preview 页面同一套 SM-2 前向模拟逻辑（build_preview_range），
+    这样 bot 里"预告 3"跟浏览器里 "Day+3" 看到的题目完全一致。
+    """
     try:
         n = int(request.args.get("day", "1"))
     except ValueError:
         n = 1
     n = max(1, min(30, n))
-    target = _today() + timedelta(days=n)
-    return jsonify(build_preview(target))
+    start = _today() + timedelta(days=1)
+    range_ = build_preview_range(start, days=n)
+    return jsonify(range_[n - 1])
 
 
 @app.get("/api/checkin")
