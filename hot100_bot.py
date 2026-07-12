@@ -330,19 +330,33 @@ def cmd_preview(chat_id: str, n: int = 1) -> None:
 
 
 def _send_card_image(chat_id: str, which: str) -> None:
-    """which ∈ {'checkin', 'calendar'}。走 playwright + 飞书 App API 发图。"""
+    """which ∈ {'checkin', 'calendar'}。playwright sync API 在 lark-oapi asyncio
+    loop 里跑不了，走子进程 subprocess 出图，然后回主进程上传发送。"""
+    import subprocess
     sys.path.insert(0, str(ROOT / "scripts"))
     try:
         from feishu_daily import _tenant_token, _upload_image, _send_image
-        from render_checkin import render
     except Exception as e:
-        send_text(chat_id, f"✗ 加载渲染依赖失败：{e}")
+        send_text(chat_id, f"✗ 加载发送依赖失败：{e}")
         return
 
     send_text(chat_id, f"⏳ 正在生成 {which} 卡片…")
+    out = Path("/tmp") / f"hot100-{which}-bot.png"
     try:
-        out = Path("/tmp") / f"hot100-{which}-bot.png"
-        render(out, which=which)
+        # 子进程跑 render，避开 asyncio loop 冲突
+        py = ROOT / ".venv" / "bin" / "python"
+        if not py.exists():
+            py = Path(sys.executable)
+        result = subprocess.run(
+            [str(py), str(ROOT / "scripts" / "render_checkin.py"),
+             "--which", which, "--out", str(out)],
+            capture_output=True, text=True, timeout=60,
+        )
+        if result.returncode != 0:
+            raise RuntimeError(f"render 失败 (exit {result.returncode}):\n{result.stderr[-500:]}")
+        if not out.exists():
+            raise RuntimeError(f"render 完成但输出不存在: {out}")
+
         token = _tenant_token(APP_ID, APP_SECRET)
         image_key = _upload_image(token, out)
         _send_image(token, chat_id, image_key)
