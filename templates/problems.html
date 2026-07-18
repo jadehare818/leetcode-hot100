@@ -11,11 +11,20 @@
 {% set status_zh = {'todo':'未刷','forgot':'卡住','shaky':'磕绊','solid':'很稳','archived':'归档'} %}
 
 <div class="filters">
-  <label><input type="checkbox" data-filter="todo" checked> 未刷</label>
-  <label><input type="checkbox" data-filter="forgot" checked> 卡住</label>
-  <label><input type="checkbox" data-filter="shaky" checked> 磕绊</label>
-  <label><input type="checkbox" data-filter="solid" checked> 很稳</label>
-  <label><input type="checkbox" data-filter="archived"> 归档</label>
+  <span class="filter-group">
+    <span class="filter-label">状态</span>
+    <label><input type="checkbox" data-filter-group="status" data-filter="todo" checked> 未刷</label>
+    <label><input type="checkbox" data-filter-group="status" data-filter="forgot" checked> 卡住</label>
+    <label><input type="checkbox" data-filter-group="status" data-filter="shaky" checked> 磕绊</label>
+    <label><input type="checkbox" data-filter-group="status" data-filter="solid" checked> 很稳</label>
+    <label><input type="checkbox" data-filter-group="status" data-filter="archived"> 归档</label>
+  </span>
+  <span class="filter-group">
+    <span class="filter-label">难度</span>
+    <label><input type="checkbox" data-filter-group="difficulty" data-filter="简单" checked> 简单</label>
+    <label><input type="checkbox" data-filter-group="difficulty" data-filter="中等" checked> 中等</label>
+    <label><input type="checkbox" data-filter-group="difficulty" data-filter="困难" checked> 困难</label>
+  </span>
 </div>
 
 {% for cat in categories %}
@@ -30,7 +39,7 @@
     </thead>
     <tbody>
     {% for p in cat.problems %}
-      <tr data-status="{{ p.status }}">
+      <tr data-status="{{ p.status }}" data-difficulty="{{ p.difficulty }}">
         <td>{{ p.id }}</td>
         <td>
           <a href="{{ url_for('problem_detail', pid=p.id) }}">{{ p.title }}</a>
@@ -51,7 +60,7 @@
           <button class="btn ghost cs-toggle" data-pid="{{ p.id }}" title="Cheatsheet">📝</button>
         </td>
       </tr>
-      <tr class="cs-row" data-status="{{ p.status }}">
+      <tr class="cs-row" data-status="{{ p.status }}" data-difficulty="{{ p.difficulty }}">
         <td colspan="6" style="padding: 0;">
           <div class="note-panel" data-pid="{{ p.id }}"></div>
           <div class="cs-panel" data-pid="{{ p.id }}"></div>

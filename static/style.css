@@ -546,6 +546,19 @@ h3 {
   font-size: 12px;
   letter-spacing: 0.02em;
 }
+.filters .filter-group {
+  display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding-right: 20px;
+  border-right: 1px solid var(--line);
+}
+.filters .filter-group:last-child { border-right: none; padding-right: 0; }
+.filters .filter-label {
+  color: var(--muted-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+  padding-right: 4px;
+}
 .filters label {
   cursor: pointer; user-select: none;
   display: inline-flex; align-items: center; gap: 6px;

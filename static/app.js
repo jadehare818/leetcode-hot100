@@ -224,15 +224,24 @@ if (noteBtn) {
   });
 }
 
-// 全表过滤
+// 全表过滤:多组筛选(状态 / 难度) —— 组内 OR,组间 AND。
+// 每个 checkbox 必须带 data-filter-group="<组名>" + data-filter="<值>"。
+// 每行 <tr> 用 data-<组名> 匹配对应组的值。
 function applyFilters() {
-  const active = new Set();
+  const groups = new Map();  // group → Set(active values)
   document.querySelectorAll('[data-filter]').forEach(cb => {
-    if (cb.checked) active.add(cb.dataset.filter);
+    const group = cb.dataset.filterGroup || 'status';  // 老兼容
+    if (!groups.has(group)) groups.set(group, new Set());
+    if (cb.checked) groups.get(group).add(cb.dataset.filter);
   });
   document.querySelectorAll('tr[data-status]').forEach(row => {
-    const st = row.dataset.status;
-    row.classList.toggle('hidden', !active.has(st));
+    let visible = true;
+    for (const [group, active] of groups) {
+      const value = row.dataset[group];
+      if (value === undefined) continue;  // 该行不带这个维度,不参与本组筛选
+      if (!active.has(value)) { visible = false; break; }
+    }
+    row.classList.toggle('hidden', !visible);
   });
 }
 document.querySelectorAll('[data-filter]').forEach(cb => cb.addEventListener('change', applyFilters));
