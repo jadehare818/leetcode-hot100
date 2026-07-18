@@ -239,6 +239,56 @@ def apply_review(entry: dict, score: str) -> dict:
 
 # ---------- 今日看板动态计算 ----------
 
+# 每积累多少天 streak 就允许多容忍 1 天空档 (streak 保护额度)
+# 例如: 0-9 天 streak 断 1 天 → 归零; 10-19 → 允许断 1 天; 20-29 → 允许断 2 天。
+STREAK_FORGIVE_EVERY_DAYS = 10
+
+
+def _compute_streak(active_dates: set[str], today: date) -> tuple[int, int, int]:
+    """基于活跃日期集合计算连续天数,带自动零容忍额度。
+
+    规则:
+    - 从最早的活跃日期向今天走,活跃日 streak+1;每积累
+      STREAK_FORGIVE_EVERY_DAYS 天获得 1 点保护额度。
+    - 遇到空档:能用额度就用(1 天空档扣 1 点),用完就 streak 归零。
+    - 今天还没打卡不算断,直接跳过。
+
+    返回 (streak, budget, used):streak = 当前连续天数(含被容忍的空档);
+        budget = 该连续天数下的总额度;used = 已经使用的额度。
+    """
+    if not active_dates:
+        return 0, 0, 0
+    try:
+        start = min(date.fromisoformat(d) for d in active_dates)
+    except ValueError:
+        return 0, 0, 0
+
+    streak = 0
+    used = 0
+    cursor = start
+    # 遍历到今天(含);今天没打卡的情况在循环里处理
+    while cursor <= today:
+        cur_iso = cursor.isoformat()
+        if cur_iso in active_dates:
+            streak += 1
+        else:
+            # 今天还没打卡不算断
+            if cursor == today:
+                cursor += timedelta(days=1)
+                continue
+            # 有额度就消耗;没有就归零重开
+            budget = streak // STREAK_FORGIVE_EVERY_DAYS
+            if used < budget:
+                used += 1
+                # streak 仍然继续,不清零
+            else:
+                streak = 0
+                used = 0
+        cursor += timedelta(days=1)
+    budget = streak // STREAK_FORGIVE_EVERY_DAYS
+    return streak, budget, used
+
+
 def _get_status(prog: dict, pid: int) -> str:
     return prog.get(str(pid), {}).get("status", STATUS_TODO)
 
@@ -912,15 +962,9 @@ def calendar_page():
             **detail,
         })
 
-    # 连续天：从今天倒推
-    streak = 0
-    for i, day in enumerate(reversed(series)):
-        if day["total"] > 0:
-            streak += 1
-        elif i == 0 and day["is_today"]:
-            continue
-        else:
-            break
+    # 连续天:带零容忍额度(见 _compute_streak),从今天倒推
+    active_dates = {d for d, raw in per_day.items() if raw["solve"] or raw["review"]}
+    streak, streak_budget, streak_used = _compute_streak(active_dates, today)
 
     active_days = sum(1 for d in series if d["total"] > 0)
 
@@ -987,6 +1031,8 @@ def calendar_page():
         max_total=max_total_bar,
         total_all=total_all,
         streak=streak,
+        streak_budget=streak_budget,
+        streak_used=streak_used,
         active_days=active_days,
         # 月历数据
         target_month=target_month,
@@ -1044,15 +1090,9 @@ def calendar_card_page():
             "total": total,
         })
 
-    # streak
-    streak = 0
-    for i, dd in enumerate(reversed(series)):
-        if dd["total"] > 0:
-            streak += 1
-        elif i == 0 and dd["is_today"]:
-            continue
-        else:
-            break
+    # streak: 带零容忍额度(见 _compute_streak)
+    active_dates = {d for d, raw in per_day.items() if raw["solve"] or raw["review"]}
+    streak, streak_budget, streak_used = _compute_streak(active_dates, today)
 
     active_days = sum(1 for d in series if d["total"] > 0)
 
@@ -1091,6 +1131,8 @@ def calendar_card_page():
         max_total=max_total,
         total_all=total_all,
         streak=streak,
+        streak_budget=streak_budget,
+        streak_used=streak_used,
         active_days=active_days,
         weeks=weeks,
         month_label=f"{target_month.year} 年 {target_month.month} 月",
@@ -1352,26 +1394,14 @@ def api_checkin():
         "difficulty": by_id.get(pid, {}).get("difficulty", "?"),
     } for pid in sorted(reviewed_ids)]
 
-    # streak: 从今天倒推，直到遇到"没打卡"的一天
+    # streak: 带零容忍额度(见 _compute_streak)
     counted = {"solve", "review"}
     active_dates: set[str] = set()
     for pid, entry in prog.items():
         for h in entry.get("history", []):
             if h.get("action") in counted:
                 active_dates.add(h.get("date", ""))
-    streak = 0
-    cursor = today
-    while True:
-        if cursor.isoformat() in active_dates:
-            streak += 1
-            cursor -= timedelta(days=1)
-        else:
-            # 今天还没打卡不算断
-            if cursor == today:
-                cursor -= timedelta(days=1)
-                continue
-            break
-
+    streak, streak_budget, streak_used = _compute_streak(active_dates, today)
     # counts + finish 复用 dashboard 里的逻辑
     total = len(problems)
     counts = {
@@ -1446,6 +1476,8 @@ def api_checkin():
         "solved": solved,
         "reviewed": reviewed,
         "streak": streak,
+        "streak_budget": streak_budget,
+        "streak_used": streak_used,
         "counts": counts,
         "total": total,
         "done_count": done_count,

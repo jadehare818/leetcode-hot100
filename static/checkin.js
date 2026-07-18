@@ -74,7 +74,7 @@
         <div class="cc-today-break">
           <span class="cc-chip cc-chip-solve">首刷 · ${d.solved.length}</span>
           <span class="cc-chip cc-chip-review">复习 · ${d.reviewed.length}</span>
-          <span class="cc-chip cc-chip-streak">🔥 连续 ${d.streak} 天</span>
+          <span class="cc-chip cc-chip-streak">🔥 连续 ${d.streak} 天${d.streak_used ? ` 🛡️${d.streak_used}` : ''}</span>
         </div>
       </section>
       <section class="cc-block">

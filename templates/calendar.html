@@ -18,7 +18,7 @@
     </div>
     <div class="field finish">
       <div class="k">Streak</div>
-      <div class="v">{{ streak }}<span class="unit">连续天</span></div>
+      <div class="v">{{ streak }}<span class="unit">连续天{% if streak_used %} 🛡️{{ streak_used }}{% endif %}</span></div>
     </div>
     <div class="field">
       <div class="k">Peak</div>
