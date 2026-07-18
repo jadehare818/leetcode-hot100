@@ -140,6 +140,33 @@ document.querySelectorAll('[data-status-select]').forEach(sel => {
   });
 });
 
+// 空档横幅:整日空档时提示"整体后移一天"或"忽略"。
+const skippedBanner = document.querySelector('.skipped-banner');
+if (skippedBanner) {
+  const skippedDate = skippedBanner.dataset.skippedDate;
+  const dismissKey = `skipped-yesterday-dismissed-${skippedDate}`;
+  if (!localStorage.getItem(dismissKey)) {
+    skippedBanner.hidden = false;
+  }
+  const shiftBtn = skippedBanner.querySelector('[data-shift-forward]');
+  const dismissBtn = skippedBanner.querySelector('[data-skipped-dismiss]');
+  if (shiftBtn) {
+    shiftBtn.addEventListener('click', async () => {
+      if (!confirm(`把 ${skippedDate} 起所有 next_review 各 +1 天?等价于那天不存在。`)) return;
+      shiftBtn.disabled = true;
+      const r = await post('/api/shift-forward', {from_date: skippedDate, days: 1});
+      alert(`已平移 ${r.count} 题 (+${r.days} 天)`);
+      location.reload();
+    });
+  }
+  if (dismissBtn) {
+    dismissBtn.addEventListener('click', () => {
+      localStorage.setItem(dismissKey, '1');
+      skippedBanner.hidden = true;
+    });
+  }
+}
+
 // 单张卡片的推迟
 document.querySelectorAll('[data-postpone]').forEach(btn => {
   btn.addEventListener('click', async () => {

@@ -451,6 +451,24 @@ def build_dashboard() -> dict:
         quota_today=quota,
     )
 
+    # "整日空档"检测：昨天原本有复习到期,但一道题都没做过。
+    # 命中时前端会弹提示,询问是否整体后移一天(见 /api/shift-forward)。
+    # 平移后昨天的 next_review 会清零,横幅自动消失,不需要 dismiss 状态。
+    yesterday_iso = (_today() - timedelta(days=1)).isoformat()
+    y_pending = 0
+    y_had_activity = False
+    for pid_str, entry in prog.items():
+        if entry.get("status") not in (STATUS_ARCHIVED, STATUS_TODO):
+            if entry.get("next_review") == yesterday_iso:
+                y_pending += 1
+        for h in entry.get("history", []):
+            if h.get("date") == yesterday_iso and h.get("action") in ("solve", "review"):
+                y_had_activity = True
+                break
+    skipped_yesterday = None
+    if y_pending > 0 and not y_had_activity:
+        skipped_yesterday = {"date": yesterday_iso, "review_count": y_pending}
+
     return {
         "date": today,
         "is_weekend": _today().weekday() >= 5,
@@ -465,6 +483,7 @@ def build_dashboard() -> dict:
         "counts": counts,
         "total": total,
         "finish": finish,
+        "skipped_yesterday": skipped_yesterday,
     }
 
 
@@ -1233,7 +1252,56 @@ def api_postpone_overdue():
     return jsonify({"ok": True, "count": count})
 
 
-@app.post("/api/cheatsheet")
+@app.post("/api/shift-forward")
+def api_shift_forward():
+    """把 next_review >= from_date 的复习题整体后移 days 天。
+
+    用途:某天完全没打卡,不希望原本那天的复习堆到今天;把整个日程平移一天,
+    等价于"那天不存在"。
+
+    body:
+        from_date: "YYYY-MM-DD"(默认 = 昨天),含。
+        days: 整数,默认 1。
+
+    返回 {"ok": True, "count": n, "from": ..., "days": ...}
+    """
+    body = request.get_json(silent=True) or {}
+    from_date_str = body.get("from_date") or (_today() - timedelta(days=1)).isoformat()
+    try:
+        from_d = date.fromisoformat(from_date_str)
+    except ValueError:
+        return jsonify({"error": "from_date must be YYYY-MM-DD"}), 400
+    days = int(body.get("days", 1))
+    if days <= 0 or days > 30:
+        return jsonify({"error": "days must be 1..30"}), 400
+
+    today_iso = _today().isoformat()
+    prog = load_progress()
+    count = 0
+    for pid_str, entry in prog.items():
+        if entry.get("status") in (STATUS_ARCHIVED, STATUS_TODO):
+            continue
+        nr = entry.get("next_review", "")
+        if not nr:
+            continue
+        try:
+            nr_d = date.fromisoformat(nr)
+        except ValueError:
+            continue
+        if nr_d < from_d:
+            continue
+        new_nr = (nr_d + timedelta(days=days)).isoformat()
+        entry["next_review"] = new_nr
+        entry.setdefault("history", []).append({
+            "date": today_iso,
+            "action": "shift-forward",
+            "from": nr,
+            "to": new_nr,
+            "shift_days": days,
+        })
+        count += 1
+    save_progress(prog)
+    return jsonify({"ok": True, "count": count, "from": from_date_str, "days": days})
 def api_cheatsheet_save():
     body = request.get_json(force=True)
     md = body.get("markdown", "")

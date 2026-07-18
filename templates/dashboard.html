@@ -2,6 +2,14 @@
 {% block title %}Today · Hot 100{% endblock %}
 {% block content %}
 
+{% if d.skipped_yesterday %}
+<div class="skipped-banner" data-skipped-date="{{ d.skipped_yesterday.date }}" hidden>
+  <span class="skipped-msg">检测到 <strong>{{ d.skipped_yesterday.date }}</strong> 空档 · 有 {{ d.skipped_yesterday.review_count }} 题原本到期。</span>
+  <button class="btn primary small" data-shift-forward title="从空档那天起,所有 next_review 各 +1 天,等价于那天不存在">整体后移一天</button>
+  <button class="btn ghost small" data-skipped-dismiss title="本地隐藏,不改数据">忽略</button>
+</div>
+{% endif %}
+
 {# ─── HERO: today's date, progress ribbon, brief ─── #}
 <section class="journal-hero">
   <div class="kicker">{{ d.date }} · {% if d.is_weekend %}周末 · Weekend Session{% else %}工作日 · Weekday Session{% endif %}</div>

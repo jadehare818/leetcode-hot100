@@ -2565,3 +2565,19 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   color: var(--muted-2);
   opacity: 0.6;
 }
+
+/* 空档提示横幅 —— 昨天完全没打卡时出现,询问是否整体后移一天 */
+.skipped-banner {
+  margin: 16px 24px 0;
+  padding: 12px 16px;
+  border-left: 3px solid #E8B93A;
+  background: #FDF8E7;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.skipped-banner .skipped-msg { flex: 1 1 auto; color: #6B5411; }
+.skipped-banner strong { color: #4A3A05; }
