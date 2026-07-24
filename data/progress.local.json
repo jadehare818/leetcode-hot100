@@ -1,0 +1,1756 @@
+{
+  "1": {
+    "status": "solid",
+    "note": "没啥可记的",
+    "code_file": "solutions/python/001_两数之和.py",
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-29",
+        "to": "2026-07-30",
+        "shift_days": 1
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-07-30",
+    "last_done": "2026-07-14",
+    "cheatsheet": "",
+    "code_files": {
+      "python": "solutions/python/001_两数之和.py"
+    }
+  },
+  "49": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "str(sorted(word)) 字符串从小到大排序并转字符串\n\ndic = defaultdict(list) value是列表的字典\n\nlist(dic.values()) 字典的value部分转列表",
+    "code_file": "",
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-07",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-02",
+    "last_done": "2026-07-18"
+  },
+  "2": {
+    "status": "solid",
+    "note": "链表加法：进位 carry, dummy head",
+    "cheatsheet": "",
+    "code_file": "",
+    "history": [
+      {
+        "date": "2026-07-13",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-25",
+    "last_done": "2026-07-18",
+    "code_files": {}
+  },
+  "128": {
+    "status": "solid",
+    "note": "先全部存set，之后遍历set，遇到某个序列的最小值就循环算它的序列的长度。\n时间复杂度是O(n)",
+    "cheatsheet": "",
+    "code_file": "",
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-31",
+        "to": "2026-08-01",
+        "shift_days": 1
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-01",
+    "last_done": "2026-07-16"
+  },
+  "283": {
+    "status": "solid",
+    "note": "左右指针中间维护一个装0的容器，右指针从0开始，遇到非0项就与左指针所指项交换，左指针右移。",
+    "cheatsheet": "",
+    "code_file": "solutions/python/283_移动零.py",
+    "code_files": {
+      "go": "solutions/go/283_移动零.go",
+      "python": "solutions/python/283_移动零.py"
+    },
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-30",
+        "to": "2026-07-31",
+        "shift_days": 1
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-07-31",
+    "last_done": "2026-07-15"
+  },
+  "3": {
+    "status": "shaky",
+    "note": "一个set放左右指针维护的子串，右指针右移，碰到set里有的字符就让左指针右移。",
+    "cheatsheet": "hashSet = set()\n\nhashSet.remove(\"a\") // remove删除指定元素\n\nhashSet.pop() // 删除任意一个元素（其实是根据hash算出来的顺序）\n\nhashSet.discard(2) //静默删除，set里没有这个元素也不会报错",
+    "code_file": "solutions/python/003_无重复字符的最长子串.py",
+    "code_files": {
+      "python": "solutions/python/003_无重复字符的最长子串.py"
+    },
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-23",
+        "to": "2026-07-24",
+        "shift_days": 1
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-24",
+    "last_done": "2026-07-16"
+  },
+  "76": {
+    "status": "solid",
+    "note": "维护一个字典diff，记录s和t的差，先根据t中字符数，对字典对应字符的value做减法，之后左右指针遍历s，新增字符做加法。具体遍历过程中，右指针往右走，直到当前子串覆盖了t，然后让左指针开始右移直到无法覆盖。",
+    "cheatsheet": "s[left:right+1] 字符串切割",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-07",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-11",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-03",
+    "last_done": "2026-07-19"
+  },
+  "11": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-07",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-02",
+    "last_done": "2026-07-18"
+  },
+  "15": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-07",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-11",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-03",
+    "last_done": "2026-07-19"
+  },
+  "438": {
+    "status": "solid",
+    "note": "和最小覆盖子串一个思路",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-07",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-08",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-04",
+    "last_done": "2026-07-20"
+  },
+  "42": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "solutions/python/042_接雨水.py",
+    "code_files": {
+      "python": "solutions/python/042_接雨水.py"
+    },
+    "history": [
+      {
+        "date": "2026-07-09",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-11",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-03",
+    "last_done": "2026-07-19"
+  },
+  "160": {
+    "status": "solid",
+    "note": "两个指针分别遍历链表A+B和B+A，要么在相交节点相遇，要么同时结束指向None",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-08",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-20",
+        "to": "2026-07-21",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-05",
+    "last_done": "2026-07-21"
+  },
+  "206": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-08",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-04",
+    "last_done": "2026-07-20"
+  },
+  "560": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-08",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-04",
+    "last_done": "2026-07-20"
+  },
+  "53": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-09",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-04",
+    "last_done": "2026-07-20"
+  },
+  "56": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个列表的x[0]的值进行排序。",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-09",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-20",
+        "to": "2026-07-21",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-05",
+    "last_done": "2026-07-21"
+  },
+  "239": {
+    "status": "solid",
+    "note": "\n维护一个双边队列，队列里存索引。索引对应元素保持单调递减，每次小于新增元素的弹出，同时最左侧元素校验索引是否在窗口内，不在也弹出。",
+    "cheatsheet": "d = deque() 双端队列\n\nd.pop() 右边弹出元素\n\nd.popleft() 左边弹出元素\n\nd.append() 右边加入元素\n\nd.appendleft() 左边加入元素",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-10",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-11",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-21",
+        "to": "2026-07-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-06",
+    "last_done": "2026-07-22"
+  },
+  "189": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-10",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-20",
+        "to": "2026-07-21",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-05",
+    "last_done": "2026-07-21"
+  },
+  "238": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-10",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-20",
+        "to": "2026-07-21",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-05",
+    "last_done": "2026-07-21"
+  },
+  "41": {
+    "status": "solid",
+    "note": "存set，遍历一遍找ans=最小的num+1，之后从1到ans遍历，不存在于set即answer。",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-11",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-21",
+        "to": "2026-07-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-06",
+    "last_done": "2026-07-22"
+  },
+  "73": {
+    "status": "solid",
+    "note": "维护俩数组，分别记录哪行/哪列有0，遍历一遍二维数组后，根据这俩数组清零",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-11",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-22",
+        "to": "2026-07-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-07",
+    "last_done": "2026-07-23"
+  },
+  "54": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-11",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-21",
+        "to": "2026-07-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-06",
+    "last_done": "2026-07-22"
+  },
+  "48": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-11",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-21",
+        "to": "2026-07-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-06",
+    "last_done": "2026-07-22"
+  },
+  "240": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-12",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-22",
+        "to": "2026-07-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 3,
+    "next_review": "2026-08-07",
+    "last_done": "2026-07-23"
+  },
+  "234": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "solutions/python/234_回文链表.py",
+    "code_files": {
+      "python": "solutions/python/234_回文链表.py"
+    },
+    "history": [
+      {
+        "date": "2026-07-12",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-23",
+        "to": "2026-07-24",
+        "shift_days": 1
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-24",
+    "last_done": "2026-07-16"
+  },
+  "141": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-12",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-23",
+        "to": "2026-07-24",
+        "shift_days": 1
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-24",
+    "last_done": "2026-07-16"
+  },
+  "142": {
+    "status": "solid",
+    "note": "快慢指针相遇后，新指针开始从head走会和慢指针在交点相遇",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-12",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-26",
+    "last_done": "2026-07-19"
+  },
+  "21": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-13",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-25",
+    "last_done": "2026-07-18"
+  },
+  "19": {
+    "status": "solid",
+    "note": "维护一个deque",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-13",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-25",
+    "last_done": "2026-07-18"
+  },
+  "24": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-14",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-28",
+    "last_done": "2026-07-21"
+  },
+  "138": {
+    "status": "solid",
+    "note": "hashmap",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-14",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-26",
+    "last_done": "2026-07-19"
+  },
+  "148": {
+    "status": "solid",
+    "note": "归并",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-14",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-26",
+    "last_done": "2026-07-19"
+  },
+  "25": {
+    "status": "solid",
+    "note": "上次的尾和这次的头",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-15",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-27",
+    "last_done": "2026-07-20"
+  },
+  "146": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "hashMap = dict()\nhashMap[key]=value\n删除其中一个kv对：\nhashMap.pop(key)",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-15",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-27",
+    "last_done": "2026-07-20"
+  },
+  "102": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-15",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-27",
+    "last_done": "2026-07-20"
+  },
+  "23": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-16",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-28",
+    "last_done": "2026-07-21"
+  },
+  "94": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-16",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-28",
+    "last_done": "2026-07-21"
+  },
+  "98": {
+    "status": "solid",
+    "note": "俩思路：\n1. 自己写的思路：递归，入参传入该节点，判断的是这个节点符不符合要求。是None直接返回True；递归调用，得到其左节点是否符合 和 右节点是否符合，有不符合返回false，都符合，则循环遍历左节点的右节点到最底部（得到了左子树的最大值），再循环遍历右节点的左节点到底部（获得了右子树的最小值），对比root.val，其在范围内则返回True，否则返回False。\n2. 网上思路：递归，入参传入该节点和该节点的左右界限（大于low小于high），判断的也是这个节点符不符合要求。不符合则返回false，符合则递归调用，分别看它的左节点（大于low小于root.val本身）和右节点（小于high大于root.val本身）",
+    "cheatsheet": "（不一定用上）\nminValue = -float('inf')\nmaxValue = float('inf')",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-16",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-21",
+        "to": "2026-07-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-29",
+    "last_done": "2026-07-22"
+  },
+  "124": {
+    "status": "solid",
+    "note": "dfs，每次返回的是每个点到底部的最大路径和，而更新的ans是当前点的最大路径和",
+    "cheatsheet": "nonlocal",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-18",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-30",
+    "last_done": "2026-07-23"
+  },
+  "230": {
+    "status": "solid",
+    "note": "中序遍历",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-18",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-30",
+    "last_done": "2026-07-23"
+  },
+  "199": {
+    "status": "solid",
+    "note": "层序遍历",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-18",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-30",
+    "last_done": "2026-07-23"
+  },
+  "51": {
+    "status": "solid",
+    "note": "回溯。3个set",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-19",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-30",
+    "last_done": "2026-07-23"
+  },
+  "114": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-19",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-30",
+    "last_done": "2026-07-23"
+  },
+  "105": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-19",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-30",
+    "last_done": "2026-07-23"
+  },
+  "4": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-20",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-07-24",
+    "last_done": "2026-07-21"
+  },
+  "437": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "def solve(target):\n\n    def dfs():\n\n        nonlocal target\n\n// 用于，另方法外的方法的变量可以被该方法修改",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-20",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-07-24",
+    "last_done": "2026-07-21"
+  },
+  "104": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-20",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 2,
+    "next_review": "2026-07-30",
+    "last_done": "2026-07-23"
+  },
+  "84": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-21",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-07-26",
+    "last_done": "2026-07-23"
+  },
+  "236": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-21",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-07-25",
+    "last_done": "2026-07-22"
+  },
+  "200": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-21",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-07-25",
+    "last_done": "2026-07-22"
+  },
+  "994": {
+    "status": "shaky",
+    "note": "双边队列，先存入所有腐烂橘子的（row，col，time），然后开始从队列左边pop，每pop一个，更换其周围四个位置的新鲜橘子状态为腐烂，time+1，把变腐烂的橘子从队列右边加进去",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-22",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "ok"
+      }
+    ],
+    "review_stage": 0,
+    "next_review": "2026-07-24",
+    "last_done": "2026-07-23"
+  },
+  "22": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "solutions/python/022_括号生成.py",
+    "code_files": {
+      "python": "solutions/python/022_括号生成.py"
+    },
+    "history": [
+      {
+        "date": "2026-07-22",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-07-26",
+    "last_done": "2026-07-23"
+  },
+  "207": {
+    "status": "shaky",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-22",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "ok"
+      }
+    ],
+    "review_stage": 0,
+    "next_review": "2026-07-24",
+    "last_done": "2026-07-23"
+  },
+  "208": {
+    "status": "shaky",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-23",
+        "action": "solve",
+        "status": "shaky"
+      }
+    ],
+    "review_stage": 0,
+    "next_review": "2026-07-24",
+    "last_done": "2026-07-23"
+  },
+  "46": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-23",
+        "action": "solve",
+        "status": "solid"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-07-26",
+    "last_done": "2026-07-23"
+  },
+  "78": {
+    "status": "shaky",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-23",
+        "action": "solve",
+        "status": "shaky"
+      }
+    ],
+    "review_stage": 0,
+    "next_review": "2026-07-24",
+    "last_done": "2026-07-23"
+  }
+}
