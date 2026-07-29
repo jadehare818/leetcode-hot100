@@ -323,3 +323,101 @@ if (settingsBtn && settingsBackdrop) {
     }
   });
 }
+
+// ========== 自定义题:新增 ==========
+{
+  const btnOpen = document.getElementById('btn-add-problem');
+  const modal = document.getElementById('modal-add-problem');
+  if (btnOpen && modal) {
+    const btnClose = document.getElementById('cp-close');
+    const btnCancel = document.getElementById('cp-cancel');
+    const btnSave = document.getElementById('cp-save');
+    const inTitle = document.getElementById('cp-title');
+    const inDiff = document.getElementById('cp-difficulty');
+    const inUrl = document.getElementById('cp-url');
+    const inDesc = document.getElementById('cp-desc');
+    const errBox = document.getElementById('cp-form-error');
+
+    function cpOpen() {
+      errBox.hidden = true;
+      errBox.textContent = '';
+      inTitle.value = '';
+      inDiff.value = '中等';
+      inUrl.value = '';
+      inDesc.value = '';
+      modal.hidden = false;
+      setTimeout(() => inTitle.focus(), 0);
+    }
+    function cpClose() { modal.hidden = true; }
+    function cpErr(msg) { errBox.textContent = msg; errBox.hidden = false; }
+
+    btnOpen.addEventListener('click', cpOpen);
+    btnClose.addEventListener('click', cpClose);
+    btnCancel.addEventListener('click', cpClose);
+    modal.addEventListener('click', (e) => { if (e.target === modal) cpClose(); });
+    document.addEventListener('keydown', (e) => {
+      if (!modal.hidden && e.key === 'Escape') cpClose();
+    });
+
+    btnSave.addEventListener('click', async () => {
+      const title = inTitle.value.trim();
+      const difficulty = inDiff.value;
+      const url = inUrl.value.trim();
+      const desc = inDesc.value.trim();
+
+      if (!title) return cpErr('题名不能为空');
+      if (title.length > 200) return cpErr('题名过长(≤200 字符)');
+      if (url && !/^https?:\/\//i.test(url)) return cpErr('链接需以 http:// 或 https:// 开头');
+      if (desc.length > 2000) return cpErr('备注过长(≤2000 字符)');
+
+      btnSave.disabled = true;
+      try {
+        const resp = await fetch('/api/custom-problem', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, difficulty, url: url || undefined, desc: desc || undefined }),
+        });
+        const data = await resp.json();
+        if (!resp.ok) { cpErr(data.error || '保存失败'); return; }
+        cpClose();
+        location.reload();
+      } catch (e) {
+        cpErr('网络异常:' + e.message);
+      } finally {
+        btnSave.disabled = false;
+      }
+    });
+  }
+}
+
+// ========== 自定义题:软删(事件委托) ==========
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.cp-del');
+  if (!btn) return;
+  const pid = btn.dataset.pid;
+  if (!pid) return;
+  if (!confirm('删除这道自定义题?题的进度/笔记会保留但从题库中隐藏。')) return;
+  btn.disabled = true;
+  try {
+    const resp = await fetch(`/api/custom-problem/${pid}`, { method: 'DELETE' });
+    const data = await resp.json();
+    if (!resp.ok) {
+      alert(data.error || '删除失败');
+      btn.disabled = false;
+      return;
+    }
+    // 移除该题的两行(数据行 + 展开的 cs-row)
+    const dataRow = btn.closest('tr');
+    const csRow = dataRow?.nextElementSibling;
+    const section = dataRow?.closest('.cat-block');
+    dataRow?.remove();
+    if (csRow && csRow.classList.contains('cs-row')) csRow.remove();
+    // 若 section 内已无题行,把整个 section 也移除
+    if (section && !section.querySelector('tbody tr:not(.cs-row)')) {
+      section.remove();
+    }
+  } catch (err) {
+    alert('网络异常:' + err.message);
+    btn.disabled = false;
+  }
+});
