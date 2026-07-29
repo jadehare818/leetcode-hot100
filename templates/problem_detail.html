@@ -16,7 +16,11 @@
 </header>
 
 <div class="link-row">
-  <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">在力扣打开 ↗</a>
+  {% if p.custom %}
+    {% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener">题目链接 ↗</a>{% endif %}
+  {% else %}
+    <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">在力扣打开 ↗</a>
+  {% endif %}
   <button class="btn open-code" data-pid="{{ p.id }}">📝 打开 / 创建代码文件</button>
   {% if entry.code_file %}<span class="filepath">{{ entry.code_file }}</span>{% endif %}
 </div>
