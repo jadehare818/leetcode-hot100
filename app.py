@@ -894,7 +894,9 @@ def cheatsheet_page():
         entries.append({
             "id": pid,
             "title": p["title"],
-            "slug": p["slug"],
+            "slug": p.get("slug"),
+            "url": p.get("url"),
+            "custom": p.get("custom", False),
             "difficulty": p["difficulty"],
             "category": p["category"],
             "cheatsheet": cs,
