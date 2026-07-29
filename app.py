@@ -31,6 +31,9 @@ SOLUTIONS_DIR = ROOT / "solutions"
 CONFIG_PATH = ROOT / "config.json"
 CONFIG_LOCAL_PATH = ROOT / "config.local.json"
 PROBLEMS_PATH = DATA_DIR / "problems.json"
+PROBLEMS_CUSTOM_PATH = DATA_DIR / "problems.custom.local.json"
+CUSTOM_ID_START = 10001
+CUSTOM_CATEGORY_NAME = "自定义"
 PROGRESS_PATH = DATA_DIR / "progress.json"
 PROGRESS_LOCAL_PATH = DATA_DIR / "progress.local.json"
 CHEATSHEET_PATH = DATA_DIR / "cheatsheet.md"
@@ -122,19 +125,71 @@ def load_config() -> dict:
     return base
 
 
+def load_custom_problems() -> dict:
+    """读自定义题库文件；不存在则返回空壳（不落盘）。"""
+    fresh = {
+        "categories": [{"name": CUSTOM_CATEGORY_NAME, "problems": []}],
+        "next_id": CUSTOM_ID_START,
+    }
+    data = load_json(PROBLEMS_CUSTOM_PATH, fresh)
+    # 兼容旧文件缺 next_id / categories 的极端情况
+    if "categories" not in data or not data["categories"]:
+        data["categories"] = [{"name": CUSTOM_CATEGORY_NAME, "problems": []}]
+    if "next_id" not in data:
+        existing = [p["id"] for p in data["categories"][0]["problems"]]
+        data["next_id"] = max([CUSTOM_ID_START - 1] + existing) + 1
+    return data
+
+
+def save_custom_problems(data: dict) -> None:
+    save_json(PROBLEMS_CUSTOM_PATH, data)
+
+
+def _alive_custom_problems() -> list[dict]:
+    """未软删的 custom 题，已打上 custom=True、category=自定义。"""
+    data = load_custom_problems()
+    out = []
+    for p in data["categories"][0]["problems"]:
+        if p.get("deleted"):
+            continue
+        out.append({**p, "custom": True, "category": CUSTOM_CATEGORY_NAME})
+    return out
+
+
+def _official_ids() -> set[int]:
+    """只从 problems.json 读的官方 ID 集合。"""
+    raw = load_json(PROBLEMS_PATH, {"categories": []})
+    return {p["id"] for cat in raw["categories"] for p in cat["problems"]}
+
+
 def load_problems() -> list[dict]:
-    """返回扁平列表，附上 category 字段。"""
+    """返回扁平列表，附上 category / custom 字段。官方题 custom=False，自定义题 custom=True。"""
     raw = load_json(PROBLEMS_PATH, {"categories": []})
     flat = []
     for cat in raw["categories"]:
         for p in cat["problems"]:
-            flat.append({**p, "category": cat["name"]})
+            flat.append({**p, "category": cat["name"], "custom": False})
+    flat.extend(_alive_custom_problems())
     return flat
 
 
 def load_categories() -> list[dict]:
-    """带上 category 名的原始分类结构。"""
-    return load_json(PROBLEMS_PATH, {"categories": []})["categories"]
+    """带上 category 名的原始分类结构；若有存活自定义题，把"自定义"分类拼在末尾。
+    题字典里补 custom 字段（官方 False / 自定义 True），便于模板判断。"""
+    raw = load_json(PROBLEMS_PATH, {"categories": []})["categories"]
+    official = []
+    for cat in raw:
+        official.append({
+            "name": cat["name"],
+            "problems": [{**p, "custom": False} for p in cat["problems"]],
+        })
+    alive = _alive_custom_problems()
+    if alive:
+        official.append({
+            "name": CUSTOM_CATEGORY_NAME,
+            "problems": alive,  # 已带 custom=True
+        })
+    return official
 
 
 def load_progress() -> dict:

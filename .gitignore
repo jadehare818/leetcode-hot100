@@ -24,6 +24,9 @@ data/feishu.err.log
 data/sync-personal.log
 data/sync-personal.err.log
 
+# 自定义题目（私人题库，不进公共 seed）
+data/problems.custom.local.json
+
 # 你写的题解代码不上传，只保留目录结构和模板
 solutions/*/[0-9]*.py
 solutions/*/[0-9]*.go
