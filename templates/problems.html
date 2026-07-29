@@ -27,6 +27,10 @@
   </span>
 </div>
 
+<div class="cp-toolbar">
+  <button id="btn-add-problem" class="btn" type="button">+ 添加题目</button>
+</div>
+
 {% for cat in categories %}
 <section class="cat-block">
   <h2 data-chapter="§{{ loop.index }}">
@@ -62,6 +66,9 @@
           </select>
           <button class="btn ghost note-toggle" data-pid="{{ p.id }}" title="思路">💡</button>
           <button class="btn ghost cs-toggle" data-pid="{{ p.id }}" title="Cheatsheet">📝</button>
+          {% if p.custom %}
+          <button class="btn ghost cp-del" data-pid="{{ p.id }}" title="删除自定义题">🗑</button>
+          {% endif %}
         </td>
       </tr>
       <tr class="cs-row" data-status="{{ p.status }}" data-difficulty="{{ p.difficulty }}">
@@ -75,4 +82,40 @@
   </table>
 </section>
 {% endfor %}
+
+<div id="modal-add-problem" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-labelledby="cp-modal-title">
+    <div class="modal-head">
+      <h3 id="cp-modal-title">添加自定义题</h3>
+      <button class="modal-close" id="cp-close" type="button" aria-label="关闭">×</button>
+    </div>
+    <form id="cp-form" class="modal-body">
+      <label>
+        <span>题名 *</span>
+        <input id="cp-title" type="text" required maxlength="200" placeholder="题目标题" />
+      </label>
+      <label>
+        <span>难度 *</span>
+        <select id="cp-difficulty" required>
+          <option value="简单">简单</option>
+          <option value="中等" selected>中等</option>
+          <option value="困难">困难</option>
+        </select>
+      </label>
+      <label>
+        <span>题目链接</span>
+        <input id="cp-url" type="url" placeholder="https://..." />
+      </label>
+      <label>
+        <span>备注</span>
+        <textarea id="cp-desc" rows="3" maxlength="2000" placeholder="选填"></textarea>
+      </label>
+      <p id="cp-form-error" class="cp-form-error" hidden></p>
+    </form>
+    <div class="modal-foot">
+      <button class="btn ghost" id="cp-cancel" type="button">取消</button>
+      <button class="btn" id="cp-save" type="button">保存</button>
+    </div>
+  </div>
+</div>
 {% endblock %}
