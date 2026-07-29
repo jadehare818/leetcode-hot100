@@ -25,7 +25,7 @@
       <div class="line-2">
         <span class="last-edit">最近 · {{ e.last_edit }}</span>
         {% if e.custom %}
-          {% if e.url %}<a href="{{ e.url }}" target="_blank" rel="noopener" class="lc-link">题目 ↗</a>{% endif %}
+          {% if e.url %}<a href="{{ e.url }}" target="_blank" rel="noopener" class="lc-link">力扣 ↗</a>{% endif %}
         {% else %}
           <a href="https://leetcode.cn/problems/{{ e.slug }}/" target="_blank" rel="noopener" class="lc-link">力扣 ↗</a>
         {% endif %}

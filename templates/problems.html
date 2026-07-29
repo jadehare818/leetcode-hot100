@@ -48,7 +48,7 @@
         <td>
           <a href="{{ url_for('problem_detail', pid=p.id) }}">{{ p.title }}</a>
           {% if p.custom %}
-            {% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener" class="lc-link" title="题目链接">↗</a>{% endif %}
+            {% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener" class="lc-link" title="力扣">↗</a>{% endif %}
           {% else %}
             <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener" class="lc-link" title="在力扣打开">↗</a>
           {% endif %}

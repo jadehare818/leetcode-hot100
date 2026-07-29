@@ -90,7 +90,7 @@
         {% if p.is_overdue %}<span class="overdue-badge">Overdue</span>{% endif %}
       </div>
       <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
-      <div class="meta">Stage {{ p.review_stage }} · Due {{ p.next_review }}{% if p.custom %}{% if p.url %} · <a href="{{ p.url }}" target="_blank" rel="noopener">题目 ↗</a>{% endif %}{% else %} · <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a>{% endif %}</div>
+      <div class="meta">Stage {{ p.review_stage }} · Due {{ p.next_review }}{% if p.custom %}{% if p.url %} · <a href="{{ p.url }}" target="_blank" rel="noopener">力扣 ↗</a>{% endif %}{% else %} · <a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a>{% endif %}</div>
     </article>
     {% endfor %}
   </div>
@@ -113,7 +113,7 @@
           <span class="diff diff-{{ p.difficulty }}">{{ p.difficulty }}</span>
         </div>
         <a href="{{ url_for('problem_detail', pid=p.id) }}" class="title">{{ p.title }}</a>
-        <div class="meta">{% if p.custom %}{% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener">题目 ↗</a>{% endif %}{% else %}<a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a>{% endif %}</div>
+        <div class="meta">{% if p.custom %}{% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener">力扣 ↗</a>{% endif %}{% else %}<a href="https://leetcode.cn/problems/{{ p.slug }}/" target="_blank" rel="noopener">力扣 ↗</a>{% endif %}</div>
       </article>
       {% endfor %}
     </div>
