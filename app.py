@@ -1630,6 +1630,62 @@ def api_settings_save():
     return jsonify({"ok": True})
 
 
+# ---------- Custom problems ----------
+
+@app.post("/api/custom-problem")
+def api_custom_problem_create():
+    """新增自定义题。body: {title, difficulty, url?, desc?}"""
+    body = request.get_json(force=True) or {}
+    title = (body.get("title") or "").strip()
+    difficulty = body.get("difficulty") or ""
+    url = (body.get("url") or "").strip() or None
+    desc = (body.get("desc") or "").strip() or None
+
+    if not title:
+        return jsonify({"error": "title required"}), 400
+    if len(title) > 200:
+        return jsonify({"error": "title too long"}), 400
+    if difficulty not in {"简单", "中等", "困难"}:
+        return jsonify({"error": "bad difficulty"}), 400
+    if url and not (url.startswith("http://") or url.startswith("https://")):
+        return jsonify({"error": "url must start with http:// or https://"}), 400
+    if desc and len(desc) > 2000:
+        return jsonify({"error": "desc too long"}), 400
+
+    data = load_custom_problems()
+    new_id = data["next_id"]
+    problem = {
+        "id": new_id,
+        "title": title,
+        "difficulty": difficulty,
+        "url": url,
+        "desc": desc,
+        "custom": True,
+        "deleted": False,
+        "created_at": _today().isoformat(),
+    }
+    data["categories"][0]["problems"].append(problem)
+    data["next_id"] = new_id + 1
+    save_custom_problems(data)
+    return jsonify({"ok": True, "problem": problem})
+
+
+@app.delete("/api/custom-problem/<int:pid>")
+def api_custom_problem_delete(pid: int):
+    """软删自定义题。官方题拒绝;不存在或已删返 404。"""
+    if pid in _official_ids():
+        return jsonify({"error": "official problem cannot be deleted"}), 400
+    data = load_custom_problems()
+    for p in data["categories"][0]["problems"]:
+        if p["id"] == pid:
+            if p.get("deleted"):
+                return jsonify({"error": "already deleted"}), 404
+            p["deleted"] = True
+            save_custom_problems(data)
+            return jsonify({"ok": True})
+    return jsonify({"error": "not found"}), 404
+
+
 # ---------- Entry ----------
 
 if __name__ == "__main__":
