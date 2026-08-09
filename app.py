@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import random
 import re
 import subprocess
 import sys
@@ -47,6 +48,28 @@ STATUS_ARCHIVED = "archived"  # 归档，不再复习
 SCORE_EASY = "easy"     # 😄 秒A
 SCORE_OK = "ok"         # 🙂 磕绊
 SCORE_HARD = "hard"     # 😩 卡住
+
+CHECKIN_BLURB_POOL = (
+    "一天一点，不着急",
+    "慢一点也是往前",
+    "做了就是做了",
+    "与 bug 和解的一天",
+    "AC 一下，人生小胜",
+    "稳住节奏，稳住手感",
+    "保持出场率",
+    "今天也守住了",
+)
+
+CHECKIN_REVIEW_BLURB_POOL = (
+    "首刷收官，复习继续",
+    "题刷完了，手感还要续上",
+    "常回来看看，思路才不会生锈",
+    "把会做一次，练成随时会做",
+    "复习不赶路，贵在常回来",
+    "记住，比刷过更重要",
+    "刷完是进度，记住才算数",
+    "守住复习节奏，守住手感",
+)
 
 app = Flask(__name__)
 
@@ -385,6 +408,71 @@ def _done_today(prog: dict) -> tuple[set[int], set[int]]:
                 if pid_int not in solved:
                     reviewed.add(pid_int)
     return solved, reviewed
+
+
+def _first_all_completed_date(prog: dict, problem_ids) -> str | None:
+    """推导当前有效题集这一轮的首次全部完成日。
+
+    每题取最早的 solve/archive 日期，再取全体中的最晚值；这就是
+    当前题集第一次全部进入非 todo 状态的日期。任一题未完成或缺少
+    可验证的完成历史时返回 None，避免误庆祝。
+    """
+    current_ids = list(problem_ids)
+    if not current_ids:
+        return None
+
+    first_done_dates: list[date] = []
+    for pid in current_ids:
+        entry = prog.get(str(pid), {})
+        if entry.get("status", STATUS_TODO) == STATUS_TODO:
+            return None
+
+        completed_dates: list[date] = []
+        for event in entry.get("history", []):
+            if event.get("action") not in {"solve", "archive"}:
+                continue
+            raw_date = event.get("date")
+            if not isinstance(raw_date, str):
+                continue
+            try:
+                completed_dates.append(date.fromisoformat(raw_date))
+            except ValueError:
+                continue
+
+        if not completed_dates:
+            return None
+        first_done_dates.append(min(completed_dates))
+
+    return max(first_done_dates).isoformat()
+
+
+def _pick_checkin_blurb(
+    *,
+    done_count: int,
+    total: int,
+    all_completed_date: str | None,
+    today_str: str,
+    streak: int,
+    has_activity: bool,
+) -> str:
+    """按业务优先级选择打卡卡片推荐语。"""
+    all_completed = total > 0 and done_count == total
+
+    if done_count == 0:
+        return "起点即出发"
+    if all_completed and all_completed_date == today_str:
+        return "100 题首战告捷，恭喜！"
+    if streak > 0 and streak % 7 == 0:
+        # 7 的倍数 → "连续 N 周"（周优先，覆盖同时是 5 倍数的场景）
+        return f"连续 {streak // 7} 周"
+    if streak == 3 or (streak > 0 and streak % 5 == 0):
+        # 3 天 · 或 5 / 10 / 15 / 20 / ... 天里程碑
+        return f"连续 {streak} 天"
+    if all_completed:
+        return random.choice(CHECKIN_REVIEW_BLURB_POOL)
+    if has_activity:
+        return random.choice(CHECKIN_BLURB_POOL)
+    return "明天再来"
 
 
 def _balanced_pick(todo_pool: list[dict], n: int) -> list[dict]:
@@ -1498,32 +1586,15 @@ def api_checkin():
         if d_ in overall_diff:
             overall_diff[d_] += 1
 
-    # 一句励志话（分层：完成态 > 里程碑 > 随机池 > 兜底）
-    BLURB_POOL = [
-        "一天一点，不着急",
-        "慢一点也是往前",
-        "做了就是做了",
-        "与 bug 和解的一天",
-        "AC 一下，人生小胜",
-        "稳住节奏，稳住手感",
-        "保持出场率",
-        "今天也守住了",
-    ]
-    if done_count == 0:
-        blurb = "起点即出发"
-    elif done_count == total:
-        blurb = "100 题首战告捷，恭喜！"
-    elif streak > 0 and streak % 7 == 0:
-        # 7 的倍数 → "连续 N 周"（周优先，覆盖同时是 5 倍数的场景）
-        blurb = f"连续 {streak // 7} 周"
-    elif streak == 3 or (streak > 0 and streak % 5 == 0):
-        # 3 天 · 或 5 / 10 / 15 / 20 / ... 天里程碑
-        blurb = f"连续 {streak} 天"
-    elif len(solved_ids) + len(reviewed_ids) > 0:
-        import random
-        blurb = random.choice(BLURB_POOL)
-    else:
-        blurb = "明天再来"
+    all_completed_date = _first_all_completed_date(prog, by_id)
+    blurb = _pick_checkin_blurb(
+        done_count=done_count,
+        total=total,
+        all_completed_date=all_completed_date,
+        today_str=today_str,
+        streak=streak,
+        has_activity=bool(solved_ids or reviewed_ids),
+    )
 
     return jsonify({
         "date": today_str,
