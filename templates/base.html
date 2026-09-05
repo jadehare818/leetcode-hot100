@@ -107,6 +107,18 @@
       <div class="setting-note">
         改动写入 <code>config.local.json</code>，不进 git。刷新页面立即生效。
       </div>
+
+      <div class="setting-block reset-progress-block">
+        <div class="setting-label">
+          <span class="k">重新开始</span>
+          <span class="hint-inline">开启新一轮复习</span>
+        </div>
+        <p>所有题目会回到未刷池，并继续按每日配额出现。旧档位、历史、笔记和代码都会保留。</p>
+        <div class="reset-progress-actions">
+          <button id="reset-all-progress" class="btn danger" type="button">重新开始全部题目</button>
+          <span id="reset-progress-hint" class="hint" aria-live="polite"></span>
+        </div>
+      </div>
     </div>
     <div class="modal-foot">
       <span id="settings-hint" class="hint"></span>

@@ -1236,6 +1236,40 @@ tr.cs-row:has(.cs-panel:not(.open)):has(.note-panel:not(.open)) { display: none;
   color: var(--ink-2);
 }
 
+.reset-progress-block {
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--tomato) 35%, var(--line));
+  border-radius: 3px;
+  background: var(--tomato-soft);
+}
+.reset-progress-block p {
+  margin: 0 0 12px;
+  color: var(--ink-2);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.reset-progress-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn.danger {
+  border-color: var(--tomato);
+  background: var(--paper-2);
+  color: var(--tomato);
+}
+.btn.danger:hover {
+  background: var(--tomato);
+  color: var(--paper);
+}
+.reset-progress-actions .btn:disabled {
+  cursor: wait;
+  opacity: .55;
+  transform: none;
+}
+
 .modal-foot {
   padding: 14px 24px;
   border-top: 1px solid var(--line);

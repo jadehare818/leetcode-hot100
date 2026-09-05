@@ -260,6 +260,8 @@ if (settingsBtn && settingsBackdrop) {
   const $od = document.getElementById('overdue');
   const $db = document.getElementById('day-boundary');
   const $hint = document.getElementById('settings-hint');
+  const $resetAll = document.getElementById('reset-all-progress');
+  const $resetHint = document.getElementById('reset-progress-hint');
 
   async function openSettings() {
     const r = await fetch('/api/settings');
@@ -322,6 +324,34 @@ if (settingsBtn && settingsBackdrop) {
       $hint.style.color = 'var(--tomato)';
     }
   });
+
+  if ($resetAll && $resetHint) {
+    $resetAll.addEventListener('click', async () => {
+      const confirmed = confirm(
+        '所有题目将回到未刷池，并按每日配额重新出现。旧档位、历史、笔记和代码会保留，但当前进度不能一键恢复。确定继续吗？'
+      );
+      if (!confirmed) return;
+
+      $resetAll.disabled = true;
+      $resetHint.textContent = '正在重新开始…';
+      $resetHint.style.color = 'var(--muted)';
+
+      try {
+        const response = await fetch('/api/progress/reset-all', { method: 'POST' });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) {
+          throw new Error(result.error || '重新开始失败');
+        }
+        $resetHint.textContent = `已重置 ${result.reset_count} 道题 · 刷新页面…`;
+        $resetHint.style.color = 'var(--sage)';
+        setTimeout(() => location.reload(), 700);
+      } catch (error) {
+        $resetAll.disabled = false;
+        $resetHint.textContent = error.message || '重新开始失败';
+        $resetHint.style.color = 'var(--tomato)';
+      }
+    });
+  }
 }
 
 // ========== 自定义题:新增 ==========

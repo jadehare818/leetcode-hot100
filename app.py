@@ -266,6 +266,51 @@ def _default_entry() -> dict:
     }
 
 
+def _current_round_history(entry: dict) -> list[dict]:
+    """返回最后一次批量重置之后的历史；没有重置时返回完整历史。"""
+    history = entry.get("history", [])
+    if not isinstance(history, list):
+        return []
+    for index in range(len(history) - 1, -1, -1):
+        if history[index].get("action") == "reset-all":
+            return history[index + 1:]
+    return history
+
+
+def _reset_entry_for_new_round(entry: dict) -> bool:
+    """保留资料和历史，把一道有进度的题恢复为未刷；已未刷时不重复记录。"""
+    previous_status = entry.get("status", STATUS_TODO)
+    previous_stage = entry.get("review_stage", -1)
+    previous_next_review = entry.get("next_review", "")
+    previous_last_done = entry.get("last_done", "")
+
+    if (
+        previous_status == STATUS_TODO
+        and previous_stage == -1
+        and not previous_next_review
+        and not previous_last_done
+    ):
+        return False
+
+    history = entry.get("history")
+    if not isinstance(history, list):
+        history = []
+        entry["history"] = history
+    history.append({
+        "date": _today().isoformat(),
+        "action": "reset-all",
+        "previous_status": previous_status,
+        "previous_review_stage": previous_stage,
+        "previous_next_review": previous_next_review,
+        "previous_last_done": previous_last_done,
+    })
+    entry["status"] = STATUS_TODO
+    entry["review_stage"] = -1
+    entry["next_review"] = ""
+    entry["last_done"] = ""
+    return True
+
+
 def apply_first_solve(entry: dict, status: str) -> dict:
     """第一次刷完 / 手动改状态。status ∈ {forgot, shaky, solid}。"""
     today = _today().isoformat()
@@ -396,7 +441,7 @@ def _done_today(prog: dict) -> tuple[set[int], set[int]]:
     reviewed: set[int] = set()
     for pid, entry in prog.items():
         pid_int = int(pid)
-        for h in entry.get("history", []):
+        for h in _current_round_history(entry):
             if h.get("date") != today:
                 continue
             action = h.get("action")
@@ -428,7 +473,7 @@ def _first_all_completed_date(prog: dict, problem_ids) -> str | None:
             return None
 
         completed_dates: list[date] = []
-        for event in entry.get("history", []):
+        for event in _current_round_history(entry):
             if event.get("action") not in {"solve", "archive"}:
                 continue
             raw_date = event.get("date")
@@ -1285,6 +1330,28 @@ def calendar_card_page():
 
 
 # ---------- API ----------
+
+@app.post("/api/progress/reset-all")
+def api_reset_all_progress():
+    """保留历史和资料，将当前有效题目全部恢复为未刷。"""
+    prog = load_progress()
+    current_ids = {str(problem["id"]) for problem in load_problems()}
+    reset_count = 0
+
+    for pid in current_ids:
+        entry = prog.get(pid)
+        if not isinstance(entry, dict):
+            continue
+        if _reset_entry_for_new_round(entry):
+            reset_count += 1
+
+    save_progress(prog)
+    return jsonify({
+        "ok": True,
+        "total": len(current_ids),
+        "reset_count": reset_count,
+    })
+
 
 @app.post("/api/problem/<int:pid>/status")
 def api_set_status(pid: int):
