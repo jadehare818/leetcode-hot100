@@ -1,0 +1,6003 @@
+{
+  "1": {
+    "status": "solid",
+    "note": "没啥可记的",
+    "code_file": "solutions/python/001_两数之和.py",
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-29",
+        "to": "2026-07-30",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-29",
+        "to": "2026-08-30",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-30",
+        "to": "2026-08-31",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-31",
+        "to": "2026-09-01",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-01",
+        "previous_last_done": "2026-07-30"
+      },
+      {
+        "date": "2026-09-03",
+        "action": "solve",
+        "status": "solid"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-09-18",
+    "last_done": "2026-09-03",
+    "cheatsheet": "",
+    "code_files": {
+      "python": "solutions/python/001_两数之和.py"
+    }
+  },
+  "49": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "str(sorted(word)) 字符串从小到大排序并转字符串\n\ndic = defaultdict(list) value是列表的字典\n\nlist(dic.values()) 字典的value部分转列表",
+    "code_file": "",
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-07",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-01",
+        "to": "2026-09-02",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-02",
+        "to": "2026-09-03",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-03",
+        "to": "2026-09-04",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-04",
+        "previous_last_done": "2026-08-02"
+      },
+      {
+        "date": "2026-09-03",
+        "action": "solve",
+        "status": "solid"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-09-18",
+    "last_done": "2026-09-03"
+  },
+  "2": {
+    "status": "todo",
+    "note": "链表加法：进位 carry, dummy head",
+    "cheatsheet": "",
+    "code_file": "",
+    "history": [
+      {
+        "date": "2026-07-13",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-11",
+        "to": "2026-09-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-12",
+        "to": "2026-09-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-13",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": "",
+    "code_files": {}
+  },
+  "128": {
+    "status": "solid",
+    "note": "先全部存set，之后遍历set，遇到某个序列的最小值就循环算它的序列的长度。\n时间复杂度是O(n)",
+    "cheatsheet": "",
+    "code_file": "",
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-31",
+        "to": "2026-08-01",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-31",
+        "to": "2026-09-01",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-01",
+        "to": "2026-09-02",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-02",
+        "to": "2026-09-03",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-03",
+        "previous_last_done": "2026-08-01"
+      },
+      {
+        "date": "2026-09-03",
+        "action": "solve",
+        "status": "solid"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-09-18",
+    "last_done": "2026-09-03"
+  },
+  "283": {
+    "status": "solid",
+    "note": "左右指针中间维护一个装0的容器，右指针从0开始，遇到非0项就与左指针所指项交换，左指针右移。",
+    "cheatsheet": "",
+    "code_file": "solutions/python/283_移动零.py",
+    "code_files": {
+      "go": "solutions/go/283_移动零.go",
+      "python": "solutions/python/283_移动零.py"
+    },
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-30",
+        "to": "2026-07-31",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-31",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-30",
+        "to": "2026-08-31",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-31",
+        "to": "2026-09-01",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-01",
+        "to": "2026-09-02",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-02",
+        "previous_last_done": "2026-07-31"
+      },
+      {
+        "date": "2026-09-03",
+        "action": "solve",
+        "status": "solid"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-09-18",
+    "last_done": "2026-09-03"
+  },
+  "3": {
+    "status": "todo",
+    "note": "一个set放左右指针维护的子串，右指针右移，碰到set里有的字符就让左指针右移。",
+    "cheatsheet": "hashSet = set()\n\nhashSet.remove(\"a\") // remove删除指定元素\n\nhashSet.pop() // 删除任意一个元素（其实是根据hash算出来的顺序）\n\nhashSet.discard(2) //静默删除，set里没有这个元素也不会报错",
+    "code_file": "solutions/python/003_无重复字符的最长子串.py",
+    "code_files": {
+      "python": "solutions/python/003_无重复字符的最长子串.py"
+    },
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-23",
+        "to": "2026-07-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-24",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-07",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "76": {
+    "status": "todo",
+    "note": "维护一个字典diff，记录s和t的差，先根据t中字符数，对字典对应字符的value做减法，之后左右指针遍历s，新增字符做加法。具体遍历过程中，右指针往右走，直到当前子串覆盖了t，然后让左指针开始右移直到无法覆盖。",
+    "cheatsheet": "s[left:right+1] 字符串切割",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-06",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-07",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-11",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-02",
+        "to": "2026-09-03",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-03",
+        "to": "2026-09-04",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-05",
+        "previous_last_done": "2026-08-03"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "11": {
+    "status": "solid",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-07",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-01",
+        "to": "2026-09-02",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-02",
+        "to": "2026-09-03",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-03",
+        "to": "2026-09-04",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-04",
+        "previous_last_done": "2026-08-02"
+      },
+      {
+        "date": "2026-09-03",
+        "action": "solve",
+        "status": "solid"
+      }
+    ],
+    "review_stage": 1,
+    "next_review": "2026-09-18",
+    "last_done": "2026-09-03"
+  },
+  "15": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-07",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-11",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-02",
+        "to": "2026-09-03",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-03",
+        "to": "2026-09-04",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-05",
+        "previous_last_done": "2026-08-03"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "438": {
+    "status": "todo",
+    "note": "和最小覆盖子串一个思路",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-07",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-08",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-07",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "42": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "solutions/python/042_接雨水.py",
+    "code_files": {
+      "python": "solutions/python/042_接雨水.py"
+    },
+    "history": [
+      {
+        "date": "2026-07-09",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-11",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-02",
+        "to": "2026-09-03",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-03",
+        "to": "2026-09-04",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-05",
+        "previous_last_done": "2026-08-03"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "160": {
+    "status": "todo",
+    "note": "两个指针分别遍历链表A+B和B+A，要么在相交节点相遇，要么同时结束指向None",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-08",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-20",
+        "to": "2026-07-21",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-07",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "206": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-08",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-07",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "560": {
+    "status": "todo",
+    "note": "前缀和",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-08",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-07",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "53": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-09",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-07",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "56": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个列表的x[0]的值进行排序。",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-09",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-20",
+        "to": "2026-07-21",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-07",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "239": {
+    "status": "todo",
+    "note": "\n维护一个双边队列，队列里存索引。索引对应元素保持单调递减，每次小于新增元素的弹出，同时最左侧元素校验索引是否在窗口内，不在也弹出。",
+    "cheatsheet": "d = deque() 双端队列\n\nd.pop() 右边弹出元素\n\nd.popleft() 左边弹出元素\n\nd.append() 右边加入元素\n\nd.appendleft() 左边加入元素",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-10",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-11",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-21",
+        "to": "2026-07-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-06",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-21",
+        "to": "2026-08-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-22",
+        "to": "2026-08-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-23",
+        "to": "2026-08-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "shaky",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-24",
+        "previous_last_done": "2026-08-06"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "189": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-10",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-20",
+        "to": "2026-07-21",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-07",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "238": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-10",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-20",
+        "to": "2026-07-21",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-04",
+        "to": "2026-09-05",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-07",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "41": {
+    "status": "todo",
+    "note": "存set，遍历一遍找ans=最小的num+1，之后从1到ans遍历，不存在于set即answer。",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-11",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-21",
+        "to": "2026-07-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-06",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-07",
+        "to": "2026-09-08",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-08",
+        "previous_last_done": "2026-08-06"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "73": {
+    "status": "todo",
+    "note": "维护俩数组，分别记录哪行/哪列有0，遍历一遍二维数组后，根据这俩数组清零",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-11",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-22",
+        "to": "2026-07-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-07",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-07",
+        "to": "2026-09-08",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-08",
+        "to": "2026-09-09",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-09",
+        "previous_last_done": "2026-08-07"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "54": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-11",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-21",
+        "to": "2026-07-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-06",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-21",
+        "to": "2026-08-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-22",
+        "to": "2026-08-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-23",
+        "to": "2026-08-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "shaky",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-24",
+        "previous_last_done": "2026-08-06"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "48": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-11",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-21",
+        "to": "2026-07-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-06",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-05",
+        "to": "2026-09-06",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-07",
+        "to": "2026-09-08",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-08",
+        "previous_last_done": "2026-08-06"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "240": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-12",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-22",
+        "to": "2026-07-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-07",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-06",
+        "to": "2026-09-07",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-07",
+        "to": "2026-09-08",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-08",
+        "to": "2026-09-09",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-09",
+        "previous_last_done": "2026-08-07"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "234": {
+    "status": "todo",
+    "note": "空间复杂度1，时间复杂度n：后半段反转链表。",
+    "cheatsheet": "",
+    "code_file": "solutions/python/234_回文链表.py",
+    "code_files": {
+      "python": "solutions/python/234_回文链表.py"
+    },
+    "history": [
+      {
+        "date": "2026-07-12",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-23",
+        "to": "2026-07-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-24",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-09",
+        "to": "2026-09-10",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-10",
+        "to": "2026-09-11",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-11",
+        "to": "2026-09-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-12",
+        "previous_last_done": "2026-08-10"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "141": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-12",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-23",
+        "to": "2026-07-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-24",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-09",
+        "to": "2026-09-10",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-10",
+        "to": "2026-09-11",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-11",
+        "to": "2026-09-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-12",
+        "previous_last_done": "2026-08-10"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "142": {
+    "status": "todo",
+    "note": "快慢指针相遇后，新指针开始从head走会和慢指针在交点相遇",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-12",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-13",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-11",
+        "to": "2026-09-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-12",
+        "to": "2026-09-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-13",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "21": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-13",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-09-08",
+        "to": "2026-09-09",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-09",
+        "to": "2026-09-10",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-10",
+        "to": "2026-09-11",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-11",
+        "previous_last_done": "2026-08-09"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "19": {
+    "status": "todo",
+    "note": "维护一个deque",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-13",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-11",
+        "to": "2026-09-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-12",
+        "to": "2026-09-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-13",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "24": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-14",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-28",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-12",
+        "to": "2026-08-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-13",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-28",
+        "to": "2026-08-29",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-29",
+        "to": "2026-08-30",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "shaky",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-30",
+        "previous_last_done": "2026-08-13"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "138": {
+    "status": "todo",
+    "note": "hashmap",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-14",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-11",
+        "to": "2026-09-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-12",
+        "to": "2026-09-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-13",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "148": {
+    "status": "todo",
+    "note": "归并",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-14",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-15",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-18",
+        "to": "2026-07-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-19",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-11",
+        "to": "2026-09-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-12",
+        "to": "2026-09-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-13",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "25": {
+    "status": "todo",
+    "note": "上次的尾和这次的头",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-15",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-27",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-11",
+        "to": "2026-08-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-13",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-14",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-13",
+        "to": "2026-09-14",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-14",
+        "to": "2026-09-15",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-15",
+        "previous_last_done": "2026-08-14"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "146": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "hashMap = dict()\nhashMap[key]=value\n删除其中一个kv对：\nhashMap.pop(key)",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-15",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-27",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-11",
+        "to": "2026-08-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-13",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-14",
+        "previous_last_done": "2026-07-27"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "102": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-15",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-27",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-11",
+        "to": "2026-08-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-13",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-14",
+        "previous_last_done": "2026-07-27"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "23": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-16",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-28",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-12",
+        "to": "2026-08-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-07-28"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "94": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-16",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-28",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-12",
+        "to": "2026-08-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-07-28"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "98": {
+    "status": "todo",
+    "note": "俩思路：\n1. 自己写的思路：递归，入参传入该节点，判断的是这个节点符不符合要求。是None直接返回True；递归调用，得到其左节点是否符合 和 右节点是否符合，有不符合返回false，都符合，则循环遍历左节点的右节点到最底部（得到了左子树的最大值），再循环遍历右节点的左节点到底部（获得了右子树的最小值），对比root.val，其在范围内则返回True，否则返回False。\n2. 网上思路：递归，入参传入该节点和该节点的左右界限（大于low小于high），判断的也是这个节点符不符合要求。不符合则返回false，符合则递归调用，分别看它的左节点（大于low小于root.val本身）和右节点（小于high大于root.val本身）",
+    "cheatsheet": "（不一定用上）\nminValue = -float('inf')\nmaxValue = float('inf')",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-16",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-18",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-21",
+        "to": "2026-07-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-29",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-13",
+        "to": "2026-08-14",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-14",
+        "previous_last_done": "2026-07-29"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "124": {
+    "status": "todo",
+    "note": "dfs，每次返回的是每个点到底部的最大路径和，而更新的ans是当前点的最大路径和",
+    "cheatsheet": "nonlocal",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-18",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-14",
+        "to": "2026-08-15",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-16",
+        "previous_last_done": "2026-07-30"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "230": {
+    "status": "todo",
+    "note": "中序遍历",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-18",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-14",
+        "to": "2026-08-15",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-16",
+        "previous_last_done": "2026-07-30"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "199": {
+    "status": "todo",
+    "note": "层序遍历",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-18",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-19",
+        "action": "shift-forward",
+        "from": "2026-07-19",
+        "to": "2026-07-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-14",
+        "to": "2026-08-15",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-16",
+        "previous_last_done": "2026-07-30"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "51": {
+    "status": "todo",
+    "note": "回溯。3个set",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-19",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-14",
+        "to": "2026-08-15",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-16",
+        "previous_last_done": "2026-07-30"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "114": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-19",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-14",
+        "to": "2026-08-15",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-16",
+        "previous_last_done": "2026-07-30"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "105": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-19",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-20",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-14",
+        "to": "2026-08-15",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-16",
+        "previous_last_done": "2026-07-30"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "4": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-20",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-24",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "hard"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-12",
+        "to": "2026-08-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "437": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "def solve(target):\n    def dfs():\n\n        nonlocal target\n// 用于，另方法外的方法的变量可以被该方法修改",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-20",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-21",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-24",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-17",
+        "to": "2026-08-18",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-18",
+        "to": "2026-08-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-19",
+        "to": "2026-08-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-20",
+        "previous_last_done": "2026-08-02"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "104": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-20",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-14",
+        "to": "2026-08-15",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-09-15",
+        "to": "2026-09-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-16",
+        "to": "2026-09-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 4,
+        "previous_next_review": "2026-09-17",
+        "previous_last_done": "2026-08-16"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "84": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-21",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-17",
+        "to": "2026-08-18",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-18",
+        "to": "2026-08-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-19",
+        "to": "2026-08-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-20",
+        "previous_last_done": "2026-08-02"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "236": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-21",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-17",
+        "to": "2026-08-18",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-18",
+        "to": "2026-08-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-19",
+        "previous_last_done": "2026-08-01"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "200": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-21",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-22",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-17",
+        "to": "2026-08-18",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-18",
+        "to": "2026-08-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-19",
+        "to": "2026-08-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-20",
+        "previous_last_done": "2026-08-02"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "994": {
+    "status": "todo",
+    "note": "双边队列，先存入所有腐烂橘子的（row，col，time），然后开始从队列左边pop，每pop一个，更换其周围四个位置的新鲜橘子状态为腐烂，time+1，把变腐烂的橘子从队列右边加进去",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-22",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-24",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-28",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-06",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-21",
+        "to": "2026-08-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-22",
+        "to": "2026-08-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-23",
+        "to": "2026-08-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-24",
+        "previous_last_done": "2026-08-06"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "22": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "solutions/python/022_括号生成.py",
+    "code_files": {
+      "python": "solutions/python/022_括号生成.py"
+    },
+    "history": [
+      {
+        "date": "2026-07-22",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-17",
+        "to": "2026-08-18",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-18",
+        "to": "2026-08-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-19",
+        "to": "2026-08-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-20",
+        "previous_last_done": "2026-08-02"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "207": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-22",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-23",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-24",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-28",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-06",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-21",
+        "to": "2026-08-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-22",
+        "to": "2026-08-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-23",
+        "to": "2026-08-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-24",
+        "previous_last_done": "2026-08-06"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "208": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-23",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-24",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-27",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-06",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-21",
+        "to": "2026-08-22",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-22",
+        "to": "2026-08-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-23",
+        "to": "2026-08-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-24",
+        "previous_last_done": "2026-08-06"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "46": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-23",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-17",
+        "to": "2026-08-18",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-18",
+        "to": "2026-08-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-19",
+        "to": "2026-08-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-20",
+        "previous_last_done": "2026-08-02"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "78": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-23",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-24",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-29",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-07",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-22",
+        "to": "2026-08-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-23",
+        "to": "2026-08-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-24",
+        "to": "2026-08-25",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-25",
+        "previous_last_done": "2026-08-07"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "17": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-24",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-28",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-23",
+        "to": "2026-08-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-24",
+        "to": "2026-08-25",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-25",
+        "to": "2026-08-26",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-26",
+        "previous_last_done": "2026-08-08"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "39": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-24",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-27",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-07",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-22",
+        "to": "2026-08-23",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-23",
+        "to": "2026-08-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-24",
+        "to": "2026-08-25",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-25",
+        "previous_last_done": "2026-08-07"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "79": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-24",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-25",
+        "action": "postpone-batch"
+      },
+      {
+        "date": "2026-07-26",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-29",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-17",
+        "previous_last_done": "2026-08-08"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "131": {
+    "status": "todo",
+    "note": "二维数组存f[left][right]从left到right是否为回文串；然后回溯思路",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-25",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-27",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-28",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-31",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-24",
+        "to": "2026-08-25",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-25",
+        "to": "2026-08-26",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-26",
+        "to": "2026-08-27",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-27",
+        "previous_last_done": "2026-08-09"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "74": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-26",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-27",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-27",
+        "to": "2026-08-28",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-28",
+        "to": "2026-08-29",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-29",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "34": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-26",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-27",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-24",
+        "to": "2026-08-25",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-25",
+        "to": "2026-08-26",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-26",
+        "to": "2026-08-27",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-27",
+        "previous_last_done": "2026-08-09"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "20": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-26",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-29",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-23",
+        "to": "2026-08-24",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-24",
+        "to": "2026-08-25",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-25",
+        "to": "2026-08-26",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-26",
+        "previous_last_done": "2026-08-08"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "226": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-27",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-27",
+        "to": "2026-08-28",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-28",
+        "to": "2026-08-29",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-29",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "33": {
+    "status": "todo",
+    "note": "while永远left<=right，mid永远mid=(left+right)//2，left和right永远left=mid+1，right=mid-1。调整的只有if条件。",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-27",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-28",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-07-31",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-24",
+        "to": "2026-08-25",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-25",
+        "to": "2026-08-26",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-26",
+        "to": "2026-08-27",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-27",
+        "previous_last_done": "2026-08-09"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "153": {
+    "status": "todo",
+    "note": "while永远left<=right，mid永远mid=(left+right)//2，left和right永远left=mid+1，right=mid-1。调整的只有if条件。\n把mid和nums[-1]比，小于等于说明在小数段，答案在左侧；大于说明位于前部分大数段，答案在右侧",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-27",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-09",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-17",
+        "to": "2026-08-18",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-18",
+        "to": "2026-08-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "shaky",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-19",
+        "previous_last_done": "2026-08-09"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "155": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-28",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-29",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-25",
+        "to": "2026-08-26",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-26",
+        "to": "2026-08-27",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-27",
+        "to": "2026-08-28",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-28",
+        "previous_last_done": "2026-08-10"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "394": {
+    "status": "todo",
+    "note": "栈，维护res和x。",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-28",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-07-29",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-27",
+        "to": "2026-08-28",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-28",
+        "to": "2026-08-29",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-29",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "739": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-28",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-07-31",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-24",
+        "to": "2026-08-25",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-25",
+        "to": "2026-08-26",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-26",
+        "to": "2026-08-27",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-27",
+        "previous_last_done": "2026-08-09"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "215": {
+    "status": "todo",
+    "note": "类似快排的思路，维护big small equal三个数组。pivot随机。",
+    "cheatsheet": "random.choice(nums) 在nums列表中随机选一个数",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-29",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-07-31",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-27",
+        "to": "2026-08-28",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-28",
+        "to": "2026-08-29",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-29",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "347": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-29",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-30",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-08-03"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "55": {
+    "status": "todo",
+    "note": "贪心，每次判断当前i是否小于等于最远距离，然后更新最远距离。最远距离超过总长度直接返回True",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-29",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-25",
+        "to": "2026-08-26",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-26",
+        "to": "2026-08-27",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-27",
+        "to": "2026-08-28",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-28",
+        "previous_last_done": "2026-08-10"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "10002": {
+    "status": "todo",
+    "note": "二分法，mid平方和x比。保持while永远小于等于，right=mid-1，left=mid+1，mid=(left+right)//2",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-29",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-25",
+        "to": "2026-08-26",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-26",
+        "to": "2026-08-27",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-27",
+        "to": "2026-08-28",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-08-28",
+        "previous_last_done": "2026-08-10"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "45": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-30",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-31",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-17",
+        "previous_last_done": "2026-08-08"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "763": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-30",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-31",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-08-03"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "101": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-30",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-07-31",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-08-03"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "198": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-31",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-17",
+        "previous_last_done": "2026-08-08"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "279": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-31",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-12",
+        "to": "2026-08-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "300": {
+    "status": "todo",
+    "note": "动态规划，记录当前前i个数组成的序列中的最长递增子序列。两层遍历。",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-31",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-17",
+        "to": "2026-08-18",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-18",
+        "to": "2026-08-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-19",
+        "previous_last_done": "2026-08-09"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "108": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-07-31",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-01",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-12",
+        "to": "2026-08-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "322": {
+    "status": "todo",
+    "note": "完全背包问题，想俄罗斯方块，但是方块从小往上跑，也就是从coin到amount遍历去更新。",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-01",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-11",
+        "to": "2026-08-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-13",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "shaky",
+        "previous_review_stage": 1,
+        "previous_next_review": "2026-08-17",
+        "previous_last_done": "2026-08-13"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "139": {
+    "status": "todo",
+    "note": "记得用动态规划！",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-01",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-11",
+        "to": "2026-08-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-13",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "shaky",
+        "previous_review_stage": 1,
+        "previous_next_review": "2026-08-17",
+        "previous_last_done": "2026-08-13"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "152": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-01",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-17",
+        "previous_last_done": "2026-08-08"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "118": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-01",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-02",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-07",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-14",
+        "to": "2026-08-15",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-16",
+        "previous_last_done": "2026-08-07"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "35": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-02",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-17",
+        "previous_last_done": "2026-08-08"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "416": {
+    "status": "todo",
+    "note": "先求和，和为奇数直接返回false；把一半定为target。维护dp[i]=是否存在和为i的元素和；背包01思想。\n[1, 6, 4, 7]\ntarget=13\ntarget=3\n01背包思想：遍历每个物品，然后从高到低放进背包。\n可以这么理解（省流：俄罗斯方块 之 一个新方块掉下来后每次碰到一个物品就记录一下头顶高度，最后落到底部 版）：\n这是背包：\n____\n|    |\n|    |\n|    |\n|    |\n|    |\n----\n背包竖着放，高度是target。我们把第一个高度为nums[0]的物品从书包的入口也就是上方放进来，像是俄罗斯方块一样掉进来，那这个物品的顶部所在的高度就是从target慢慢掉到nums[0]（即遍历是 for height in range(target, nums[0]-1, -1)）：\n____   ____\n|口 |   |    |\n|    |   |    |\n|    |   |    |\n|    |   |    |\n|    |   |口|\n----   ----\n之后，我们让第二个物品(画做♦️♦️），高度为nums[1]的物品，也掉进来；这个时候它就是从target慢慢掉到nums[1]；同时，在它正好摞在物品0上面的时候，所在高度是nums[0]+nums[1]；\n            1       2\n____   ____   ____\n|♦️|   |    |   |    |\n|♦️|   |    |   |    |\n|    |   |♦️|   |    |\n|    |   |♦️|   |♦️|\n|口|   |口|   |♦️| (这里口和♦️都在只是不好画)\n----   ----   ----\n也就是说，对于这俩物品来说，可以实现：nums[0],nums[1],nums[0]+nums[1]三种高度\n\n以此类推，我们不断这样放新的物品进去，每次高度的遍历是从target一直到这个物品的高度，也就是for j in range(target, num-1, -1)；\n这样，每次一个物品放下来，分别摞在之前进来的不同的物品上面、或者直接放到最底部，这些所有的它头顶的高度，都会去更新我们的dp[]。\n\n到最后，我们只要去看，是否有物品进来后：它摞在别的物品上时头顶所在的高度 / 它放到最底部后头顶所在的高度，等于我们的目标target也就是这个书包的容量；即可得出是否有物品之和=target。",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-02",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-03",
+        "action": "review",
+        "score": "hard"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-13",
+        "to": "2026-08-14",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 1,
+        "previous_next_review": "2026-08-14",
+        "previous_last_done": "2026-08-10"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "543": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-02",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-31",
+        "to": "2026-09-01",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-09-01",
+        "to": "2026-09-02",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 3,
+        "previous_next_review": "2026-09-02",
+        "previous_last_done": "2026-08-16"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "121": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-03",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-07",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-14",
+        "to": "2026-08-15",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-16",
+        "previous_last_done": "2026-08-07"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "62": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-03",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-17",
+        "to": "2026-08-18",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-18",
+        "to": "2026-08-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-19",
+        "previous_last_done": "2026-08-09"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "64": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-03",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-06",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-13",
+        "to": "2026-08-14",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-14",
+        "previous_last_done": "2026-08-06"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "72": {
+    "status": "todo",
+    "note": "最长公共子序列和编辑距离一个结构。编辑距离：word1[i-1] == word2[j-1]的时候，dp[i][j] = dp[i-1][j-1]，反之dp[i][j] = dp[i-1][j-1]+1，也就是要不要进行替换操作；最后比的是dp[i][j]与dp[i][j-1]+1和dp[i-1][j]+1的最小值，即替换操作和word1插入和word2插入",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-04",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-11",
+        "to": "2026-08-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-19",
+        "to": "2026-08-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-20",
+        "to": "2026-08-21",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-21",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "1143": {
+    "status": "todo",
+    "note": "最长公共子序列和编辑距离一个结构。最长公共子序列：word1[i-1] == word2[j-1]的时候，dp[i][j] = dp[i-1][j-1]+1也就是公共子序列长度较之+1，反之dp[i][j] = dp[i-1][j-1]；最后比的是dp[i][j]与dp[i][j-1]和dp[i-1][j]的最大值（当前i到j相较于i-1到j公共子序列长度肯定没变，相较于i到j-1也是）",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-05",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-06",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-10",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-17",
+        "to": "2026-08-18",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-18",
+        "to": "2026-08-19",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-19",
+        "to": "2026-08-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-20",
+        "previous_last_done": "2026-08-10"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "5": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-05",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-09",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-12",
+        "to": "2026-08-13",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 1,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-08-09"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "70": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-05",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-08",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-15",
+        "to": "2026-08-16",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-16",
+        "to": "2026-08-17",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-17",
+        "previous_last_done": "2026-08-08"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "295": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-05",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-08-05",
+        "action": "archive"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "archived",
+        "previous_review_stage": 0,
+        "previous_next_review": "",
+        "previous_last_done": "2026-08-05"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "32": {
+    "status": "todo",
+    "note": "栈存索引，初始栈存-1，[-1]。\n左括号就入栈，右括号就让栈里弹一个出来。如果弹出来后栈里空了，说明原本栈里的唯一索引是-1或者是一个没配上左括号的右括号，这个时候就让当前右括号索引入栈，下一次的有效括号的最左侧（不包含它）就是这个索引。如果弹出来后栈里还有东西，说明从stack[-1]+1到目前的i是一个有效括号字符串。因此每次更新ans=max(ans, i-stack[-1])。",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-06",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-08-07",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "review",
+        "score": "easy"
+      },
+      {
+        "date": "2026-08-16",
+        "action": "shift-forward",
+        "from": "2026-08-19",
+        "to": "2026-08-20",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-19",
+        "action": "shift-forward",
+        "from": "2026-08-20",
+        "to": "2026-08-21",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 2,
+        "previous_next_review": "2026-08-21",
+        "previous_last_done": "2026-08-12"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "75": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-06",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 1,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-08-06"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "287": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-06",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-09",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "shaky",
+        "previous_review_stage": 0,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-08-06"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "10001": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-07",
+        "action": "solve",
+        "status": "forgot"
+      },
+      {
+        "date": "2026-08-10",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-11",
+        "to": "2026-08-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-13",
+        "action": "review",
+        "score": "ok"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "shaky",
+        "previous_review_stage": 0,
+        "previous_next_review": "2026-08-14",
+        "previous_last_done": "2026-08-13"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "136": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-07",
+        "action": "solve",
+        "status": "shaky"
+      },
+      {
+        "date": "2026-08-10",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "shift-forward",
+        "from": "2026-08-11",
+        "to": "2026-08-12",
+        "shift_days": 1
+      },
+      {
+        "date": "2026-08-13",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "shaky",
+        "previous_review_stage": 0,
+        "previous_next_review": "2026-08-14",
+        "previous_last_done": "2026-08-07"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "169": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-07",
+        "action": "solve",
+        "status": "solid"
+      },
+      {
+        "date": "2026-08-12",
+        "action": "postpone"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "solid",
+        "previous_review_stage": 1,
+        "previous_next_review": "2026-08-13",
+        "previous_last_done": "2026-08-07"
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  },
+  "31": {
+    "status": "todo",
+    "note": "",
+    "cheatsheet": "",
+    "code_file": "",
+    "code_files": {},
+    "history": [
+      {
+        "date": "2026-08-07",
+        "action": "archive"
+      },
+      {
+        "date": "2026-08-31",
+        "action": "reset-all",
+        "previous_status": "archived",
+        "previous_review_stage": -1,
+        "previous_next_review": "",
+        "previous_last_done": ""
+      }
+    ],
+    "review_stage": -1,
+    "next_review": "",
+    "last_done": ""
+  }
+}

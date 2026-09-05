@@ -1,0 +1,30 @@
+{
+  "categories": [
+    {
+      "name": "自定义",
+      "problems": [
+        {
+          "id": 10001,
+          "title": "排序数组",
+          "difficulty": "中等",
+          "url": "https://leetcode.cn/problems/sort-an-array/",
+          "desc": null,
+          "custom": true,
+          "deleted": false,
+          "created_at": "2026-07-29"
+        },
+        {
+          "id": 10002,
+          "title": "x的平方根",
+          "difficulty": "简单",
+          "url": "https://leetcode.cn/problems/sqrtx/description/",
+          "desc": null,
+          "custom": true,
+          "deleted": false,
+          "created_at": "2026-07-29"
+        }
+      ]
+    }
+  ],
+  "next_id": 10003
+}
