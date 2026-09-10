@@ -1,0 +1,15 @@
+{
+  "daily_quota": {
+    "weekday": 10,
+    "weekend": 10
+  },
+  "review_intervals_days": [
+    10,
+    15,
+    20,
+    20,
+    20
+  ],
+  "overdue_alert_days": 2,
+  "day_boundary_hour": 4
+}
