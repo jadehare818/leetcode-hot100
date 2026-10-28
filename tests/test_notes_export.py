@@ -61,6 +61,16 @@ class NotesExportTests(unittest.TestCase):
         self.assertEqual(sheet.max_row, 1)
         self.assertEqual(sheet.max_column, 6)
 
+    def test_custom_problems_with_and_without_links(self):
+        problems = [
+            {"id": 10001, "title": "自定义题", "category": "自定义", "custom": True, "url": "https://leetcode.cn/problems/sort-an-array/"},
+            {"id": 10002, "title": "无链接题目", "category": "自定义", "custom": True},
+        ]
+        sheet = self.workbook({"10001": {"note": "排序"}}, problems=problems)
+        self.assertEqual(sheet["F2"].hyperlink.target, problems[0]["url"])
+        self.assertIsNone(sheet["F3"].value)
+        self.assertEqual(sheet["D2"].value, "排序")
+
     def test_download_uses_local_notes_without_writing_data(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -73,7 +83,8 @@ class NotesExportTests(unittest.TestCase):
             local.write_text('{"49": {"note": "local"}}', encoding="utf-8")
             config.write_text('{}', encoding="utf-8")
             before = {path.name: hashlib.sha256(path.read_bytes()).digest() for path in root.iterdir()}
-            with patch.multiple(tracker, PROBLEMS_PATH=catalog, PROGRESS_PATH=seed, PROGRESS_LOCAL_PATH=local):
+            with patch.multiple(tracker, PROBLEMS_PATH=catalog, PROGRESS_PATH=seed,
+                                PROGRESS_LOCAL_PATH=local, PROBLEMS_CUSTOM_PATH=root / "custom.json"):
                 response = tracker.app.test_client().get("/api/export/notes.xlsx")
                 self.assertEqual(response.status_code, 200)
                 self.assertIn("attachment;", response.headers["Content-Disposition"])

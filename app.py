@@ -252,8 +252,10 @@ def build_notes_workbook(problems: list[dict], progress: dict) -> BytesIO:
     extra_columns = {}
     for problem in problems:
         entry = progress.get(str(problem["id"]), {})
-        row = [problem["id"], problem["title"], problem["category"], "", "",
-               f"https://leetcode.cn/problems/{problem['slug']}/"]
+        url = (problem.get("url") or "") if problem.get("custom") else (
+            f"https://leetcode.cn/problems/{problem['slug']}/"
+        )
+        row = [problem["id"], problem["title"], problem["category"], "", "", url]
         # Split before assigning cells: openpyxl otherwise truncates long strings.
         for field, column, label in (("note", 3, "一句话思路"),
                                      ("cheatsheet", 4, "Cheatsheet")):
