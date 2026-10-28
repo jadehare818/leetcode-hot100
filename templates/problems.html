@@ -6,6 +6,9 @@
   <div class="kicker">Index · Ledger of 100</div>
   <h1>题库总览</h1>
   <p class="lede">按官方分类排布。左侧筛选按状态过滤；点击 💡 / 📝 就地展开思路和 cheatsheet。</p>
+  <div style="margin-top: 20px;">
+    <a href="{{ url_for('export_notes_excel') }}" class="btn" style="text-decoration: none;" title="导出全部题目的思路和 Cheatsheet"><span aria-hidden="true">&#8595;</span> 导出 Excel</a>
+  </div>
 </section>
 
 {% set status_zh = {'todo':'未刷','forgot':'卡住','shaky':'磕绊','solid':'很稳','archived':'归档'} %}

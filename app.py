@@ -14,6 +14,7 @@ import re
 import subprocess
 import sys
 from datetime import date, datetime, timedelta
+from io import BytesIO
 from pathlib import Path
 
 from flask import (
@@ -23,8 +24,13 @@ from flask import (
     redirect,
     render_template,
     request,
+    send_file,
     url_for,
 )
+from openpyxl import Workbook
+from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
+from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.utils import get_column_letter
 
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
@@ -235,6 +241,67 @@ def _progress_write_path() -> Path:
 
 def save_progress(prog: dict) -> None:
     save_json(_progress_write_path(), prog)
+
+
+def build_notes_workbook(problems: list[dict], progress: dict) -> BytesIO:
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.title = "题目笔记"
+    headers = ["题号", "题名", "分类", "一句话思路", "Cheatsheet", "力扣链接"]
+    rows = []
+    extra_columns = {}
+    for problem in problems:
+        entry = progress.get(str(problem["id"]), {})
+        row = [problem["id"], problem["title"], problem["category"], "", "",
+               f"https://leetcode.cn/problems/{problem['slug']}/"]
+        # Split before assigning cells: openpyxl otherwise truncates long strings.
+        for field, column, label in (("note", 3, "一句话思路"),
+                                     ("cheatsheet", 4, "Cheatsheet")):
+            text = ILLEGAL_CHARACTERS_RE.sub("", entry.get(field) or "")
+            chunks = [text[i:i + 32767] for i in range(0, len(text), 32767)] or [""]
+            row[column] = chunks[0]
+            for part, chunk in enumerate(chunks[1:], start=2):
+                key = (field, part)
+                if key not in extra_columns:
+                    extra_columns[key] = len(headers)
+                    headers.append(f"{label}（续 {part}）")
+                index = extra_columns[key]
+                row.extend([""] * max(0, index + 1 - len(row)))
+                row[index] = chunk
+        rows.append(row)
+
+    sheet.append(headers)
+    for row in rows:
+        sheet.append(row)
+    sheet.freeze_panes = "A2"
+    sheet.auto_filter.ref = sheet.dimensions
+    widths = [10, 30, 18, 60, 80, 56]
+    for column in range(1, len(headers) + 1):
+        sheet.column_dimensions[get_column_letter(column)].width = (
+            widths[column - 1] if column <= len(widths) else 80
+        )
+    for row in sheet:
+        for cell in row:
+            if isinstance(cell.value, str):
+                cell.data_type = "s"
+            cell.alignment = Alignment(vertical="top", wrap_text=True)
+            cell.font = Font(name="Calibri", size=11)
+            if cell.row == 1:
+                cell.fill = PatternFill("solid", fgColor="255B4D")
+                cell.font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
+    sheet.row_dimensions[1].height = 26
+    for row_number, row in enumerate(rows, start=2):
+        sheet.row_dimensions[row_number].height = min(
+            180, max(36, 15 * max(str(value).count("\n") + 1 for value in row))
+        )
+        link = sheet.cell(row_number, 6)
+        link.hyperlink = link.value
+        link.font = Font(name="Calibri", size=11, color="0563C1", underline="single")
+    output = BytesIO()
+    workbook.save(output)
+    workbook.close()
+    output.seek(0)
+    return output
 
 
 # ---------- 遗忘曲线 ----------
@@ -990,6 +1057,20 @@ def problems_page():
             p["note"] = entry.get("note", "")
             p["next_review"] = entry.get("next_review", "")
     return render_template("problems.html", categories=cats)
+
+
+@app.get("/api/export/notes.xlsx")
+def export_notes_excel():
+    output = build_notes_workbook(load_problems(), load_progress())
+    response = send_file(
+        output,
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        as_attachment=True,
+        download_name=f"hot100-notes-{date.today().isoformat()}.xlsx",
+        max_age=0,
+    )
+    response.headers["Cache-Control"] = "no-store"
+    return response
 
 
 @app.route("/problem/<int:pid>")
