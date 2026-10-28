@@ -1,14 +1,14 @@
 # 📓 刷题笔记
 
-<sub>自动生成于 **2026-09-10 22:05** · 记录 **41 / 100** 道</sub>
+<sub>自动生成于 **2026-10-28 17:10** · 记录 **42 / 100** 道</sub>
 
-**进度**  `█░░░░░░░░░`  9% (9/100)
+**进度**  `███░░░░░░░`  33% (33/100)
 
 | 🟢 很稳 | 🟡 磕绊 | 🔴 卡住 | 📦 归档 | ⚪ 未刷 |
 | :-: | :-: | :-: | :-: | :-: |
-| **9** | **0** | **0** | **0** | **91** |
+| **33** | **0** | **0** | **0** | **67** |
 
-**已记笔记的难度分布** · 🟢 简单 4 · 🟡 中等 30 · 🔴 困难 7
+**已记笔记的难度分布** · 🟢 简单 4 · 🟡 中等 31 · 🔴 困难 7
 
 ---
 
@@ -26,33 +26,34 @@
 
 ### 🔖 滑动窗口 · 2
 
-- [`#3`](#3-无重复字符的最长子串) · 无重复字符的最长子串 · ⚪
-- [`#438`](#438-找到字符串中所有字母异位词) · 找到字符串中所有字母异位词 · ⚪
+- [`#3`](#3-无重复字符的最长子串) · 无重复字符的最长子串 · 🟢
+- [`#438`](#438-找到字符串中所有字母异位词) · 找到字符串中所有字母异位词 · 🟢
 
 ### 🔖 子串 · 3
 
-- [`#560`](#560-和为-k-的子数组) · 和为 K 的子数组 · ⚪
-- [`#239`](#239-滑动窗口最大值) · 滑动窗口最大值 · ⚪
-- [`#76`](#76-最小覆盖子串) · 最小覆盖子串 · ⚪
+- [`#560`](#560-和为-k-的子数组) · 和为 K 的子数组 · 🟢
+- [`#239`](#239-滑动窗口最大值) · 滑动窗口最大值 · 🟢
+- [`#76`](#76-最小覆盖子串) · 最小覆盖子串 · 🟢
 
 ### 🔖 普通数组 · 2
 
-- [`#56`](#56-合并区间) · 合并区间 · ⚪
-- [`#41`](#41-缺失的第一个正数) · 缺失的第一个正数 · ⚪
+- [`#56`](#56-合并区间) · 合并区间 · 🟢
+- [`#41`](#41-缺失的第一个正数) · 缺失的第一个正数 · 🟢
 
-### 🔖 矩阵 · 1
+### 🔖 矩阵 · 2
 
-- [`#73`](#73-矩阵置零) · 矩阵置零 · ⚪
+- [`#73`](#73-矩阵置零) · 矩阵置零 · 🟢
+- [`#240`](#240-搜索二维矩阵-ii) · 搜索二维矩阵 II · 🟢
 
 ### 🔖 链表 · 9
 
-- [`#160`](#160-相交链表) · 相交链表 · ⚪
-- [`#234`](#234-回文链表) · 回文链表 · ⚪
-- [`#142`](#142-环形链表-ii) · 环形链表 II · ⚪
-- [`#2`](#2-两数相加) · 两数相加 · ⚪
-- [`#19`](#19-删除链表的倒数第-n-个结点) · 删除链表的倒数第 N 个结点 · ⚪
-- [`#25`](#25-k-个一组翻转链表) · K 个一组翻转链表 · ⚪
-- [`#138`](#138-随机链表的复制) · 随机链表的复制 · ⚪
+- [`#160`](#160-相交链表) · 相交链表 · 🟢
+- [`#234`](#234-回文链表) · 回文链表 · 🟢
+- [`#142`](#142-环形链表-ii) · 环形链表 II · 🟢
+- [`#2`](#2-两数相加) · 两数相加 · 🟢
+- [`#19`](#19-删除链表的倒数第-n-个结点) · 删除链表的倒数第 N 个结点 · 🟢
+- [`#25`](#25-k-个一组翻转链表) · K 个一组翻转链表 · 🟢
+- [`#138`](#138-随机链表的复制) · 随机链表的复制 · 🟢
 - [`#148`](#148-排序链表) · 排序链表 · ⚪
 - [`#146`](#146-lru-缓存) · LRU 缓存 · ⚪
 
@@ -84,7 +85,7 @@
 
 ### 🔖 堆 · 1
 
-- [`#215`](#215-数组中的第k个最大元素) · 数组中的第K个最大元素 · ⚪
+- [`#215`](#215-数组中的第k个最大元素) · 数组中的第K个最大元素 · 🟢
 
 ### 🔖 贪心算法 · 1
 
@@ -113,8 +114,8 @@
 |---|---|
 | 分类 | 哈希 |
 | 难度 | 🟢 简单 |
-| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-09-18 |
-| 最近编辑 | 2026-09-03 · [🔗 力扣](https://leetcode.cn/problems/two-sum/) |
+| 状态 | 🟢 很稳 · 档位 2 · 下次复习 2026-11-06 |
+| 最近编辑 | 2026-10-27 · [🔗 力扣](https://leetcode.cn/problems/two-sum/) |
 
 **💡 思路**
 
@@ -130,8 +131,8 @@
 |---|---|
 | 分类 | 哈希 |
 | 难度 | 🟡 中等 |
-| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-09-18 |
-| 最近编辑 | 2026-09-03 · [🔗 力扣](https://leetcode.cn/problems/group-anagrams/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-10-30 |
+| 最近编辑 | 2026-10-20 · [🔗 力扣](https://leetcode.cn/problems/group-anagrams/) |
 
 **📝 Cheatsheet**
 
@@ -153,8 +154,8 @@ list(dic.values()) 字典的value部分转列表
 |---|---|
 | 分类 | 哈希 |
 | 难度 | 🟡 中等 |
-| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-09-18 |
-| 最近编辑 | 2026-09-03 · [🔗 力扣](https://leetcode.cn/problems/longest-consecutive-sequence/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-10-30 |
+| 最近编辑 | 2026-10-20 · [🔗 力扣](https://leetcode.cn/problems/longest-consecutive-sequence/) |
 
 **💡 思路**
 
@@ -173,8 +174,8 @@ list(dic.values()) 字典的value部分转列表
 |---|---|
 | 分类 | 双指针 |
 | 难度 | 🟢 简单 |
-| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-09-18 |
-| 最近编辑 | 2026-09-03 · [🔗 力扣](https://leetcode.cn/problems/move-zeroes/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-10-30 |
+| 最近编辑 | 2026-10-20 · [🔗 力扣](https://leetcode.cn/problems/move-zeroes/) |
 
 **💡 思路**
 
@@ -192,8 +193,8 @@ list(dic.values()) 字典的value部分转列表
 |---|---|
 | 分类 | 滑动窗口 |
 | 难度 | 🟡 中等 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-10-30 |
+| 最近编辑 | 2026-10-20 · [🔗 力扣](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) |
 
 **💡 思路**
 
@@ -221,8 +222,8 @@ hashSet.discard(2) //静默删除，set里没有这个元素也不会报错
 |---|---|
 | 分类 | 滑动窗口 |
 | 难度 | 🟡 中等 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/find-all-anagrams-in-a-string/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-10-31 |
+| 最近编辑 | 2026-10-21 · [🔗 力扣](https://leetcode.cn/problems/find-all-anagrams-in-a-string/) |
 
 **💡 思路**
 
@@ -240,8 +241,8 @@ hashSet.discard(2) //静默删除，set里没有这个元素也不会报错
 |---|---|
 | 分类 | 子串 |
 | 难度 | 🟡 中等 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/subarray-sum-equals-k/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-10-30 |
+| 最近编辑 | 2026-10-20 · [🔗 力扣](https://leetcode.cn/problems/subarray-sum-equals-k/) |
 
 **💡 思路**
 
@@ -257,8 +258,8 @@ hashSet.discard(2) //静默删除，set里没有这个元素也不会报错
 |---|---|
 | 分类 | 子串 |
 | 难度 | 🔴 困难 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/sliding-window-maximum/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-11-01 |
+| 最近编辑 | 2026-10-22 · [🔗 力扣](https://leetcode.cn/problems/sliding-window-maximum/) |
 
 **💡 思路**
 
@@ -288,8 +289,8 @@ d.appendleft() 左边加入元素
 |---|---|
 | 分类 | 子串 |
 | 难度 | 🔴 困难 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/minimum-window-substring/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-10-31 |
+| 最近编辑 | 2026-10-21 · [🔗 力扣](https://leetcode.cn/problems/minimum-window-substring/) |
 
 **💡 思路**
 
@@ -313,8 +314,8 @@ s[left:right+1] 字符串切割
 |---|---|
 | 分类 | 普通数组 |
 | 难度 | 🟡 中等 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/merge-intervals/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-10-31 |
+| 最近编辑 | 2026-10-21 · [🔗 力扣](https://leetcode.cn/problems/merge-intervals/) |
 
 **📝 Cheatsheet**
 
@@ -332,8 +333,8 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 |---|---|
 | 分类 | 普通数组 |
 | 难度 | 🔴 困难 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/first-missing-positive/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-10-31 |
+| 最近编辑 | 2026-10-21 · [🔗 力扣](https://leetcode.cn/problems/first-missing-positive/) |
 
 **💡 思路**
 
@@ -351,12 +352,29 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 |---|---|
 | 分类 | 矩阵 |
 | 难度 | 🟡 中等 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/set-matrix-zeroes/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-10-31 |
+| 最近编辑 | 2026-10-21 · [🔗 力扣](https://leetcode.cn/problems/set-matrix-zeroes/) |
 
 **💡 思路**
 
-> 维护俩数组，分别记录哪行/哪列有0，遍历一遍二维数组后，根据这俩数组清零
+> 用矩阵第一行和第一列记录每行每列有没有0。在此之前，先用两个变量记录一下第一行和第一列有没有0。遍历一遍二维数组后，根据第一行和第一列进行清零。最后根据两个变量处理第一行和第一列。
+
+<sup>[↑ 回目录](#-目录)</sup>
+
+---
+
+## `#240` 搜索二维矩阵 II
+
+| | |
+|---|---|
+| 分类 | 矩阵 |
+| 难度 | 🟡 中等 |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-11-01 |
+| 最近编辑 | 2026-10-22 · [🔗 力扣](https://leetcode.cn/problems/search-a-2d-matrix-ii/) |
+
+**💡 思路**
+
+> 左下角开始找，比target小往右走，比target大往上走
 
 <sup>[↑ 回目录](#-目录)</sup>
 
@@ -370,8 +388,8 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 |---|---|
 | 分类 | 链表 |
 | 难度 | 🟢 简单 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/intersection-of-two-linked-lists/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-11-01 |
+| 最近编辑 | 2026-10-22 · [🔗 力扣](https://leetcode.cn/problems/intersection-of-two-linked-lists/) |
 
 **💡 思路**
 
@@ -387,8 +405,8 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 |---|---|
 | 分类 | 链表 |
 | 难度 | 🟢 简单 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/palindrome-linked-list/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-11-01 |
+| 最近编辑 | 2026-10-22 · [🔗 力扣](https://leetcode.cn/problems/palindrome-linked-list/) |
 
 **💡 思路**
 
@@ -404,8 +422,8 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 |---|---|
 | 分类 | 链表 |
 | 难度 | 🟡 中等 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/linked-list-cycle-ii/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-11-01 |
+| 最近编辑 | 2026-10-22 · [🔗 力扣](https://leetcode.cn/problems/linked-list-cycle-ii/) |
 
 **💡 思路**
 
@@ -421,8 +439,8 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 |---|---|
 | 分类 | 链表 |
 | 难度 | 🟡 中等 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/add-two-numbers/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-11-01 |
+| 最近编辑 | 2026-10-22 · [🔗 力扣](https://leetcode.cn/problems/add-two-numbers/) |
 
 **💡 思路**
 
@@ -438,8 +456,8 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 |---|---|
 | 分类 | 链表 |
 | 难度 | 🟡 中等 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-11-01 |
+| 最近编辑 | 2026-10-22 · [🔗 力扣](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/) |
 
 **💡 思路**
 
@@ -455,8 +473,8 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 |---|---|
 | 分类 | 链表 |
 | 难度 | 🔴 困难 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/reverse-nodes-in-k-group/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-11-07 |
+| 最近编辑 | 2026-10-28 · [🔗 力扣](https://leetcode.cn/problems/reverse-nodes-in-k-group/) |
 
 **💡 思路**
 
@@ -472,8 +490,8 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 |---|---|
 | 分类 | 链表 |
 | 难度 | 🟡 中等 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/copy-list-with-random-pointer/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-11-07 |
+| 最近编辑 | 2026-10-28 · [🔗 力扣](https://leetcode.cn/problems/copy-list-with-random-pointer/) |
 
 **💡 思路**
 
@@ -490,7 +508,7 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 | 分类 | 链表 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/sort-list/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/sort-list/) |
 
 **💡 思路**
 
@@ -507,7 +525,7 @@ intervals = sorted(intervals, key=lambda x:x[0])  //二维数组，根据每个�
 | 分类 | 链表 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/lru-cache/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/lru-cache/) |
 
 **📝 Cheatsheet**
 
@@ -531,7 +549,7 @@ hashMap.pop(key)
 | 分类 | 二叉树 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/validate-binary-search-tree/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/validate-binary-search-tree/) |
 
 **💡 思路**
 
@@ -558,7 +576,7 @@ maxValue = float('inf')
 | 分类 | 二叉树 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/) |
 
 **💡 思路**
 
@@ -575,7 +593,7 @@ maxValue = float('inf')
 | 分类 | 二叉树 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/binary-tree-right-side-view/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/binary-tree-right-side-view/) |
 
 **💡 思路**
 
@@ -592,7 +610,7 @@ maxValue = float('inf')
 | 分类 | 二叉树 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/path-sum-iii/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/path-sum-iii/) |
 
 **📝 Cheatsheet**
 
@@ -615,7 +633,7 @@ def solve(target):
 | 分类 | 二叉树 |
 | 难度 | 🔴 困难 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/binary-tree-maximum-path-sum/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/binary-tree-maximum-path-sum/) |
 
 **💡 思路**
 
@@ -640,7 +658,7 @@ nonlocal
 | 分类 | 图论 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/rotting-oranges/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/rotting-oranges/) |
 
 **💡 思路**
 
@@ -659,7 +677,7 @@ nonlocal
 | 分类 | 回溯 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/palindrome-partitioning/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/palindrome-partitioning/) |
 
 **💡 思路**
 
@@ -676,7 +694,7 @@ nonlocal
 | 分类 | 回溯 |
 | 难度 | 🔴 困难 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/n-queens/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/n-queens/) |
 
 **💡 思路**
 
@@ -695,7 +713,7 @@ nonlocal
 | 分类 | 二分查找 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/search-in-rotated-sorted-array/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/search-in-rotated-sorted-array/) |
 
 **💡 思路**
 
@@ -712,7 +730,7 @@ nonlocal
 | 分类 | 二分查找 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/) |
 
 **💡 思路**
 
@@ -732,7 +750,7 @@ nonlocal
 | 分类 | 栈 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/decode-string/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/decode-string/) |
 
 **💡 思路**
 
@@ -750,8 +768,8 @@ nonlocal
 |---|---|
 | 分类 | 堆 |
 | 难度 | 🟡 中等 |
-| 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/kth-largest-element-in-an-array/) |
+| 状态 | 🟢 很稳 · 档位 1 · 下次复习 2026-11-07 |
+| 最近编辑 | 2026-10-28 · [🔗 力扣](https://leetcode.cn/problems/kth-largest-element-in-an-array/) |
 
 **💡 思路**
 
@@ -776,7 +794,7 @@ random.choice(nums) 在nums列表中随机选一个数
 | 分类 | 贪心算法 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/jump-game/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/jump-game/) |
 
 **💡 思路**
 
@@ -795,7 +813,7 @@ random.choice(nums) 在nums列表中随机选一个数
 | 分类 | 动态规划 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/coin-change/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/coin-change/) |
 
 **💡 思路**
 
@@ -812,7 +830,7 @@ random.choice(nums) 在nums列表中随机选一个数
 | 分类 | 动态规划 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/word-break/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/word-break/) |
 
 **💡 思路**
 
@@ -829,7 +847,7 @@ random.choice(nums) 在nums列表中随机选一个数
 | 分类 | 动态规划 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/longest-increasing-subsequence/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/longest-increasing-subsequence/) |
 
 **💡 思路**
 
@@ -846,7 +864,7 @@ random.choice(nums) 在nums列表中随机选一个数
 | 分类 | 动态规划 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/partition-equal-subset-sum/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/partition-equal-subset-sum/) |
 
 **💡 思路**
 
@@ -899,7 +917,7 @@ random.choice(nums) 在nums列表中随机选一个数
 | 分类 | 动态规划 |
 | 难度 | 🔴 困难 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/longest-valid-parentheses/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/longest-valid-parentheses/) |
 
 **💡 思路**
 
@@ -919,7 +937,7 @@ random.choice(nums) 在nums列表中随机选一个数
 | 分类 | 多维动态规划 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/longest-common-subsequence/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/longest-common-subsequence/) |
 
 **💡 思路**
 
@@ -936,7 +954,7 @@ random.choice(nums) 在nums列表中随机选一个数
 | 分类 | 多维动态规划 |
 | 难度 | 🟡 中等 |
 | 状态 | ⚪ 未刷 · 尚未进复习队列 · 下次复习 — |
-| 最近编辑 | 2026-08-31 · [🔗 力扣](https://leetcode.cn/problems/edit-distance/) |
+| 最近编辑 | 0000-00-00 · [🔗 力扣](https://leetcode.cn/problems/edit-distance/) |
 
 **💡 思路**
 

@@ -4,12 +4,12 @@
     "weekend": 10
   },
   "review_intervals_days": [
+    1,
     10,
-    15,
-    20,
-    20,
-    20
+    10,
+    10,
+    10
   ],
-  "overdue_alert_days": 2,
+  "overdue_alert_days": 3,
   "day_boundary_hour": 4
 }
